@@ -1,0 +1,38 @@
+---
+layout:     post
+title:      知识图谱相关论文推荐
+subtitle:   最近看点啥？
+date:       2019-09-16
+author:     Bingo
+header-img: img/post-bg-KG.png
+catalog: true
+tags:
+    - 知识图谱
+---
+
+> 学海无涯苦作舟，独居深山老林中
+
+# 知识推理
+- 2010，[PRA：Relational retrieval using a combination of path-constrained random walks](https://www.cs.cmu.edu/~wcohen/postscript/ecml-2010-ni.pdf), Machine Learning. 将图谱中的路径做为特征，构建路径的关系分类模型。
+- 2011，[RESCAL: A three-way model for collective learning on multi-relational data](http://www.icml-2011.org/papers/438_icmlpaper.pdf)。构建三元组函数 f(e1, r, e2) = e1Wre2来判断三元组是否为真，目标函数为所有三元组集合的似然。
+- 2013，[TransE: Translating Embeddings for Modeling Multi-relational Data](http://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf). Trans系列论文就是将知识图谱中的结点和边向量化，比如e2 = e1+r，从而泛化得到实体之间的关系。变种有TransR和TransH等等，克服关系一对多，多对一，多对多的问题。
+- 2014，[Reasoning With Neural Tensor Networks for Knowledge Base Completion](https://nlp.stanford.edu/pubs/SocherChenManningNg_NIPS2013.pdf)。基于张量神经网络构建判别模型, 实体对通过bilinear tensor product学习关系矩阵。
+- 2015, [Learning Entity and Relation Embeddings for Knowledge Graph Completion](https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/viewFile/9571/9523)，TransR,Trans系列改良版之一，把实体和关系映射到两个不同的空间
+- 2015, [A Review of Relational Machine Learning for Knowledge Graphs](https://arxiv.org/pdf/1503.00759), 机器学习在KG的综述。
+- 2017, [A simple neural network module for relational reasoning](https://pdfs.semanticscholar.org/b735/5be90cbe1d59e128e155c9a4f0be2ef20990.pdf), deepmind 提出的relational networks，目的是推理实体之间的关系，但是应用偏visual
+- 2017, [Knowledge Graph Embedding: A Survery of Approaches and Applications](https://persagen.com/files/misc/Wang2017Knowledge.pdf), KGE的综述，介绍了一系列的方法。
+- 2017，[An Interpretable Knowledge Transfer Model for Knowledge Base Completion](https://www.semanticscholar.org/paper/An-Interpretable-Knowledge-Transfer-Model-for-Base-Xie-Ma/226756461524d661c566812694a648ff7aad02cb), 去年ACL，提出了ITRANSF，主要是可以提供利用ATT提供可解释性，但是性能上的提高不明显
+- 2018，[Variational Knowledge Graph Reasoning](https://www.aclweb.org/anthology/N18-1165)。好文章，今年NAACL2， 将变分法应用到知识图谱的推理中，将实体之间的路径作为隐变量，寻找路径和关系之间的关联。由于VAE可以encode出离散变量，该方案可以提供一定的解释性。
+
+# 关系抽取：
+- 2010，[Distant supervision for relation extraction without labeled data](https://aclweb.org/anthology/P09-1113)。在无标签数据中寻找已知的实体对，扩展数据集。
+- 2014，[Relation Classification via Convolutional Deep Neural Network](https://aclweb.org/anthology/C14-1220), 基于CNN的监督分类模型
+- 2015, [Attention-Based Bidirectional Long Short-Term Memory Networks for Relation Classification](https://www.aclweb.org/anthology/P16-2034)，基于注意力LSTM的监督分类模型
+- 2015, [Classifying Relations via Long Short Term Memory Networks along Shortest Dependency Paths](https://aclweb.org/anthology/D15-1206), 加入句法树信息,
+- 2016，[Discrete-State Variational Autoencoders for Joint Discovery and Factorization of Relations](http://ivan-titov.org/papers/tacl16diego.pdf), 基于变分法，结合知识图谱和关系抽取，挖掘文本中的信息。把关系看做latent， 然后去decode两个实体出来。注：在链接预测里面decode的是关系，latent是路径（这种往往会损失性能效果）。
+- 2017, [Neural Relation Extraction with Multi-lingual Attention](http://nlp.csai.tsinghua.edu.cn/~lyk/publications/acl2017_mnre.pdf), 融合了跨语言学习，利用其它语言的语法和语义来帮助抽取。
+- 2017, [Joint Extraction of Entities and Relations Based on a Novel Tagging Scheme](https://www.ijcai.org/proceedings/2018/0620.pdf)/[Going out on a limb: Joint Extraction of Entity Mentions and Relations without Dependency Trees](https://pdfs.semanticscholar.org/bbbd/45338fbd85b0bacf23918bb77107f4cfb69e.pdf), 实体和关系同时抽取
+- 2017, [Learning with Noise: Enhance Distantly Supervised Relation Extraction with Dynamic Transition Matrix](http://www.lancaster.ac.uk/staff/wangz3/publications/acl17.pdf), 利用transition matrix远程监督学习样本的噪音问题。
+- 2018, [DSGAN: Generative Adversarial Training for Distant Supervision Relation Extraction](https://www.aclweb.org/anthology/P18-1046), 用GAN来减少远程监督学习样本的噪音问题
+- 2018, [Ranking-Based Automatic Seed Selection and Noise Reduction for Weakly Supervised Relation Extraction](https://www.aclweb.org/anthology/P18-2015), 还是同样的问题，从rank上解决。
+- 2018, [A Walk-based Model on Entity Graphs for Relation Extraction](https://www.aclweb.org/anthology/P18-2014), 文章把一句话里面的所有entity看成作为一个全联通子图，两两组合起来，实体对的关系作为监督

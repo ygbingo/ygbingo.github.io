@@ -1,0 +1,231 @@
+---
+layout:     post
+title:      从0到1实现自动聊天机器人
+subtitle:   从最原始的方法，到深度学习的方法，教你如何实现简单的自动聊天机器人
+date:       2019-06-24
+author:     Bingo
+header-img: img/post-bg-memory.jpg
+catalog: true
+tags:
+    - 深度学习
+    - NLP
+---
+
+> How are you ?<br>
+> I'm fine, Thank you, And you?<br>
+> I'm fine too.<br>
+
+# 最基础的基于规则(base-rule)的聊天机器人
+``` Python
+import random
+
+# 打招呼
+greetings = ['hola', 'hello', 'hi', 'Hi', 'hey!','hey']
+# 回复打招呼
+random_greeting = random.choice(greetings)
+
+# 对于“你怎么样？”这个问题的回复
+question = ['How are you?','How are you doing?']
+# “我很好”
+responses = ['Okay',"I'm fine"]
+# 随机选一个回
+random_response = random.choice(responses)
+
+# 机器人跑起来
+while True:
+    userInput = input(">>> ")
+    if userInput in greetings:
+        print(random_greeting)
+    elif userInput in question:
+        print(random_response)
+    # 除非你说“拜拜”
+    elif userInput == 'bye':
+        break
+    else:
+        print("I did not understand what you said")
+```
+效果：
+> \>>> hi<br>
+hey<br>
+\>>> how are u<br>
+I did not understand what you said<br>
+\>>> how are you<br>
+I did not understand what you said<br>
+\>>> how are you?<br>
+I did not understand what you said<br>
+\>>> How are you?<br>
+I'm fine<br>
+\>>> bye<br>
+
+显然 这样的rule太弱智了，我们需要更好一点的“精准对答”
+
+比如
+
+透过关键词来判断这句话的意图是什么（intents）
+
+接下来，我们对上面这段代码做一次升级
+``` Python
+from nltk import word_tokenize
+import random
+
+# 打招呼
+greetings = ['hola', 'hello', 'hi', 'Hi', 'hey!','hey']
+# 回复打招呼
+random_greeting = random.choice(greetings)
+
+# 对于“假期”的话题关键词
+question = ['break','holiday','vacation','weekend']
+# 回复假期话题
+responses = ['It was nice! I went to Paris',"Sadly, I just stayed at home"]
+# 随机选一个回
+random_response = random.choice(responses)
+
+
+
+# 机器人跑起来
+while True:
+    userInput = input(">>> ")
+    # 清理一下输入，看看都有哪些词
+    cleaned_input = word_tokenize(userInput)
+    # 这里，我们比较一下关键词，确定他属于哪个问题
+    if  not set(cleaned_input).isdisjoint(greetings):
+        print(random_greeting)
+    elif not set(cleaned_input).isdisjoint(question):
+        print(random_response)
+    # 除非你说“拜拜”
+    elif userInput == 'bye':
+        break
+    else:
+        print("I did not understand what you said")
+```
+效果：
+> \>>> hi<br>
+hey<br>
+\>>> how was your holiday?\
+It was nice! I went to Paris\
+\>>> wow, amazing!\
+I did not understand what you said\
+\>>> bye
+
+大家大概能发现，这依旧是文字层面的“精准对应”。\
+现在主流的研究方向，是做到语义层面的对应。\
+比如，“肚子好饿哦”， “饭点到了”\
+都应该表示的是要吃饭了的意思.\
+在这个层面，就需要用到word vector之类的embedding方法，
+
+# 通过构建简单知识图谱
+``` Python
+# 建立一个基于目标行业的database
+# 比如 这里我们用python自带的graph
+graph = {'上海': ['苏州', '常州'],
+         '苏州': ['常州', '镇江'],
+         '常州': ['镇江'],
+         '镇江': ['常州'],
+         '盐城': ['南通'],
+         '南通': ['常州']}
+
+# 明确如何找到从A到B的路径
+def find_path(start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if start not in graph:
+        return None
+    for node in graph[start]:
+        if node not in path:
+            newpath = find_path(node, end, path)
+            if newpath: return newpath
+    return None
+```
+效果
+> print(find_path('上海', "镇江"))\
+['上海', '苏州', '常州', '镇江']
+
+# 基于GTTS实现钢铁侠的Javis
+GTTS(Google Text-to-Speech API), 是google的一套API，用于把文本转化为音频。
+例如：
+``` Python
+from gtts import gTTS
+import os
+tts = gTTS(text='您好，我是您的私人助手，我叫小辣椒', lang='zh-tw')
+tts.save("hello.mp3")
+os.system("mpg321 hello.mp3")
+```
+有了文本到语音的功能，\
+我们还可以运用Google API读出Jarvis的回复：
+``` Python
+import speech_recognition as sr
+from time import ctime
+import time
+import os
+from gtts import gTTS
+import sys
+ 
+# 讲出来AI的话
+def speak(audioString):
+    print(audioString)
+    tts = gTTS(text=audioString, lang='en')
+    tts.save("audio.mp3")
+    os.system("mpg321 audio.mp3")
+
+# 录下来你讲的话
+def recordAudio():
+    # 用麦克风记录下你的话
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+ 
+    # 用Google API转化音频
+    data = ""
+    try:
+        data = r.recognize_google(audio)
+        print("You said: " + data)
+    except sr.UnknownValueError:
+        print("Google Speech Recognition could not understand audio")
+    except sr.RequestError as e:
+        print("Could not request results from Google Speech Recognition service; {0}".format(e))
+ 
+    return data
+
+# 自带的对话技能（rules）
+def jarvis():
+    
+    while True:
+        
+        data = recordAudio()
+
+        if "how are you" in data:
+            speak("I am fine")
+
+        if "what time is it" in data:
+            speak(ctime())
+
+        if "where is" in data:
+            data = data.split(" ")
+            location = data[2]
+            speak("Hold on Tony, I will show you where " + location + " is.")
+            os.system("open -a Safari https://www.google.com/maps/place/" + location + "/&amp;")
+
+        if "bye" in data:
+            speak("bye bye")
+            break
+
+# 初始化
+time.sleep(2)
+speak("Hi Tony, what can I do for you?")
+
+# 跑起
+jarvis()
+```
+效果：
+> Hi Tony, what can I do for you?\
+You said: how are you\
+I am fine\
+You said: what time is it now\
+Fri Apr  7 18:16:54 2017\
+You said: where is London\
+Hold on Tony, I will show you where London is.\
+You said: ok bye bye\
+bye bye
+
+好啦！这样你的Javis就建好了，当然这个Javis的智能化看起来并不好，不过学科都是交叉的，想真的建立一套完整的Javis一定还需要不断的学习，多领域的知识都要涉及到才行哦！

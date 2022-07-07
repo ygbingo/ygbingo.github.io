@@ -1,0 +1,158 @@
+---
+layout:     post
+title:      Python基础之每日练习
+subtitle:   python基础教学
+date:       2020-11-21
+author:     Bingo
+header-img: img/python_1.png
+catalog: true
+tags:
+    - python
+    - python基础教学
+---
+
+> Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。
+
+
+# Q&A(2020-11-30)
+> 知识点：excel格式文件读取 [openpyxl](https://geek-docs.com/python/python-tutorial/python-openpyxl.html)
+
+1. 合并下面两个excel文件：通过id把他们的成绩合并的到一起，如果没有成绩的初始化为0？
+> score1.xlsx
+```
+id,name,math,physical,chemistry,biological
+000,Li,90,88,93,94
+001,Han,66,73,62,80
+002,Gao,78,87,88,90
+```
+> score2.xlsx
+```
+id,name,chinese,english,history,geography,political
+000,Li,80,68,63,74
+001,Han,95,96,89,93
+003,Liu,88,87,89,92
+```
+
+2. 对上面合并后的文件，计算每个同学的平均成绩并排名？
+
+
+# Q&A(2020-11-28)
+> 知识点：文件读写、JSON对象解析<br>
+> 参考文档：
+<br>[Python File](https://www.runoob.com/python3/python3-file-methods.html)
+<br>[《Python3 JSON解析》](https://www.runoob.com/python3/python3-json.html)
+<br>[JSON语法](https://www.runoob.com/json/json-syntax.html)
+
+1. 创建一个文本文件，利用python找到这个文件，读取文件中的内容并把内容写入新的文件中？
+2. 把下面这个JSON对象写入json文件中？
+```json
+{ 
+    "country": "中国" , 
+    "province": "辽宁省",
+    "city": "抚顺市"
+}
+```
+3. 把下面这个数据写入excel格式的文件中？
+```
+id,name,age
+1,Jordan,35
+2,Allen,28
+3,Jenny,41
+4,Lilei,18
+```
+4. [LeetCode 20](https://leetcode-cn.com/problems/valid-parentheses/)
+
+# 如何理解类、函数、属性
+1. 思考：人类都有那些属性？人类能执行哪些动作？尝试完成下面这个类，补充几个方法：set_age、set_gender、set_height ...
+```python
+class Person:
+    def __init__(self, age, gender, height, weight):
+        self.age = age
+        self.gender = gender
+        self.height = height
+        self.weight = weight
+    
+    def get_age(self):
+        return self.age
+    
+    ...
+```
+
+# Q&A(2020-11-26)
+>参考文档：<br>
+[Python3模块](https://www.runoob.com/python3/python3-module.html)<br>
+[Modules](https://docs.python.org/3/tutorial/modules.html)<br>
+
+1. 模块有什么用？
+2. import ... ｜ from ... import ... ｜ import * 有什么区别？
+3. 自定义一个可以计算Fibonacci数的python模块，然后调用该模块？
+4. 了解什么是python主函数，如何定义它？
+5. 完成[LeetCode66](https://leetcode-cn.com/problems/plus-one/)
+
+
+# Q&A(2020-11-24)
+
+> 参考文档：[数据结构](https://docs.python.org/3/tutorial/datastructures.html)
+
+1. 队列和堆栈有什么区别？分别适用于哪种场景？
+2. 尝试用列表实现队列的入队出队功能？
+3. 尝试用列表实现堆栈的入栈出栈功能？
+4. 完成 [LeetCode 1](https://leetcode-cn.com/problems/two-sum/) ?
+5. 对下面这个列表排序？
+``` python3
+list1 = [0, 3, 5, 2, 6, 6, 1]
+...
+```
+
+# Q&A(2020-11-23)
+> 参考文档：[More Control Flow Tools](https://docs.python.org/3/tutorial/controlflow.html)
+
+1. 了解range()的用法；
+2. 了解break，continue，pass的用法与区别；
+3. 定义一个function，实现输出[Fibonacci序列](https://zhuanlan.zhihu.com/p/64530954)？ 
+
+``` python3
+def fib(n):
+    result = []
+    a, b = 0, 1
+    while a < n:
+        result.append(a)    # see below
+        a, b = b, a+b
+    return result
+
+print(fib(10))
+```
+
+4. [LeetCode509](https://leetcode-cn.com/problems/fibonacci-number/)
+
+
+# Q&A(2020-11-22)
+1. Q: 使用条件语句完成[第一课](https://yanhuibin315.github.io/2020/11/17/Anaconda+Pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/)的第3题？
+
+2. 分别使用while和for循环计算1～100的和的问题？
+3. 输出1～100之间所有的质数？
+4. 完成下面这段程序？
+
+```python
+
+person_score = {"Zhou":[88, 90, 97], "Li":[90, 91, 92], "Gao":[91, 85, 80]}
+names = person_score.keys()
+
+cat = ["Chinese", "Math", "English"]
+i = 0
+max_chinese, max_math, max_english = 0, 0, 0
+
+while i < 3:
+    max_name = ""
+    max_score = 0
+    for name in names:
+        if person_score[name][i] > max_score:
+            max_name = name
+            max_score = person_score[name][i]
+    print(cat[i] + "最好的是：" + max_name + ", 他的成绩是：" + str(max_score))
+    i += 1
+
+```
+
+5. 注册一个[Leetcode账号](https://leetcode-cn.com/)，并完成[LeetCode 9. 回文数](https://leetcode-cn.com/problems/palindrome-number/) ?
+

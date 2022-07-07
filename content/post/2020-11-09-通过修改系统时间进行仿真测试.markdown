@@ -1,0 +1,142 @@
+---
+layout:     post
+title:      通过修改系统时间进行仿真测试
+subtitle:   时光机
+date:       2020-11-09
+author:     Bingo
+header-img: img/a_draw_1109.png
+catalog: true
+tags:
+    - python
+    - faketime
+---
+
+> 最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数据的时间无法保证实时性，他就想，能不能通过修改系统时间完成这个测试任务呢？
+
+# Python修改系统时间
+
+## 背景
+为了了解需要测试系统的内容，我观看了源系统代码，其中，获取系统当前时间的方法为```datetime.now()```。
+## 思路
+只要我们能修改```datetime.now```的结果就可以了。
+
+## 尝试
+开始的时候，我尝试通过直接调用系统命令```date -s '2020-01-01'```来解决，但是发现不管是虚拟机上，还是在docker容器中，都无法永久修改；然后又尝试使用修改硬件时间，但还是不行，虚拟机经过短暂的时间后，又自动回到了标准时间。
+
+## [Faketime](https://github.com/wolfcw/libfaketime)
+然后经过查找，我就发现了fatetime这个工具，这个工具通过修改系统环境变量的方式，可以让系统得到这个“假冒”的系统时间，有了fatetime，接下来的操作就容易多了。
+
+## 操作
+
+因为我们要修改系统时间，为了不影响自己机器上的正常业务、程序，强烈建议大家搞一台虚拟机，或者在docker容器中完成这个操作.<br>
+
+因为最后我们的测试任务也要搭建在docker下，所以就直接采用docker任务来执行这个操作了。<br>
+
+### 第一步：安装fatetime(可以在Dockerfile中实现)
+
+Dockerfile
+```Dockerfile
+FROM ...(自己找一个基础docker image, 比如ubuntu)
+# 为了防止某些基础ubuntu镜像不带make命令，先安装一些必要的命令
+RUN apt-get -y install gcc automake autoconf libtool make git
+# clone faketime代码
+RUN git clone https://github.com/wolfcw/libfaketime
+# 进入目录并安装
+WORKDIR libfaketime
+RUN make
+RUN make install
+# 配置环境变量
+ENV LD_PRELOAD=/usr/local/lib/faketime/libfaketime.so.1 \
+    FAKETIME_NO_CACHE=1
+```
+
+### 第二步：生成时间序列
+由于使用faketime后，系统时间无法实现自增操作，我们需要为每次时间间隔后的系统时间都进行指定，假设我们希望系统初试时间是“2020-01-01 00:00:00”，然后每隔“20s”，时间递增“六个小时”。
+```python
+def get_timestamp(dt):
+    timeArray = time.strptime(dt, "%Y-%m-%d %H:%M:%S")
+    return time.mktime(timeArray)
+
+def get_utc(timestamp):
+    timeArray = time.localtime(timestamp)
+    return time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
+
+def generate_time_pipeline():
+    logger.info("generate time pipeline")
+    start_time = init_time
+    i = 0
+    while start_time < end_time:
+        time_list.append(start_time)
+        start_time += overlay_interval * 60 * 60
+        i += 1
+    return time_list
+
+def main():
+    # 字符串不好叠加，我们使用时间戳来实现
+    init_time = get_timestamp("2020-01-01 00:00:00")
+    end_time = get_timestamp("2020-01-02 00:00:00")
+    overlay_interval = 6
+    time_list = generate_time_pipeline()
+```
+
+### 第三步：设置系统时间
+因为我们还有测试程序要执行，所以我们通过多线程来设置系统时间，我们每隔6秒，设置一次系统时间。
+```python
+class SetDateThread(threading.Thread):
+
+    def __init__(self, engine, regular_interval, time_list, config):
+        threading.Thread.__init__(self)
+        self.regular_interval = regular_interval
+        self.time_over = False # 用来标志时光机结束
+        self.time_list = time_list
+
+    def run(self):
+        for tts in self.time_list:
+            self.set_sys_time(get_utc(tts))
+            time.sleep(self.regular_interval)
+        self.time_over = True
+
+    def set_sys_time(self, tts):
+        os.environ['FAKETIME'] = str(tts)
+
+...
+def main():
+    ...
+    sdt = SetDateThread()
+    sdt.start()
+    # 可以通过time_over来判断时间pipe是否设置完成
+    while not sdt.time_over:
+       ...
+    sdt.join()
+        
+```
+
+
+## 后记
+> 有的小伙伴可能会问了，我通过faketime修改了系统时间，那如果我在中间还想获取真实时间该怎么办呢？
+
+对于使用faketime修改系统时间后，如果获取真实时间的问题有两种方案：
+1. 删除faketime的环境变量
+```python
+...
+del os.environ['FAKETIME']
+...
+```
+2. 如果我们能连接到某个数据库服务器，或者网络服务器，可以获取网络时间
+```python
+...
+def get_now_time(if_utc, engine):
+    """
+    获取当前网络时间
+    :param if_utc: 是否要转换成utc时间格式
+    :param engine: 数据库连接引擎
+    :return: 当前时间
+    """
+    date_sql = "select now();"
+    date_res: sqlalchemy.engine.ResultProxy = engine.execute(sqlalchemy.text(date_sql))
+    date = date_res.first()[0].strftime("%Y-%m-%d %H:%M:%S")
+    return date if if_utc else int(get_timestamp(date))
+...
+```
+
+

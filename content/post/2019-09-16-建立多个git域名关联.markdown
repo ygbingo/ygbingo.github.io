@@ -1,0 +1,67 @@
+---
+layout:     post
+title:      建立多个git域名关联
+subtitle:   公司电脑要连内网gitlab怎么自己玩呢？
+date:       2019-09-16
+author:     Bingo
+header-img: img/post-bg-git.jpg
+catalog: true
+tags:
+    - git
+---
+
+> 要把大象装冰箱，总共分几步
+
+# 生成密钥文件
+```linux
+$ ssh-keygen -t rsa -f filename -C email@email.com
+```
+**注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@email.com是你在网站(github/gitlab)上注册的邮箱**
+
+执行该命令后，会在~/.ssh中生成对应的密钥文件
+
+![生成密钥文件](https://img-blog.csdnimg.cn/2019091415214752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+# 导入ssh-key
+### 复制*.pub文件内容
+```linux
+$ vi ~/.ssh/*.pub
+```
+![密钥内容复制](https://img-blog.csdnimg.cn/20190914152957199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+
+**所有内容都要复制**
+### 粘贴到github/gitlab上
+1、进入setting
+![进入setting](https://img-blog.csdnimg.cn/20190914152632612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+
+2、点击New SSH key
+![添加SSH key](https://img-blog.csdnimg.cn/20190914153247815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+
+3、粘贴密钥内容
+![添加SSH key](https://img-blog.csdnimg.cn/20190914153613794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+
+> 如何只是做一对一的密钥-域名链接，到此就成功建立连接了，接下来是多个域名的匹配
+
+# 设置本地密钥
+假设对应不同的域名ip配置了不同的.pub文件，为了区分配置需要新建config文件
+
+### 新建config文件
+```linux
+$ vi ~/.ssh/config
+```
+
+### 配置config
+ ```linux
+ # 配置github.com
+Host github.com                 
+HostName github.com
+IdentityFile /User/Username/home/.ssh/github_id_rsa.pub
+User username1
+
+ # 配置gitlab.com
+Host gitlab.com 
+HostName gitlab.com
+IdentityFile /User/Username/home/.ssh/gitlab_id_rsa.pub
+User username2
+ ```
+ 
+ > 通过上述配置，系统就会在建立连接时自动根据域名匹配对应的密钥文件了

@@ -1,0 +1,27 @@
+---
+layout:     post
+title:      视频检测系统
+subtitle:   海康威视视频检测系统
+date:       2019-07-05
+author:     Bingo
+header-img: img/post-bg-neo4j.jpg
+catalog: true
+tags:
+    - 知识图谱
+    - NLP
+    - 知识表示
+    - Neo4j
+---
+
+# 海康威视视频流解析
+产品型号：DS-2DC2204IW-D3/W
+
+# 基于Java对视频流的图像解析
+
+# 基于Java的实体检测
+
+# 基于Java的颜色识别
+
+# 基于Java的二维码/条形码识别
+
+# 打包并布到Android端

@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      【十六大经典算法】开篇
+subtitle:   机器学习经典算法
+date:       2019-10-09
+author:     Bingo
+header-img: img/post-bg-ml.jpg
+catalog: true
+tags:
+    - 机器学习
+---
+
+> 我要一步一步往上爬、
+> 在最高点乘着叶片往前飞、
+> 小小的天流过的泪和汗、
+> 总有一天我有属于我的天、
+
+| K-NN最近邻 | 线性回归 | 罗辑回归 | PCA |
+| 凸优化 | 朴素贝叶斯 | 支持向量机 | 聚类 |
+| 决策树 | 随机森林 | GDBT | EM |
+| GMM | XGBoost | K-Means | 主题模型 |
+| 矩阵分解 |
+

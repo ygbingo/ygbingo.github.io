@@ -1,0 +1,176 @@
+---
+layout:     post
+title:      DeepMove论文解读
+subtitle:   DeepMove论文解读
+date:       2020-09-24
+author:     Bingo
+header-img: img/trajectory-data-mining.png
+catalog: true
+tags:
+    - 机器学习
+    - 数据挖掘
+    - 城市计算
+---
+
+> KEEP HUNGRY
+
+# DeepMove
+
+论文项目地址：[https://github.com/vonfeng/DeepMove](https://github.com/vonfeng/DeepMove)
+
+
+# 研究基础
+## 一些定义
+
+
+- **轨迹序列(Trajectory Sequence)：**
+
+$q$ : 时空点=(时间, 位置)
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594867877269-8844ddb7-810e-4b1a-9fe0-74f4312f96b9.png#align=left&display=inline&height=103&margin=%5Bobject%20Object%5D&name=image.png&originHeight=206&originWidth=1128&size=116937&status=done&style=none&width=564)
+
+
+- **轨迹(Trajectory)：**
+
+给定一个时间窗口，将轨迹序列划分成多个子序列，得到轨迹
+ ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594867965487-88566167-6374-4417-ae33-957e27cffd4d.png#align=left&display=inline&height=200&margin=%5Bobject%20Object%5D&name=image.png&originHeight=400&originWidth=1136&size=201873&status=done&style=none&width=568)
+
+
+- **轨迹预测(Mobility Prediction)：**
+
+通过历史轨迹，预测当前轨迹的下一个轨迹点
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594868062987-d34fef2f-ea50-433e-8ad2-60b8a6889204.png#align=left&display=inline&height=84&margin=%5Bobject%20Object%5D&name=image.png&originHeight=168&originWidth=1242&size=99009&status=done&style=none&width=621)
+
+
+## 循环神经网络
+
+- **RNN**
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594868203367-3b71b734-5ef3-482e-a937-65bf00855541.png#align=left&display=inline&height=429&margin=%5Bobject%20Object%5D&name=image.png&originHeight=858&originWidth=1092&size=250572&status=done&style=none&width=546)
+
+
+- **LSTM**
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594868286998-1f077cdb-5880-41cf-af5a-5f84671552aa.png#align=left&display=inline&height=326&margin=%5Bobject%20Object%5D&name=image.png&originHeight=652&originWidth=1276&size=392180&status=done&style=none&width=638)
+
+
+- **GRU**
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594868321840-e333a4c1-4e39-4efc-ab09-444d87eba8ae.png#align=left&display=inline&height=356&margin=%5Bobject%20Object%5D&name=image.png&originHeight=712&originWidth=1250&size=401670&status=done&style=none&width=625)
+
+
+# DeepMove模型
+## Multi-modal Recurrent Prediction框架
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594870308425-91b9c8f5-5f7f-4a49-8d29-434c34fedfbc.png#align=left&display=inline&height=570&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1140&originWidth=1154&size=544775&status=done&style=none&width=577)
+
+- **特征抽取与映射**
+
+我们设计了一种多摸映射模型帮助我们吧时空特征和个人信息进行复杂的映射变换。首先将单个轨迹点的所有有用的特征进行数字化，如时间、位置、用户ID等；然后将多维特征转换为one-hot向量并输入到多摸映射模块中。(每个新用户的用户ID不加入到训练集中，可以当作0处理)。由于one-hot表示的信息量偏小，我们也可以采用dense表示方法，更加有利于保存时空数据的语义关系，且方便计算。
+
+
+- **循环模型和基于历史的注意力机制**
+
+我们使用GRU作为基础的循环网络层。每一步隐藏层的输出都会流入到historical attention模型和预测模型中，historical attention模型与循环模型同步，可以从历史记录中获取流动规律，它从历史轨迹中获取输入，并输出到最相关的上下文向量中。
+
+
+- **预测**
+
+预测模块主要将来自不同模块的上下文进行组合，完成预测任务。由一个连接层，几个全连接层和一个输出层组成。连接层把：历史注意力模块、循环模块、嵌入模块组合到一个新的向量中；然后全连接层在将特征向量映射到更小但能表达更多信息的向量中；最后，输出层由一个带负采样(negative sampling)的softmax层组成。（负采样能极大化softmax的对数）。负采样帮助我们的模型可以快速收敛。实验中，通过均匀分布生成负采样的实例。
+
+
+## 基于历史的注意力机制模块
+历史注意力模块主要用来实现一种自动选择器，帮助我们获取人们流动的周期性信息，主要由两部分组成：
+Attention候选生成器；Attention选择器。
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594884137628-cb446682-fe21-41cf-ab55-2e5d2db16537.png#align=left&display=inline&height=477&margin=%5Bobject%20Object%5D&name=image.png&originHeight=954&originWidth=1112&size=526290&status=done&style=none&width=556)
+
+- **Attention选择器**
+
+一种前馈神经网络，如图Fig4a所示，注意力计算公式：
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594884257859-9a2be27c-8a27-486d-a892-8900c95be0bc.png#align=left&display=inline&height=104&margin=%5Bobject%20Object%5D&name=image.png&originHeight=208&originWidth=870&size=41832&status=done&style=none&width=435)
+其中s代表历史特征，W是学习的参数，h_t是查询向量(比如当前层的流动状态)，f表示得分函数，σ是softmax函数，ct是上下文输出，表示与当前移动性状态相关的周期性。
+
+
+- **Attention候选生成器**
+
+为了给attention选择器提供候选集，我们讨论了两种特定的生成机制：
+
+   1. **embedding encode modul**e(映射编码)
+
+如图Fig4b所示，该模块将历史记录映射到独立的潜在向量中作为候选向量，它由三个部分组成：
+
+      - **变形层**：把时间维映射到固定长度，比如为了获取周期性信息，我们把时间都投射到一周或者几天中，历史矩阵映射到可变长度的空间中；
+      - **采样层**：从每个时间段中，对位置信息进行采样，采样方式包括：**平均抽样、极值抽样、无差别抽样**。其中平均抽样是在每个时间段中进行采样，并计算它们的平均值，这种方法可以表示所有的历史信息；极值采样基于对人员流动性的周期性假设，频率较高的访问地点对用户具有更多的意义，即从每个时间段中抽取访问频率最高的地点位置；无差别抽样只将所有的位置信息都抽取出来且不做其他处理；
+      - **全连接层**：全连接层用来将历史时空向量处理成更适合的形状。
+
+
+
+   1. **sequential encode module**(序列编码)
+
+如图Fig4c所示，序列编码由一种循环神经网络组成。顺序编码模块将历史记录作为输入，并将每个中间层的输出作为候选向量，基于多摸映射方法，RNN可以从历史记录中提取复杂的序列信息。序列编码模块通过之后的attetion选择器来获取周期性信息，同时，序列编码模块在潜在空间中保留了历史信息。
+
+
+## 训练方法
+
+- 损失函数：交叉熵损失(the cross-entropy loss);
+- 训练方法：BPTT(Backward Propagation Through Time 随时间反向传播算法) 、Adam；
+- 历史注意力机制模块：前馈-循环神经网络
+- DeepMove：
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594887057292-c3d68c82-bb86-4994-abc6-43330576e089.png#align=left&display=inline&height=420&margin=%5Bobject%20Object%5D&name=image.png&originHeight=840&originWidth=1138&size=302050&status=done&style=none&width=569)
+
+
+# 实验
+## 数据集
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594888415745-23d04fec-5da4-4f81-9b2e-abcf078ce564.png#align=left&display=inline&height=241&margin=%5Bobject%20Object%5D&name=image.png&originHeight=482&originWidth=1154&size=153649&status=done&style=none&width=577)
+
+- **Foursquare Check-in Data**: 该数据集中每条记录包括：用户ID、时间戳、GPS定位、POI ID，平均每个用户一年有18次记录，我们首先过滤掉少于10条记录的用户，又过滤了一些位置离得很近的记录，此外，还筛掉了少于5条记录的session和少于5个session的用户。根据实际情况，我们选择72小时作为默认的间隔阈值，并将时间戳归一化到一周中，保留了原始的时空顺序。
+- **Mobile Application Data**: 该数据集收集了2016年某两月之间连续45天的记录，原始记录是手机的GPS定位上传的，为了方便表示和计算，我们将GPS投影到街道中，用街道ID来表示。将整个轨迹按日期划分到不同的会话中。并且把一天分成48段，同一时段的记录汇总为一条记录，并且过滤掉一些重复的流动性记录。
+- **Call Detail Records Data**: 该数据收集了2016年一月份的用户数据，其空间粒度是数据基站，与街区类似。处理方式与Mobile Application Data一致。
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594888429658-21b042a3-82f8-46af-8e34-71e22f6f8ec9.png#align=left&display=inline&height=247&margin=%5Bobject%20Object%5D&name=image.png&originHeight=494&originWidth=1098&size=227877&status=done&style=none&width=549)
+
+
+## 实验设置
+### Baseline
+
+- **基于马尔可夫方法的模型**：把所有的位置信息视为状态，并构建迁移矩阵用来获取他们第一次的转换概率；
+- **PMM**：假设位置流动信息遵循时空转移模型，并通过周期性研究预测接下来的位置；
+- **基于RNN的模型：**与本文提到的模型类似，不过不包括历史信息注意力机制模块。我们将ST-RNN运用到我们的场景中，在实验中，**RNN-Short**表示按天将轨迹输入到模型中，**RNN-Long**表示将一个月的数据一次性的作为模型的输入。
+
+
+
+### 参数设置
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594890136484-07c2fe6b-e171-4f60-84f8-05ee44b35a81.png#align=left&display=inline&height=185&margin=%5Bobject%20Object%5D&name=image.png&originHeight=370&originWidth=1072&size=136311&status=done&style=none&width=536)
+抽取了80%的用户轨迹数据作为训练集，20%的用户轨迹数据作为测试集，我们使用GRU作为默认的循环网络模型，实验发现，GRU和LSTM的效果非常接近，都要好于RNN。
+
+
+### 实验结果
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594890452138-5e81eac8-55c4-45c3-bdc4-e25e9741aab7.png#align=left&display=inline&height=259&margin=%5Bobject%20Object%5D&name=image.png&originHeight=518&originWidth=1070&size=214342&status=done&style=none&width=535)
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594890616331-033aec8d-0861-4fc5-b5b8-ffbe6e1aa860.png#align=left&display=inline&height=162&margin=%5Bobject%20Object%5D&name=image.png&originHeight=324&originWidth=1034&size=86649&status=done&style=none&width=517)
+
+
+### 历史注意力机制的输出可视化
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594890865221-01f9df3e-765d-4aa4-bb7d-c7683c7670da.png#align=left&display=inline&height=633&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1266&originWidth=1074&size=1188149&status=done&style=none&width=537)
+
+
+
+
+### 模型的变种比较
+
+
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594891018281-7b5f8d5c-b5bb-4e50-88c0-8417e7ff6d4d.png#align=left&display=inline&height=194&margin=%5Bobject%20Object%5D&name=image.png&originHeight=388&originWidth=1104&size=121479&status=done&style=none&width=552)
+在Table4中attention1表示基于映射编码的注意力机制，attention2表示基于顺序编码的注意力机制
+
+- attention1 -> the embedding encode attention module 
+- attention2 -> the sequential encode attention module
+
+
+
+
+
+针对基于映射的注意力机制，采用不同的采样策略的结果比较：均匀采样、极值采样、无差别采样，如图Fig8a所示：
+![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2020/png/230552/1594891262884-ad3f5227-fd87-4c59-a149-2a259040f372.png#align=left&display=inline&height=240&margin=%5Bobject%20Object%5D&name=image.png&originHeight=480&originWidth=1032&size=185320&status=done&style=none&width=516)
+图8b展示的是使用了每个用户的userid的实验结果。
+
+
+
+

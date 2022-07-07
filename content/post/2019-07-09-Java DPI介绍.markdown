@@ -1,0 +1,786 @@
+---
+layout:     post
+title:      Java DPI介绍
+subtitle:   Java图形处理工具的使用
+date:       2019-07-09
+author:     Bingo
+header-img: img/post-bg-neo4j.jpg
+catalog: true
+tags:
+    - 机器学习
+    - 图像处理
+    - Java
+    - OpenCV
+---
+
+# Java BufferedImageClass
+Java BufferedImage类是Image类的子类。
+它用于处理和操作图像数据。
+BufferedImage由图像数据的ColorModel组成。
+所有BufferedImage对象的左上角坐标为（0,0）。
+
+### 例子：在屏幕上画一些文本
+```Java
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+public class Test extends JPanel {
+    public void paint(Graphics g) {
+        Image img = createImageWithText();
+        g.drawImage(img, 20,20,this);
+    }
+    private Image createImageWithText(){
+        BufferedImage bufferedImage = new
+            BufferedImage(200,200,BufferedImage.TYPE_INT_RGB);
+        Graphics g = bufferedImage.getGraphics();
+        g.drawString("www.tutorialspoint.com", 20,20);
+        g.drawString("www.tutorialspoint.com", 20,40);
+ g.drawString("www.tutorialspoint.com", 20,60);
+ g.drawString("www.tutorialspoint.com", 20,80);
+ g.drawString("www.tutorialspoint.com", 20,100);
+ return bufferedImage;
+ }
+ public static void main(String[] args) {
+ JFrame frame = new JFrame();
+ frame.getContentPane().add(new Test());
+ frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ frame.setSize(200, 200);
+ frame.setVisible(true);
+ }
+}
+```
+
+### 例子：从网络上下载图片
+```Java
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+public class Download {
+    public static void main(String[] args) throws Exception {
+        try{
+            String fileName = "digital_image_processing.jpg";
+            String website ="http://tutorialspoint.com/java_dip/images/"+fileName;
+            System.out.println("Downloading File From: " + website);
+            URL url = new URL(website);
+            InputStream inputStream = url.openStream();
+            OutputStream outputStream = new FileOutputStream(fileName);
+            byte[] buffer = new byte[2048];
+            int length = 0;
+            while ((length = inputStream.read(buffer)) != -1) {
+                System.out.println("Buffer Read of length: " + length);
+                outputStream.write(buffer, 0, length);
+            }
+            inputStream.close();
+            outputStream.close();
+        }catch(Exception e){
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 图片像素
+图像包含二维像素阵列。
+它实际上是构成图像的那些像素的值。
+通常，图像可以是彩色或灰度。
+在Java中，BufferedImage类用于处理图像。
+您需要调用BufferedImage类的getRGB（）方法来获取像素的值。
+
+### 例子：显示一个10✖️10尺寸图片的像素信息
+```Java
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+class Pixel {
+    BufferedImage image;
+    int width;
+    int height;
+    public Pixel() {
+        try {
+            File input = new File("blackandwhite.jpg");
+            image = ImageIO.read(input);
+            width = image.getWidth();
+            height = image.getHeight();
+            int count = 0;
+            for(int i=0; i<height; i++){
+                for(int j=0; j<width; j++){
+                    count++;
+                    Color c = new Color(image.getRGB(j, i));
+                    System.out.println("S.No: " + count + " Red: " + c.getRed() + " Green: " + c.getGreen() + " Blue: " + c.getBlue());
+                }
+            }
+        } catch (Exception e) {}
+    }
+ 
+    static public void main(String args[]) throws Exception{
+        Pixel obj = new Pixel();
+    }
+}
+```
+# 灰度化
+要将彩色图像转换为灰度图像，您需要使用File和ImageIO对象读取图像的像素或数据，并将图像存储在BufferedImage对象中。
+
+### 以下示例演示如何使用Java BufferedImage类将图像转换为灰度
+```Java
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+public class GrayScale {
+    BufferedImage image;
+    int width;
+    int height;
+    public GrayScale() {
+        try {
+            File input = new File("digital_image_processing.jpg");
+            image = ImageIO.read(input);
+            width = image.getWidth();
+            height = image.getHeight();
+            for(int i=0; i<height; i++){
+                for(int j=0; j<width; j++){
+                    Color c = new Color(image.getRGB(j, i));
+                    int red = (int)(c.getRed() * 0.299);
+                    int green = (int)(c.getGreen() * 0.587);
+                    int blue = (int)(c.getBlue() *0.114);
+                    Color newColor = new Color(red+green+blue,
+                    red+green+blue,red+green+blue);
+                    image.setRGB(j,i,newColor.getRGB());
+                }
+            }
+            File ouptut = new File("grayscale.jpg");
+            ImageIO.write(image, "jpg", ouptut);
+        } catch (Exception e) {}
+        }
+ 
+    static public void main(String args[]) throws Exception{
+        GrayScale obj = new GrayScale();
+    }
+}
+```
+
+# 图像增强：增强图像对比度
+如何使用直方图均衡来增强图像的对比度。
+我们使用OpenCV函数equalizeHist（）方法。
+
+### 使用Imgproc增强图片对比度
+```Java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    static int width;
+    static int height;
+    static double alpha = 2;
+    static double beta = 50;
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Imgproc.equalizeHist(source, destination);
+            Highgui.imwrite("contrast.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 增强图像亮度
+在本章中，我们通过将图像的每个像素与alpha值相乘并向其添加另一个beta值来增强图像的亮度。
+我们OpenCV函数convertTo自动执行上述操作。
+
+### 增强一个图片的亮度
+```Java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+public class Main {
+    static int width;
+    static int height;
+    static double alpha = 2;
+    static double beta = 50;
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination=new Mat(source.rows(),source.cols(),source.type());
+            source.convertTo(destination, -1, alpha, beta);
+            Highgui.imwrite("brightWithAlpha2Beta50.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 增强图像清晰度
+在本章中，我们学习使用高斯滤波器来增加图像的清晰度。
+首先我们使用OpenCV函数GaussianBlur。
+它可以在Imgproc包下找到。
+```Java
+Imgproc.GaussianBlur(source, destination, new Size(0,0), sigmaX);
+```
+
+### 使用Imgproc和Core蜕化图片
+```Java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Imgproc.GaussianBlur(source, destination, new Size(0,0), 10);
+            Core.addWeighted(source, 1.5, destination, -0.5, 0, destination);
+            Highgui.imwrite("sharp.jpg", destination);
+        }catch (Exception e) {
+        }
+    }
+}
+```
+
+# 图像压缩技术
+可以通过Java轻松压缩和存储图像。
+图像压缩涉及将图像转换为jpg并存储它。
+为了压缩图像，我们读取图像并转换为BufferedImage对象。
+此外，我们从ImageIO类中的getImageWritersByFormatName（）方法获取ImageWriter。
+从此ImageWriter中，创建一个ImageWriteParam对象。
+
+### 使用ImageWriteParam压缩图片
+```Java
+import java.io.*;
+import java.util.*;
+import javax.imageio.*;
+import java.awt.image.*;
+import javax.imageio.stream.ImageOutputStream;
+class Compresssion {
+    public static void main(String[] args) throws IOException {
+        File input = new File("digital_image_processing.jpg");
+        BufferedImage image = ImageIO.read(input);
+        File compressedImageFile = new File("compress.jpg");
+        OutputStream os =new FileOutputStream(compressedImageFile);
+        Iterator<ImageWriter>writers = ImageIO.getImageWritersByFormatName("jpg");
+        ImageWriter writer = (ImageWriter) writers.next();
+        ImageOutputStream ios = ImageIO.createImageOutputStream(os);
+        writer.setOutput(ios);
+        ImageWriteParam param = writer.getDefaultWriteParam();
+        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        param.setCompressionQuality(0.05f);
+        writer.write(null, new IIOImage(image, null, null), param);
+        os.close();
+        ios.close();
+        writer.dispose();
+    }
+}
+```
+
+# 给图片加边框
+
+### 使用OpenCV的copyMakeBorder方法给图片添加不同种类的边框
+```Java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            int top, bottom, left, right;
+            int borderType;
+            /// Initialize arguments for the filter
+            top = (int) (0.05*source.rows());
+            bottom = (int) (0.05*source.rows());
+            left = (int) (0.05*source.cols());
+            right = (int) (0.05*source.cols());
+            destination = source;
+            Imgproc.copyMakeBorder(source, destination, top, bottom, left, right, Imgproc.BORDER_WRAP);
+            Highgui.imwrite("borderWrap.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 图像金字塔技术
+图像金字塔只不过是一种显示多分辨率图像的方法。
+最下层是图像的最高分辨率版本，最上层是图像的最低分辨率版本。
+图像金字塔用于处理不同比例的图像。
+
+### 使用Imgproc类实现图像分辨率的调高或降低
+```Java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination1 = new Mat(source.rows()*2, source.cols()*2,source.type());
+            destination1 = source;
+            Imgproc.pyrUp(source, destination1, new Size(source.cols()*2,source.rows()*2));
+            Highgui.imwrite("pyrUp.jpg", destination1);
+            source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows()/2,source.cols()/2,source.type());
+            destination = source;
+            Imgproc.pyrDown(source, destination, new Size(source.cols()/2,
+            source.rows()/2));
+            Highgui.imwrite("pyrDown.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 阈值基础
+阈值处理能够以最简单的方式实现图像分割。
+图像分割意味着将完整图像划分为一组像素，使得每组中的像素具有一些共同特征。
+图像分割在定义对象及其边界时非常有用。
+
+### 使用Imgproc对图像做阈值处理
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            destination = source;
+            Imgproc.threshold(source,destination,127,255,Imgproc.THRESH_TOZERO);
+            Highgui.imwrite("ThreshZero.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 图像形状转换
+使用OpenCV可以轻松更改图像的形状。
+图像可以在四个方向中的任何一个方向上翻转，缩放或旋转。
+
+### 使用Core反转图像
+```java
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.io.File;
+import javax.imageio.ImageIO;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try {
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            File input = new File("digital_image_processing.jpg");
+            BufferedImage image = ImageIO.read(input);
+            byte[] data = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+            Mat mat = new Mat(image.getHeight(),image.getWidth(),CvType.CV_8UC3);
+            mat.put(0, 0, data);
+            Mat mat1 = new Mat(image.getHeight(),image.getWidth(),CvType.CV_8UC3);
+            Core.flip(mat, mat1, -1);
+            byte[] data1 = new
+            byte[mat1.rows()*mat1.cols()*(int)(mat1.elemSize())];
+            mat1.get(0, 0, data1);
+            BufferedImage image1 = new BufferedImage(mat1.cols(), mat1.rows(), 5);
+            image1.getRaster().setDataElements(0,0,mat1.cols(),mat1.rows(),data1);
+            File ouptut = new File("hsv.jpg");
+            ImageIO.write(image1, "jpg", ouptut);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 使用高斯滤波器
+### 使用Imgproc对一个图像应用高斯滤波器
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try {
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Imgproc.GaussianBlur(source, destination,new Size(45,45), 0);
+            Highgui.imwrite("Gaussian45.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 应用箱式滤波器
+我们应用模糊图像的Box过滤器。
+Box滤镜的尺寸可以是3x3,5x5,9x9等
+
+### 使用Imgproc应用箱式滤波器
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 9;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = Mat.ones(kernelSize,kernelSize, CvType.CV_32F);
+            for(int i=0; i<kernel.rows(); i++){
+                for(int j=0; j<kernel.cols(); j++){
+                    double[] m = kernel.get(i, j);
+                        for(int k =0; k<m.length; k++){
+                            m[k] = m[k]/(kernelSize * kernelSize);
+                        }
+                    kernel.put(i,j, m);
+                }
+            }
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("output.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 侵蚀和扩张
+两个常见的形态学运算：侵蚀(Erosion)、扩张(Dilation)
+```java
+Imgproc.erode(source, destination, element);
+Imgproc.dilate(source, destination, element);
+```
+
+### 使用Imgproc实现图片的侵蚀和扩张
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination =new
+            Mat(source.rows(),source.cols(),source.type());
+            destination = source;
+            int erosion_size = 5;
+            int dilation_size = 5;
+            Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2*erosion_size + 1, 2*erosion_size+1));
+            Imgproc.erode(source, destination, element);
+            Highgui.imwrite("erosion.jpg", destination);
+            source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+           destination = source;
+            Mat element1 = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2*dilation_size + 1, 2*dilation_size+1));
+            Imgproc.dilate(source, destination, element1);
+            Highgui.imwrite("dilation.jpg", destination);
+        }catch (Exception e) {
+            System.out.println("error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 使用水印
+### 应用文本水印
+```java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Core.putText(source, "Tutorialspoint.com", new Point(source.rows()/2,source.cols()/2), Core.FONT_ITALIC,new Double(1),new Scalar(255));
+            Highgui.imwrite("watermarked.jpg", source);
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+    }
+}
+```
+### 应用图片水印
+```java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try{
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("digital_image_processing.jpg",Highgui.CV_LOAD_IMAGE_COLOR);
+            Mat waterMark=Highgui.imread("watermark.png",Highgui.CV_LOAD_IMAGE_COLOR);
+            Rect ROI = new Rect(waterMark.rows()*4,waterMark.cols(),waterMark.cols(),waterMark.rows());
+            Core.addWeighted(source.submat(ROI), 0.8, waterMark, 0.2, 1, source.submat(ROI));
+            Highgui.imwrite("watermarkedImage.jpg", source);
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+    }
+}
+```
+
+# 了解卷积
+卷积是对两个函数的一种数学运算，因为图像是一种二维函数，所以常用卷积进行计算。
+进行卷积计算常用的步骤：
+1、将窗口反转(Flip the mask(horizontally and vertically) only once);
+2、在图像上滑动窗口(slide the mask onto the image)；
+3、将相应元素相乘，然后加起来；
+4、重复此过程，直到计算出所有值。
+
+使用卷积：
+```java
+filter2D(src, dst, ddepth , kernel, anchor, delta, BORDER_DEFAULT );
+```
+### 对灰度图使用卷积
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 3;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = new Mat(kernelSize,kernelSize, CvType.CV_32F){
+                {   put(0,0,0);put(0,1,0);put(0,2,0);
+                    put(1,0,0);put(1,1,1);put(1,2,0);
+                    put(2,0,0);put(2,1,0);put(2,2,0);
+                }
+            };
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("original.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 使用Prewitt算子
+Prewitt算子用于图像中的边缘检测。
+它检测两种类型的边：垂直边和水平边。
+
+### 在灰度图片上使用prewitt算子
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 9;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = new Mat(kernelSize,kernelSize, CvType.CV_32F){
+                {   put(0,0,-1);put(0,1,0);put(0,2,1);
+                    put(1,0-1);put(1,1,0);put(1,2,1);
+                    put(2,0,-1);put(2,1,0);put(2,2,1);
+                }
+            };
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("output.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 应用Sobel算子
+Sobel算子与Prewitt算子非常相似。
+它也是衍生掩模，用于边缘检测。
+Sobel算子用于检测图像中的两种边：垂直方向边和水平方向边。
+
+### 对一个灰度图片使用Sobel算子
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 9;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = new Mat(kernelSize,kernelSize, CvType.CV_32F){
+                {   put(0,0,-1);put(0,1,0);put(0,2,1);
+                    put(1,0-2);put(1,1,0);put(1,2,2);
+                    put(2,0,-1);put(2,1,0);put(2,2,1);
+                }
+            };
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("output.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 应用Kirsch算子
+Kirsch罗盘掩模是另一种用于边缘检测的衍生掩模。
+该运算符也称为方向掩码。
+在这个操作符中，我们采用一个蒙版并在所有八个罗盘方向上旋转它以获得八个方向的边缘。
+
+### 在灰度图片上使用Kirsch
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 9;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = new Mat(kernelSize,kernelSize, CvType.CV_32F){
+                {   put(0,0,-3);put(0,1,-3);put(0,2,-3);
+                    put(1,0-3);put(1,1,0);put(1,2,-3);
+                    put(2,0,5);put(2,1,5);put(2,2,5);
+                }
+            };
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("output.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 应用加权平均滤波器
+在加权平均滤波器中，我们对中心值给予更多权重，由此中心的贡献变得大于其余值。
+由于加权平均滤波，我们可以控制图像的模糊。
+
+### 对灰度图应用加权滤波器
+```java
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class convolution {
+    public static void main( String[] args ){
+        try {
+            int kernelSize = 9;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("grayscale.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows(),source.cols(),source.type());
+            Mat kernel = Mat.ones(kernelSize,kernelSize, CvType.CV_32F){
+                for(int i=0; i<kernel.rows(); i++){
+                    for(int j=0; j<kernel.cols(); j++){
+                        double[] m = kernel.get(i, j);
+                        for(int k =0; k<m.length; k++){
+                            if(i==1 && j==1){
+                                m[k] = 10/18;
+                            }
+                            else{
+                                m[k] = m[k]/(18);
+                            }
+                        }
+                        kernel.put(i,j, m);
+                    }
+                }
+            }; 
+            Imgproc.filter2D(source, destination, -1, kernel);
+            Highgui.imwrite("output.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+# 创造变焦效果
+缩放是放大图像以使图像中的细节变得更加明显和突出的过程。
+
+### 对一张图片添加变焦效果
+```java
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.highgui.Highgui;
+import org.opencv.imgproc.Imgproc;
+public class Main {
+    public static void main( String[] args ){
+        try {
+            int zoomingFactor = 2;
+            System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
+            Mat source = Highgui.imread("image.jpg",Highgui.CV_LOAD_IMAGE_GRAYSCALE);
+            Mat destination = new Mat(source.rows() * zoomingFactor,source.cols()* zoomingFactor,source.type());
+            Imgproc.resize(source, destination, destination.size(),zoomingFactor,zoomingFactor,Imgproc.INTER_NEAREST);
+            Highgui.imwrite("zoomed.jpg", destination);
+        } catch (Exception e) {
+            System.out.println("Error: "+e.getMessage());
+        }
+    }
+}
+```
+# 开源库
+一些常用的开源图像处理库
+- ImageJ ：ImageJ是一个受NIH Image for the Macintosh启发的公共领域Java图像处理程序。它可以显示，编辑，分析，处理，保存和打印8位，16位和32位图像
+- Fiji ：Fiji是一个图像处理包，它可以被描述为ImageJ和ImageJ2的分布以及Java，Java3D和许多组合成一致菜单结构的插件。
+- Commons Imaging ：Apache Commons Imaging，以前称为Apache Commons Sanselan，是一个读取和写入各种图像格式的库，包括快速解析图像信息，如大小，颜色，空间，ICC配置文件等，以及元数据。
+- ImageMagick ：ImageMagick是一个用于创建，编辑，编写或转换位图图像的软件套件。
+它可以读取和写入100多种格式的图像，包括DPX，EXR，GIF，JPEG，JPEG-2000，PDF，PNG，Postscript，SVG和TIFF。使用ImageMagick调整大小，翻转，镜像，旋转，扭曲，剪切和变换图像，调整图像颜色，应用各种特殊效果，或绘制文本，线条，多边形，椭圆和贝塞尔曲线。
+- Endrov ：Endrov是一个多功能的图像分析程序。它是独立编写的，旨在解决其他免费软件和许多商业软件包的许多缺点。
+- LeadTools ：提供超过200种图片处理方法，包括：文档清理，医学图像增强，颜色转换和校正，降噪，边缘检测等。
+- OpenCv ：OpenCV是在BSD许可下发布的，因此它可以免费用于学术和商业用途。它具有C ++，C，Python和Java接口，支持Windows，Linux，Mac OS，iOS和Android。OpenCV专为提高计算效率而设计，专注于实时应用。该库以优化的C / C ++编写，可以利用多核处理。
+

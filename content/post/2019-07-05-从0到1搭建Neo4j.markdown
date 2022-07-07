@@ -1,0 +1,78 @@
+---
+layout:     post
+title:      从0到1搭建Neo4j
+subtitle:   图形数据库Neo4j的搭建
+date:       2019-07-05
+author:     Bingo
+header-img: img/post-bg-neo4j.jpg
+catalog: true
+tags:
+    - 知识图谱
+    - NLP
+    - 知识表示
+    - Neo4j
+---
+
+# 搭建Neo4j图形数据库环境
+> 保持快乐，你就会干得好，就更成功、更健康，对别人也就更仁慈。——马克斯威尔·马尔兹
+
+[Neo4j](https://neo4j.com/product/)是一个高性能的,NOSQL图形数据库，它将结构化数据存储在网络上而不是表中。它是一个嵌入式的、基于磁盘的、具备完全的事务特性的Java持久化引擎，但是它将结构化数据存储在网络(从数学角度叫做图)上而不是表中。Neo4j也可以被看作是一个高性能的图引擎，该引擎具有成熟数据库的所有特性。程序员工作在一个面向对象的、灵活的网络结构下而不是严格、静态的表中——但是他们可以享受到具备完全的事务特性、企业级的数据库的所有好处。
+Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.
+
+那么，这么一款流行的图形数据库该如何搭建呢？
+### 环境介绍
+搭建环境是：
+- 系统：macOS 10.13.6
+- 机型：MacBook Pro
+- 处理器：Core i5
+- 内存：8GB LPDDR3
+- 图形卡：Intel Iris Graphics 540
+
+### 1 Java环境搭建
+由于Neo4j底层使用的是JVM，因此，需要确保您的计算机具备java环境，笔者在系统中采用的是Java8（当然如果你愿意的话，用Java12也是可以的，此处并无明确要求）
+#### 1.1 下载jdk
+[jdk下载地址](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+![下载安装包](https://img-blog.csdnimg.cn/20190705230054315.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+![选择系统版本对应的安装包](https://img-blog.csdnimg.cn/20190705230119387.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+#### 1.2 Mac系统下载的是dmg文件，直接安装即可
+其他系统如windows、linux可能需要先解压，再配置环境变量
+#### 1.3 验证java安装成功
+- 打开终端窗口(terminal)
+- 输入：
+``` java
+java -version
+```
+![验证java安装成功](https://img-blog.csdnimg.cn/20190705230744915.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+### 2 安装Neo4j
+#### 2.1 下载安装包
+[Neo4j下载地址](https://neo4j.com/download-center/#community)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190705231216360.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+**备注：有的小伙伴在下载过程中会由于网速慢常下载失败的情况，这里笔者将一份下载好的安装包(Neo4j 3.5.7)放出，如有需要，可以酌情下载！（Windows/Mac）**<br>
+[下载链接2](https://pan.baidu.com/s/1pUaMiVst5wdR_IljwO7tEg)  密码:tydj
+#### 2.2 解压
+小伙伴可以将解压的压缩包自己更改名字（记得文件夹命名要用英文），并移动到任意的目录中
+#### 2.3 启动Neo4j
+- 打开终端窗口（terminal）
+- 进入你解压好的**Neo4j**目录下的**bin**目录中(*/neo4j/bin)
+- 执行命令：
+```linux
+$ ./neo4j start
+```
+- 出现如下提示代表启动成功
+![neo4j启动成功](https://img-blog.csdnimg.cn/20190705232341664.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+#### 2.4 访问neo4j
+- 打开浏览器
+- 访问：localhost:7474
+- 首次登陆默认的用户名和密码均为: neo4j
+- 首次登陆后会让你设置初始密码(牢记！！！)
+- 成功访问界面
+![neo4j run](https://img-blog.csdnimg.cn/20190705232727455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70)
+#### 2.5 关闭neo4j服务
+- 打开终端窗口（terminal）
+- 进入你解压好的**Neo4j**目录下的**bin**目录中(*/neo4j/bin)
+- 执行命令：
+```linux
+$ ./neo4j stop
+```
+- 出现如下内容
+![neo4j stop](https://img-blog.csdnimg.cn/20190705232924648.jpg)

@@ -1,0 +1,17 @@
+---
+layout:     post
+title:      【十六大经典算法】K-NN最近邻
+subtitle:   机器学习经典算法
+date:       2019-10-09
+author:     Bingo
+header-img: img/post-bg-ml-knn.png
+catalog: true
+tags:
+    - 机器学习
+    - KNN
+---
+
+> “物以类聚，人以群分” --- 《战国策·齐策三》
+
+
+
