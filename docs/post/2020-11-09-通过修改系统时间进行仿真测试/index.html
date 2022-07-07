@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>通过修改系统时间进行仿真测试 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="通过修改系统时间进行仿真测试" />
+<meta property="og:description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-09T00:00:00+00:00" />
+
+<meta itemprop="name" content="通过修改系统时间进行仿真测试">
+<meta itemprop="description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数"><meta itemprop="datePublished" content="2020-11-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1313">
+<meta itemprop="keywords" content="python,faketime," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="通过修改系统时间进行仿真测试"/>
+<meta name="twitter:description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">通过修改系统时间进行仿真测试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-09 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#python修改系统时间">Python修改系统时间</a>
+      <ul>
+        <li><a href="#背景">背景</a></li>
+        <li><a href="#思路">思路</a></li>
+        <li><a href="#尝试">尝试</a></li>
+        <li><a href="#faketimehttpsgithubcomwolfcwlibfaketime"><a href="https://github.com/wolfcw/libfaketime">Faketime</a></a></li>
+        <li><a href="#操作">操作</a>
+          <ul>
+            <li><a href="#第一步安装fatetime可以在dockerfile中实现">第一步：安装fatetime(可以在Dockerfile中实现)</a></li>
+            <li><a href="#第二步生成时间序列">第二步：生成时间序列</a></li>
+            <li><a href="#第三步设置系统时间">第三步：设置系统时间</a></li>
+          </ul>
+        </li>
+        <li><a href="#后记">后记</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数据的时间无法保证实时性，他就想，能不能通过修改系统时间完成这个测试任务呢？</p>
+</blockquote>
+<h1 id="python修改系统时间">Python修改系统时间</h1>
+<h2 id="背景">背景</h2>
+<p>为了了解需要测试系统的内容，我观看了源系统代码，其中，获取系统当前时间的方法为<code>datetime.now()</code>。</p>
+<h2 id="思路">思路</h2>
+<p>只要我们能修改<code>datetime.now</code>的结果就可以了。</p>
+<h2 id="尝试">尝试</h2>
+<p>开始的时候，我尝试通过直接调用系统命令<code>date -s '2020-01-01'</code>来解决，但是发现不管是虚拟机上，还是在docker容器中，都无法永久修改；然后又尝试使用修改硬件时间，但还是不行，虚拟机经过短暂的时间后，又自动回到了标准时间。</p>
+<h2 id="faketimehttpsgithubcomwolfcwlibfaketime"><a href="https://github.com/wolfcw/libfaketime">Faketime</a></h2>
+<p>然后经过查找，我就发现了fatetime这个工具，这个工具通过修改系统环境变量的方式，可以让系统得到这个“假冒”的系统时间，有了fatetime，接下来的操作就容易多了。</p>
+<h2 id="操作">操作</h2>
+<p>因为我们要修改系统时间，为了不影响自己机器上的正常业务、程序，强烈建议大家搞一台虚拟机，或者在docker容器中完成这个操作.<br></p>
+<p>因为最后我们的测试任务也要搭建在docker下，所以就直接采用docker任务来执行这个操作了。<br></p>
+<h3 id="第一步安装fatetime可以在dockerfile中实现">第一步：安装fatetime(可以在Dockerfile中实现)</h3>
+<p>Dockerfile</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="k">FROM</span><span class="s"> ...(自己找一个基础docker image, 比如ubuntu)</span><span class="err">
+</span><span class="err"></span><span class="c"># 为了防止某些基础ubuntu镜像不带make命令，先安装一些必要的命令</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> apt-get -y install gcc automake autoconf libtool make git<span class="err">
+</span><span class="err"></span><span class="c"># clone faketime代码</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> git clone https://github.com/wolfcw/libfaketime<span class="err">
+</span><span class="err"></span><span class="c"># 进入目录并安装</span><span class="err">
+</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> libfaketime</span><span class="err">
+</span><span class="err"></span><span class="k">RUN</span> make<span class="err">
+</span><span class="err"></span><span class="k">RUN</span> make install<span class="err">
+</span><span class="err"></span><span class="c"># 配置环境变量</span><span class="err">
+</span><span class="err"></span><span class="k">ENV</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/local/lib/faketime/libfaketime.so.1 <span class="se">\
+</span><span class="se"></span>    <span class="nv">FAKETIME_NO_CACHE</span><span class="o">=</span><span class="m">1</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="第二步生成时间序列">第二步：生成时间序列</h3>
+<p>由于使用faketime后，系统时间无法实现自增操作，我们需要为每次时间间隔后的系统时间都进行指定，假设我们希望系统初试时间是“2020-01-01 00:00:00”，然后每隔“20s”，时间递增“六个小时”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
+    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">timeArray</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_utc</span><span class="p">(</span><span class="n">timestamp</span><span class="p">):</span>
+    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">,</span> <span class="n">timeArray</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">generate_time_pipeline</span><span class="p">():</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;generate time pipeline&#34;</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">init_time</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">end_time</span><span class="p">:</span>
+        <span class="n">time_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+        <span class="n">start_time</span> <span class="o">+=</span> <span class="n">overlay_interval</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">time_list</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 字符串不好叠加，我们使用时间戳来实现</span>
+    <span class="n">init_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-01 00:00:00&#34;</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-02 00:00:00&#34;</span><span class="p">)</span>
+    <span class="n">overlay_interval</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">time_list</span> <span class="o">=</span> <span class="n">generate_time_pipeline</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="第三步设置系统时间">第三步：设置系统时间</h3>
+<p>因为我们还有测试程序要执行，所以我们通过多线程来设置系统时间，我们每隔6秒，设置一次系统时间。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">SetDateThread</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">regular_interval</span><span class="p">,</span> <span class="n">time_list</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span> <span class="o">=</span> <span class="n">regular_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 用来标志时光机结束</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span> <span class="o">=</span> <span class="n">time_list</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">tts</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_sys_time</span><span class="p">(</span><span class="n">get_utc</span><span class="p">(</span><span class="n">tts</span><span class="p">))</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">set_sys_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tts</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tts</span><span class="p">)</span>
+
+<span class="o">...</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="o">...</span>
+    <span class="n">sdt</span> <span class="o">=</span> <span class="n">SetDateThread</span><span class="p">()</span>
+    <span class="n">sdt</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="c1"># 可以通过time_over来判断时间pipe是否设置完成</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">sdt</span><span class="o">.</span><span class="n">time_over</span><span class="p">:</span>
+       <span class="o">...</span>
+    <span class="n">sdt</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+        
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="后记">后记</h2>
+<blockquote>
+<p>有的小伙伴可能会问了，我通过faketime修改了系统时间，那如果我在中间还想获取真实时间该怎么办呢？</p>
+</blockquote>
+<p>对于使用faketime修改系统时间后，如果获取真实时间的问题有两种方案：</p>
+<ol>
+<li>删除faketime的环境变量</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">...</span>
+<span class="k">del</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span>
+<span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>如果我们能连接到某个数据库服务器，或者网络服务器，可以获取网络时间</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">...</span>
+<span class="k">def</span> <span class="nf">get_now_time</span><span class="p">(</span><span class="n">if_utc</span><span class="p">,</span> <span class="n">engine</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;
+</span><span class="s2">    获取当前网络时间
+</span><span class="s2">    :param if_utc: 是否要转换成utc时间格式
+</span><span class="s2">    :param engine: 数据库连接引擎
+</span><span class="s2">    :return: 当前时间
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="n">date_sql</span> <span class="o">=</span> <span class="s2">&#34;select now();&#34;</span>
+    <span class="n">date_res</span><span class="p">:</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ResultProxy</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">date_sql</span><span class="p">))</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">date_res</span><span class="o">.</span><span class="n">first</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">date</span> <span class="k">if</span> <span class="n">if_utc</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_timestamp</span><span class="p">(</span><span class="n">date</span><span class="p">))</span>
+<span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/faketime/">faketime</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">官方招聘网站收录</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">
+            <span class="next-text nav-default">DeepMove论文解读</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

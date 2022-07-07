@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>K8s搭建prometheus&#43;grafana&#43;ingress-controller - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller" />
+<meta property="og:description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-18T00:00:00+00:00" />
+
+<meta itemprop="name" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller">
+<meta itemprop="description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"><meta itemprop="datePublished" content="2021-01-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-01-18T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1354">
+<meta itemprop="keywords" content="k8s,prometheus,grafana,nginx," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller"/>
+<meta name="twitter:description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">K8s搭建prometheus&#43;grafana&#43;ingress-controller</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2021-01-18 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-申请一个aks集群">1. 申请一个AKS集群</a></li>
+    <li><a href="#2-在本地实现对aks的控制">2. 在本地实现对AKS的控制</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#a-安装kubectl">a. 安装kubectl</a></li>
+            <li><a href="#b-连接到aks可以直接点击aks概述中的连接获取命令">b. 连接到aks(可以直接点击aks概述中的连接获取命令)</a></li>
+            <li><a href="#c-验证是否连接成功">c. 验证是否连接成功</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-k8s-dashboard">3. K8s Dashboard</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#a-部署dashboard">a. 部署dashboard</a></li>
+            <li><a href="#b-在本地访问dashboard">b. 在本地访问dashboard</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#4-prometheus--grafana">4. Prometheus &amp; Grafana</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#a-安装prometheusgrafana">a. 安装prometheus&amp;grafana</a></li>
+            <li><a href="#b-访问prometheus">b. 访问prometheus</a></li>
+            <li><a href="#c-访问grafana">c. 访问grafana</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#5-ingress-controller">5. Ingress Controller</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#a-使用helm3安装nginx-ingress-controller">a. 使用helm3安装nginx-ingress-controller</a></li>
+            <li><a href="#b-grafana中添加nginx-ingress-controller面板">b. Grafana中添加nginx ingress controller面板</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#qa">Q&amp;A</a></li>
+    <li><a href="#preference">Preference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prometheus监控ingress-controller。</p>
+</blockquote>
+<h1 id="1-申请一个aks集群">1. 申请一个AKS集群</h1>
+<p>😉</p>
+<hr>
+<h1 id="2-在本地实现对aks的控制">2. 在本地实现对AKS的控制</h1>
+<h3 id="a-安装kubectl">a. 安装kubectl</h3>
+<h3 id="b-连接到aks可以直接点击aks概述中的连接获取命令">b. 连接到aks(可以直接点击aks概述中的连接获取命令)</h3>
+<ul>
+<li>使用azure cli获取aks的配置信息（比如获取&lt;yourself_cluster_name&gt;的k8s配置）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">az account set --subscription &lt;yourself_subscriptionId&gt;
+az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &lt;yourself_cluster_name&gt;
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>检查本地kubectl配置项</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl config get-contexts
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>切换到你的aks中(比如切换到namespace为**************的aks中)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl config use-context &lt;yourself_cluster_name&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="c-验证是否连接成功">c. 验证是否连接成功</h3>
+<ul>
+<li>获取命名空间</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get namespaces
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>获取所有部署项</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get deployments --all-namespaces=true
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>获取所有服务</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get svc --all-namespaces=true
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<h1 id="3-k8s-dashboard">3. K8s Dashboard</h1>
+<p><img src="https://pic2.zhimg.com/80/v2-006e3352e5471a0c9c885a84f6184814_1440w.png" alt="k8s-dashboard"></p>
+<h3 id="a-部署dashboard">a. 部署dashboard</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="b-在本地访问dashboard">b. 在本地访问dashboard</h3>
+<ul>
+<li>启动本地代理</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl proxy
+</code></pre></td></tr></table>
+</div>
+</div><p>然后再浏览器中直接访问连接即可：http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
+<ul>
+<li>Token查找方法</li>
+</ul>
+<p>进入aks主页 → 配置 → 机密 → namespace选择kubernetes-dashboard → kubernetes-dashboard-token-****</p>
+<hr>
+<h1 id="4-prometheus--grafana">4. Prometheus &amp; Grafana</h1>
+<h3 id="a-安装prometheusgrafana">a. 安装prometheus&amp;grafana</h3>
+<ul>
+<li>克隆kube-prometheus代码，这里要注意服务器的k8s版本，选择对应版本的代码，对应关系见项目readme</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git clone -b release-0.6 git@github.com:prometheus-operator/kube-prometheus.git
+cd kube-prometheus
+kubectl create -f manifests/setup
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>等上面的应用部署完成后再执行下面这个命令!</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl create -f manifests/
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="b-访问prometheus">b. 访问prometheus</h3>
+<p>公网IP：修改service/grafana的type为LoadBanlancer，稍等片刻会出现对应的external ip地址</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
+spec:
+  ...
+  type: LoadBalancer
+  ...
+...
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://pic2.zhimg.com/80/v2-fece38580065c4a7ef7e526b418a6e3d_1440w.png" alt="prometheus-dashboard"></p>
+<h3 id="c-访问grafana">c. 访问grafana</h3>
+<p>免密登录：修改deployments/grafana中的yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
+spec:
+  ...
+  template:
+    ...
+    containers:
+      - name: grafana
+        ...
+        env:
+          - name: GF_AUTH_PROXY_ENABLED
+            value: &#39;true&#39;
+          - name: GF_AUTH_ANONYMOUS_ENABLED
+            value: &#39;true&#39;
+          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+            value: Admin
+        ...
+...
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>公网IP：修改service/grafana的type为LoadBanlancer，稍等片刻会出现对应的external ip地址</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
+spec:
+  ...
+  type: LoadBalancer
+  ...
+...
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://pic4.zhimg.com/80/v2-51d0d1d1cf21e3c8304cefc5fe6e24d6_1440w.png" alt="grafana-dashboard"></p>
+<hr>
+<h1 id="5-ingress-controller">5. Ingress Controller</h1>
+<h3 id="a-使用helm3安装nginx-ingress-controller">a. 使用helm3安装nginx-ingress-controller</h3>
+<ul>
+<li>添加helm源</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>更新helm源</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm repo update
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>获取ingress-nginx参数(非必须)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm show values ingress-nginx/ingress-nginx
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>安装ingress-nginx</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm install nginx-ingress ingress-nginx/ingress-nginx \
+      --namespace monitoring \
+      --set controller.metrics.enabled=true \
+      --set controller.metrics.serviceMonitor.enabled=true \
+      --set defaultBackend.enabled=true
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="b-grafana中添加nginx-ingress-controller面板">b. Grafana中添加nginx ingress controller面板</h3>
+<p>Grafana → Create Import → Input dashboard id: 9614 → Load → chose Prometheus data source (default) → Import</p>
+<p><img src="https://pic1.zhimg.com/80/v2-f7817951379ddb0188bc9fbb7f480ef2_1440w.png" alt="ingress-controller"></p>
+<hr>
+<h1 id="qa">Q&amp;A</h1>
+<ul>
+<li>出现Back-off restarting failed container</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
+spec:
+  containers:
+  - name: ingress-nginx
+    command: [ &#34;/bin/bash&#34;, &#34;-ce&#34;, &#34;tail -f /dev/null&#34; ]
+    ...
+...
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>pod日志出现：Invalid IngressClass (Spec.Controller) value &ldquo;nginx.org/ingress-controller&rdquo;. Should be &ldquo;k8s.io/ingress-nginx&rdquo;</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl delete ingressclass nginx
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看helm可配置的参数</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm show values ingress-nginx/ingress-nginx
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>访问dashboard</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl proxy
+</code></pre></td></tr></table>
+</div>
+</div><p>Brower open url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
+<ul>
+<li>新部署的nginx-ingress-controller,prometheus监控不到，grafana中的controller没有新的pod？</li>
+</ul>
+<p>检查自定义资源中，ServiceMonitor中对应的spec: selector是否与新的ingress controller一致</p>
+<hr>
+<h1 id="preference">Preference</h1>
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip">https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip</a></li>
+<li><a href="https://docs.openshift.com/container-platform/4.4/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1.html">https://docs.openshift.com/container-platform/4.4/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1.html</a></li>
+<li><a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs">https://prometheus.io/docs/prometheus/latest/configuration/configuration/#metric_relabel_configs</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2021-01-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/k8s/">k8s</a>
+          <a href="/tags/prometheus/">prometheus</a>
+          <a href="/tags/grafana/">grafana</a>
+          <a href="/tags/nginx/">nginx</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-07-28-hdinsight-hive-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%98%A0%E5%B0%84%E5%88%B0azure-blob%E6%96%87%E4%BB%B6/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Azure Blob CSV to HDInsight</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/">
+            <span class="next-text nav-default">Python基础之每日练习</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

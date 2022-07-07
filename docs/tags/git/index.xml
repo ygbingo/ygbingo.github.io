@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/git/</link>
+    <description>Recent content in git on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>建立多个git域名关联</title>
+      <link>https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</guid>
+      <description>要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em</description>
+    </item>
+    
+  </channel>
+</rss>

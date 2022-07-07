@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>建立多个git域名关联 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="建立多个git域名关联" />
+<meta property="og:description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-09-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-16T00:00:00+00:00" />
+
+<meta itemprop="name" content="建立多个git域名关联">
+<meta itemprop="description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em"><meta itemprop="datePublished" content="2019-09-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-09-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="400">
+<meta itemprop="keywords" content="git," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="建立多个git域名关联"/>
+<meta name="twitter:description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">建立多个git域名关联</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-16 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#生成密钥文件">生成密钥文件</a></li>
+    <li><a href="#导入ssh-key">导入ssh-key</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#复制pub文件内容">复制*.pub文件内容</a></li>
+            <li><a href="#粘贴到githubgitlab上">粘贴到github/gitlab上</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#设置本地密钥">设置本地密钥</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#新建config文件">新建config文件</a></li>
+            <li><a href="#配置config">配置config</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>要把大象装冰箱，总共分几步</p>
+</blockquote>
+<h1 id="生成密钥文件">生成密钥文件</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh-keygen -t rsa -f filename -C email@email.com
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@email.com是你在网站(github/gitlab)上注册的邮箱</strong></p>
+<p>执行该命令后，会在~/.ssh中生成对应的密钥文件</p>
+<p><img src="https://img-blog.csdnimg.cn/2019091415214752.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="生成密钥文件"></p>
+<h1 id="导入ssh-key">导入ssh-key</h1>
+<h3 id="复制pub文件内容">复制*.pub文件内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ vi ~/.ssh/*.pub
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="https://img-blog.csdnimg.cn/20190914152957199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="密钥内容复制"></p>
+<p><strong>所有内容都要复制</strong></p>
+<h3 id="粘贴到githubgitlab上">粘贴到github/gitlab上</h3>
+<p>1、进入setting
+<img src="https://img-blog.csdnimg.cn/20190914152632612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="进入setting"></p>
+<p>2、点击New SSH key
+<img src="https://img-blog.csdnimg.cn/20190914153247815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="添加SSH key"></p>
+<p>3、粘贴密钥内容
+<img src="https://img-blog.csdnimg.cn/20190914153613794.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="添加SSH key"></p>
+<blockquote>
+<p>如何只是做一对一的密钥-域名链接，到此就成功建立连接了，接下来是多个域名的匹配</p>
+</blockquote>
+<h1 id="设置本地密钥">设置本地密钥</h1>
+<p>假设对应不同的域名ip配置了不同的.pub文件，为了区分配置需要新建config文件</p>
+<h3 id="新建config文件">新建config文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ vi ~/.ssh/config
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="配置config">配置config</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># 配置github.com
+Host github.com                 
+HostName github.com
+IdentityFile /User/Username/home/.ssh/github_id_rsa.pub
+User username1
+
+# 配置gitlab.com
+Host gitlab.com 
+HostName gitlab.com
+IdentityFile /User/Username/home/.ssh/gitlab_id_rsa.pub
+User username2
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>通过上述配置，系统就会在建立连接时自动根据域名匹配对应的密钥文件了</p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-09-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/git/">git</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【十六大经典算法】开篇</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/">
+            <span class="next-text nav-default">知识图谱相关论文推荐</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

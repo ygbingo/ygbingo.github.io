@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TransE论文解读 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="TransE论文解读" />
+<meta property="og:description" content="Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-07-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-02T00:00:00+00:00" />
+
+<meta itemprop="name" content="TransE论文解读">
+<meta itemprop="description" content="Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free"><meta itemprop="datePublished" content="2019-07-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-07-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1876">
+<meta itemprop="keywords" content="知识图谱,NLP,知识表示," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TransE论文解读"/>
+<meta name="twitter:description" content="Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">TransE论文解读</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-02 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#translating-embeddings-for-modeling-multi-relational-data">Translating Embeddings for Modeling Multi-relational Data</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#作者">作者</a></li>
+            <li><a href="#解决的问题">解决的问题</a></li>
+            <li><a href="#目的">目的</a></li>
+            <li><a href="#方法">方法</a></li>
+            <li><a href="#实验">实验</a></li>
+            <li><a href="#结论与未来工作">结论与未来工作</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Freebase等。</p>
+<p>表示学习：主要面向知识图谱中实体和关系进行表示学习，一般使用建模方法将实体和向量表示在低维稠密向量空间中，然后计算并推理，主要的应用任务有三元组提取(triplet classification)和链接预测(link prediction)。</p>
+<p>Trans系列的源头应该就是这篇介绍的与2013年被提出的TransE模型，之后针对TransE模型的改进和补充也成为了近年来知识表示的研究热点。</p>
+<blockquote>
+<p><a href="http://papers.nips.cc/paper/5071-translating-embeddings-for-modeling-multi-relational-data.pdf">TransE</a>，NIPS2013，Translating embeddings for modeling multi-relational data。<br>
+<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=9880c513b8044b07a80a8df6cdfa0309&amp;site=xueshu_se">TransH</a>，AAAI2014，Knowledge graph embedding by translating on hyperplanes。<br>
+<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=b53cbe63d00b0060cc275f56dffdc477&amp;site=xueshu_se">TransD</a>，ACL2015，Knowledge graph embedding via dynamic mapping matrix。<br>
+<a href="https://arxiv.org/abs/1509.05490">TransA</a>，arXiv2015，An adaptive approach for knowledge graph embedding。<br>
+<a href="https://arxiv.org/abs/1509.05488">TransG</a>，arxiv2015，A Generative Mixture Model for Knowledge Graph Embedding<br>
+<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=c3cfeb74056607a49ea950f57f16fde1&amp;site=xueshu_se">KG2E</a>，CIKM2015，Learning to represent knowledge graphs with gaussian embedding。<br>
+<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=dd1ffb654749aed5c4d35bdc88311766&amp;site=xueshu_se">TranSparse</a>，AAAI2016，Knowledge graph completion with adaptive sparse transfer matrix。<br></p>
+</blockquote>
+<p><strong>一切的Trans都源于这篇TransE</strong></p>
+<h1 id="translating-embeddings-for-modeling-multi-relational-data">Translating Embeddings for Modeling Multi-relational Data</h1>
+<h3 id="作者">作者</h3>
+<p>Antoine Bordes, Nicolas Usunier, Alberto Garcia-Duran</p>
+<h3 id="解决的问题">解决的问题</h3>
+<ul>
+<li>主要解决将多关系数据中，将实体和关系映射到低维向量空间中的问题；</li>
+</ul>
+<h3 id="目的">目的</h3>
+<ul>
+<li>目的是提出一个易训练的通用模型，利用较少量参数的同时，可以将模型拓展到非常庞大的高维数据库中；</li>
+</ul>
+<h3 id="方法">方法</h3>
+<ul>
+<li>TransE
+给定一个三元组数据集S，每个三元组用(h,l,t)表示，其中h，t分别是头实体和尾实体，l是h和t的关系，目标是希望满足公式：h+l=t
+目标函数采用了常见的margin-based ranking criterion</li>
+</ul>
+<h3 id="实验">实验</h3>
+<ul>
+<li>数据集
+<ul>
+<li>Wordnet<br>
+这个数据集用来产生直观且可用的字典和词库，并支持自动文本分析。它的实体(entities)对应词义(word_senses)，关系(relationships)定义了两个词义间的关系(lexical relations)。例如一个三元组：(_score_NN_1, _hypernym, _evaluation_NN_1) 或者 (_score_NN_2, _has_part, _musical_notation_NN_1)。</li>
+<li>Freebase<br>
+Freebase是一个根据现实生活自更新的庞大数据库，有将近12亿个三元组和超过8千万的实体(截至2013年)，TransE论文基于Freebase创建了两个数据集。首先，基于wikilinks数据库和freebase的部分实体和关系建立了一个小型数据集FB15k，并且溢出了其中可反向的三元组，如'!/people/person/nationality&rsquo;和'/people/person/nationality'，该数据集包括592,213个三元组，共包括14951个实体和1345个关系。另外还创建了一个高维的数据集FB1M，包含超过170亿个三元组，共1亿个实体和2.5万个关系。</li>
+</ul>
+</li>
+<li>对比方法
+<ul>
+<li>Unstructured<br>
+这是TransE的版本之一，它将数据视为mono-relational，并且将所有的translations视为0。在参考文献【2】中同样作为baseline</li>
+<li>RESCAL<br>
+这是在文献<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=707aa2c712e6a058a35724f692f8fc6e&amp;site=xueshu_se">11</a>,<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=7a91fe5aca731275fba16bef538f5662&amp;site=xueshu_se">12</a>中被提出的基于集体矩阵分解的模型</li>
+<li>SE<br>
+这是在文献<a href="http://www.utc.fr/~bordesan/dokuwiki/_media/en/bordes11snowbird.pdf">3</a>中被提出的基于能量的模型</li>
+<li>SME(LINEAR)/SME(BILINEAR)<br>
+文献<a href="https://arxiv.org/abs/1301.3485v2">2</a></li>
+<li>LFM<br>
+文献<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=7bd1fe7364cba617444ef352c7184d77&amp;site=xueshu_se">6</a></li>
+</ul>
+</li>
+<li>评价指标
+<ul>
+<li>link-prediction：
+<ul>
+<li>将一个正确的三元组a中的头实体或者尾实体，依次替换为整个知识库中的所有其它实体，也就是会产生n个三元组。</li>
+<li>分别对上述n个三元组计算其能量值，在transE中，就是计算h+r-t的值。这样可以得到n个能量值，分别对应上述n个三元组。</li>
+<li>对上述n个能量值进行升序排序。</li>
+<li>记录三元组a的能量值排序后的序号。</li>
+<li>对所有的正确的三元组重复上述过程。</li>
+<li>每个正确三元组的能量值排序后的序号求平均，得到的值我们称为Mean Rank。</li>
+<li>计算正确三元组的能量排序后的序号小于10的比例，得到的值我们称为Hits@10。</li>
+<li>Mean Rank：一般来说，越小越好</li>
+<li>Hits@10：一般来说，越大越好</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="结论与未来工作">结论与未来工作</h3>
+<ul>
+<li>结论<br>
+TransE主要提出一种学习KB embedding的新方法，主要关注点在：1、模型最少参数化；2、主要层次关系的表示，通过实验验证，发现该效果非常有效；另外，通过在1-1，1-m，m-1，m-m的实验分析，发现TransE在模拟所有关系模型上表现良好。</li>
+<li>未来工作<br>
+未来的工作可以进一步分析这个模型，并且还专注于在更多任务中利用它，特别是诸如学习[8]启发的单词表示的应用程序。将KB与文本组合在一起是另一个重要方向，另外还可以将TransE插入到从文本中提取关系的框架中。</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/">知识图谱</a>
+          <a href="/tags/nlp/">NLP</a>
+          <a href="/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA/">知识表示</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">动态知识图谱补全整合</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/">
+            <span class="next-text nav-default">从0到1实现自动聊天机器人</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

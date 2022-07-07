@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python基础之每日练习 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python基础之每日练习" />
+<meta property="og:description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-11-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-21T00:00:00+00:00" />
+
+<meta itemprop="name" content="Python基础之每日练习">
+<meta itemprop="description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两"><meta itemprop="datePublished" content="2020-11-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="991">
+<meta itemprop="keywords" content="python,python基础教学," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python基础之每日练习"/>
+<meta name="twitter:description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python基础之每日练习</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-21 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#qa2020-11-30">Q&amp;A(2020-11-30)</a></li>
+    <li><a href="#qa2020-11-28">Q&amp;A(2020-11-28)</a></li>
+    <li><a href="#如何理解类函数属性">如何理解类、函数、属性</a></li>
+    <li><a href="#qa2020-11-26">Q&amp;A(2020-11-26)</a></li>
+    <li><a href="#qa2020-11-24">Q&amp;A(2020-11-24)</a></li>
+    <li><a href="#qa2020-11-23">Q&amp;A(2020-11-23)</a></li>
+    <li><a href="#qa2020-11-22">Q&amp;A(2020-11-22)</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。</p>
+</blockquote>
+<h1 id="qa2020-11-30">Q&amp;A(2020-11-30)</h1>
+<blockquote>
+<p>知识点：excel格式文件读取 <a href="https://geek-docs.com/python/python-tutorial/python-openpyxl.html">openpyxl</a></p>
+</blockquote>
+<ol>
+<li>合并下面两个excel文件：通过id把他们的成绩合并的到一起，如果没有成绩的初始化为0？</li>
+</ol>
+<blockquote>
+<p>score1.xlsx</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,math,physical,chemistry,biological
+000,Li,90,88,93,94
+001,Han,66,73,62,80
+002,Gao,78,87,88,90
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>score2.xlsx</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,chinese,english,history,geography,political
+000,Li,80,68,63,74
+001,Han,95,96,89,93
+003,Liu,88,87,89,92
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>对上面合并后的文件，计算每个同学的平均成绩并排名？</li>
+</ol>
+<h1 id="qa2020-11-28">Q&amp;A(2020-11-28)</h1>
+<blockquote>
+<p>知识点：文件读写、JSON对象解析<br>
+参考文档：
+<br><a href="https://www.runoob.com/python3/python3-file-methods.html">Python File</a>
+<br><a href="https://www.runoob.com/python3/python3-json.html">《Python3 JSON解析》</a>
+<br><a href="https://www.runoob.com/json/json-syntax.html">JSON语法</a></p>
+</blockquote>
+<ol>
+<li>创建一个文本文件，利用python找到这个文件，读取文件中的内容并把内容写入新的文件中？</li>
+<li>把下面这个JSON对象写入json文件中？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> 
+    <span class="nt">&#34;country&#34;</span><span class="p">:</span> <span class="s2">&#34;中国&#34;</span> <span class="p">,</span> 
+    <span class="nt">&#34;province&#34;</span><span class="p">:</span> <span class="s2">&#34;辽宁省&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="s2">&#34;抚顺市&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>把下面这个数据写入excel格式的文件中？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,age
+1,Jordan,35
+2,Allen,28
+3,Jenny,41
+4,Lilei,18
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li><a href="https://leetcode-cn.com/problems/valid-parentheses/">LeetCode 20</a></li>
+</ol>
+<h1 id="如何理解类函数属性">如何理解类、函数、属性</h1>
+<ol>
+<li>思考：人类都有那些属性？人类能执行哪些动作？尝试完成下面这个类，补充几个方法：set_age、set_gender、set_height &hellip;</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+    
+    <span class="k">def</span> <span class="nf">get_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span>
+    
+    <span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="qa2020-11-26">Q&amp;A(2020-11-26)</h1>
+<blockquote>
+<p>参考文档：<br>
+<a href="https://www.runoob.com/python3/python3-module.html">Python3模块</a><br>
+<a href="https://docs.python.org/3/tutorial/modules.html">Modules</a><br></p>
+</blockquote>
+<ol>
+<li>模块有什么用？</li>
+<li>import &hellip; ｜ from &hellip; import &hellip; ｜ import * 有什么区别？</li>
+<li>自定义一个可以计算Fibonacci数的python模块，然后调用该模块？</li>
+<li>了解什么是python主函数，如何定义它？</li>
+<li>完成<a href="https://leetcode-cn.com/problems/plus-one/">LeetCode66</a></li>
+</ol>
+<h1 id="qa2020-11-24">Q&amp;A(2020-11-24)</h1>
+<blockquote>
+<p>参考文档：<a href="https://docs.python.org/3/tutorial/datastructures.html">数据结构</a></p>
+</blockquote>
+<ol>
+<li>队列和堆栈有什么区别？分别适用于哪种场景？</li>
+<li>尝试用列表实现队列的入队出队功能？</li>
+<li>尝试用列表实现堆栈的入栈出栈功能？</li>
+<li>完成 <a href="https://leetcode-cn.com/problems/two-sum/">LeetCode 1</a> ?</li>
+<li>对下面这个列表排序？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">...</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="qa2020-11-23">Q&amp;A(2020-11-23)</h1>
+<blockquote>
+<p>参考文档：<a href="https://docs.python.org/3/tutorial/controlflow.html">More Control Flow Tools</a></p>
+</blockquote>
+<ol>
+<li>了解range()的用法；</li>
+<li>了解break，continue，pass的用法与区别；</li>
+<li>定义一个function，实现输出<a href="https://zhuanlan.zhihu.com/p/64530954">Fibonacci序列</a>？</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># see below</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li><a href="https://leetcode-cn.com/problems/fibonacci-number/">LeetCode509</a></li>
+</ol>
+<h1 id="qa2020-11-22">Q&amp;A(2020-11-22)</h1>
+<ol>
+<li>
+<p>Q: 使用条件语句完成<a href="https://yanhuibin315.github.io/2020/11/17/Anaconda+Pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">第一课</a>的第3题？</p>
+</li>
+<li>
+<p>分别使用while和for循环计算1～100的和的问题？</p>
+</li>
+<li>
+<p>输出1～100之间所有的质数？</p>
+</li>
+<li>
+<p>完成下面这段程序？</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
+<span class="n">person_score</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Zhou&#34;</span><span class="p">:[</span><span class="mi">88</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">97</span><span class="p">],</span> <span class="s2">&#34;Li&#34;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">92</span><span class="p">],</span> <span class="s2">&#34;Gao&#34;</span><span class="p">:[</span><span class="mi">91</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">80</span><span class="p">]}</span>
+<span class="n">names</span> <span class="o">=</span> <span class="n">person_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="n">cat</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Chinese&#34;</span><span class="p">,</span> <span class="s2">&#34;Math&#34;</span><span class="p">,</span> <span class="s2">&#34;English&#34;</span><span class="p">]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">max_chinese</span><span class="p">,</span> <span class="n">max_math</span><span class="p">,</span> <span class="n">max_english</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">max_name</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">max_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_score</span><span class="p">:</span>
+            <span class="n">max_name</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="n">max_score</span> <span class="o">=</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;最好的是：&#34;</span> <span class="o">+</span> <span class="n">max_name</span> <span class="o">+</span> <span class="s2">&#34;, 他的成绩是：&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_score</span><span class="p">))</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>注册一个<a href="https://leetcode-cn.com/">Leetcode账号</a>，并完成<a href="https://leetcode-cn.com/problems/palindrome-number/">LeetCode 9. 回文数</a> ?</li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/">python基础教学</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">K8s搭建prometheus&#43;grafana&#43;ingress-controller</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+            <span class="next-text nav-default">Python基础之数据类型</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>faketime on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/faketime/</link>
+    <description>Recent content in faketime on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/tags/faketime/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过修改系统时间进行仿真测试</title>
+      <link>https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</guid>
+      <description>最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>从0到1实现自动聊天机器人 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="How are you ? I&amp;rsquo;m fine, Thank you, And you? I&amp;rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="从0到1实现自动聊天机器人" />
+<meta property="og:description" content="How are you ? I&rsquo;m fine, Thank you, And you? I&rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-24T00:00:00+00:00" />
+
+<meta itemprop="name" content="从0到1实现自动聊天机器人">
+<meta itemprop="description" content="How are you ? I&rsquo;m fine, Thank you, And you? I&rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼"><meta itemprop="datePublished" content="2019-06-24T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-06-24T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1639">
+<meta itemprop="keywords" content="深度学习,NLP," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从0到1实现自动聊天机器人"/>
+<meta name="twitter:description" content="How are you ? I&rsquo;m fine, Thank you, And you? I&rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">从0到1实现自动聊天机器人</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-24 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#最基础的基于规则base-rule的聊天机器人">最基础的基于规则(base-rule)的聊天机器人</a></li>
+    <li><a href="#通过构建简单知识图谱">通过构建简单知识图谱</a></li>
+    <li><a href="#基于gtts实现钢铁侠的javis">基于GTTS实现钢铁侠的Javis</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>How are you ?<br>
+I&rsquo;m fine, Thank you, And you?<br>
+I&rsquo;m fine too.<br></p>
+</blockquote>
+<h1 id="最基础的基于规则base-rule的聊天机器人">最基础的基于规则(base-rule)的聊天机器人</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># 打招呼</span>
+<span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
+<span class="c1"># 回复打招呼</span>
+<span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
+
+<span class="c1"># 对于“你怎么样？”这个问题的回复</span>
+<span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;How are you?&#39;</span><span class="p">,</span><span class="s1">&#39;How are you doing?&#39;</span><span class="p">]</span>
+<span class="c1"># “我很好”</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Okay&#39;</span><span class="p">,</span><span class="s2">&#34;I&#39;m fine&#34;</span><span class="p">]</span>
+<span class="c1"># 随机选一个回</span>
+<span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+
+<span class="c1"># 机器人跑起来</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">greetings</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
+    <span class="c1"># 除非你说“拜拜”</span>
+    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果：</p>
+<blockquote>
+<p>&gt;&raquo; hi<br>
+hey<br>
+&gt;&raquo; how are u<br>
+I did not understand what you said<br>
+&gt;&raquo; how are you<br>
+I did not understand what you said<br>
+&gt;&raquo; how are you?<br>
+I did not understand what you said<br>
+&gt;&raquo; How are you?<br>
+I&rsquo;m fine<br>
+&gt;&raquo; bye<br></p>
+</blockquote>
+<p>显然 这样的rule太弱智了，我们需要更好一点的“精准对答”</p>
+<p>比如</p>
+<p>透过关键词来判断这句话的意图是什么（intents）</p>
+<p>接下来，我们对上面这段代码做一次升级</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># 打招呼</span>
+<span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
+<span class="c1"># 回复打招呼</span>
+<span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
+
+<span class="c1"># 对于“假期”的话题关键词</span>
+<span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;break&#39;</span><span class="p">,</span><span class="s1">&#39;holiday&#39;</span><span class="p">,</span><span class="s1">&#39;vacation&#39;</span><span class="p">,</span><span class="s1">&#39;weekend&#39;</span><span class="p">]</span>
+<span class="c1"># 回复假期话题</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;It was nice! I went to Paris&#39;</span><span class="p">,</span><span class="s2">&#34;Sadly, I just stayed at home&#34;</span><span class="p">]</span>
+<span class="c1"># 随机选一个回</span>
+<span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+
+
+
+<span class="c1"># 机器人跑起来</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
+    <span class="c1"># 清理一下输入，看看都有哪些词</span>
+    <span class="n">cleaned_input</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span>
+    <span class="c1"># 这里，我们比较一下关键词，确定他属于哪个问题</span>
+    <span class="k">if</span>  <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">greetings</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
+    <span class="c1"># 除非你说“拜拜”</span>
+    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果：</p>
+<blockquote>
+<p>&gt;&raquo; hi<br>
+hey<br>
+&gt;&raquo; how was your holiday?<br>
+It was nice! I went to Paris<br>
+&gt;&raquo; wow, amazing!<br>
+I did not understand what you said<br>
+&gt;&raquo; bye</p>
+</blockquote>
+<p>大家大概能发现，这依旧是文字层面的“精准对应”。<br>
+现在主流的研究方向，是做到语义层面的对应。<br>
+比如，“肚子好饿哦”， “饭点到了”<br>
+都应该表示的是要吃饭了的意思.<br>
+在这个层面，就需要用到word vector之类的embedding方法，</p>
+<h1 id="通过构建简单知识图谱">通过构建简单知识图谱</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="c1"># 建立一个基于目标行业的database</span>
+<span class="c1"># 比如 这里我们用python自带的graph</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;上海&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;苏州&#39;</span><span class="p">,</span> <span class="s1">&#39;常州&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;苏州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">,</span> <span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;常州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;镇江&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;盐城&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;南通&#39;</span><span class="p">],</span>
+         <span class="s1">&#39;南通&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">]}</span>
+
+<span class="c1"># 明确如何找到从A到B的路径</span>
+<span class="k">def</span> <span class="nf">find_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">path</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+            <span class="n">newpath</span> <span class="o">=</span> <span class="n">find_path</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">newpath</span><span class="p">:</span> <span class="k">return</span> <span class="n">newpath</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果</p>
+<blockquote>
+<p>print(find_path(&lsquo;上海&rsquo;, &ldquo;镇江&rdquo;))<br>
+[&lsquo;上海&rsquo;, &lsquo;苏州&rsquo;, &lsquo;常州&rsquo;, &lsquo;镇江&rsquo;]</p>
+</blockquote>
+<h1 id="基于gtts实现钢铁侠的javis">基于GTTS实现钢铁侠的Javis</h1>
+<p>GTTS(Google Text-to-Speech API), 是google的一套API，用于把文本转化为音频。
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;您好，我是您的私人助手，我叫小辣椒&#39;</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;zh-tw&#39;</span><span class="p">)</span>
+<span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;hello.mp3&#34;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 hello.mp3&#34;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>有了文本到语音的功能，<br>
+我们还可以运用Google API读出Jarvis的回复：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">speech_recognition</span> <span class="k">as</span> <span class="nn">sr</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+ 
+<span class="c1"># 讲出来AI的话</span>
+<span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">audioString</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">audioString</span><span class="p">)</span>
+    <span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">audioString</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
+    <span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;audio.mp3&#34;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 audio.mp3&#34;</span><span class="p">)</span>
+
+<span class="c1"># 录下来你讲的话</span>
+<span class="k">def</span> <span class="nf">recordAudio</span><span class="p">():</span>
+    <span class="c1"># 用麦克风记录下你的话</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">Recognizer</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">sr</span><span class="o">.</span><span class="n">Microphone</span><span class="p">()</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
+        <span class="n">audio</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+ 
+    <span class="c1"># 用Google API转化音频</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recognize_google</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;You said: &#34;</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">UnknownValueError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Google Speech Recognition could not understand audio&#34;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">RequestError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Could not request results from Google Speech Recognition service; </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+ 
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># 自带的对话技能（rules）</span>
+<span class="k">def</span> <span class="nf">jarvis</span><span class="p">():</span>
+    
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        
+        <span class="n">data</span> <span class="o">=</span> <span class="n">recordAudio</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="s2">&#34;how are you&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;I am fine&#34;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&#34;what time is it&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">speak</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="s2">&#34;where is&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hold on Tony, I will show you where &#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34; is.&#34;</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;open -a Safari https://www.google.com/maps/place/&#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34;/&amp;amp;&#34;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&#34;bye&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;bye bye&#34;</span><span class="p">)</span>
+            <span class="k">break</span>
+
+<span class="c1"># 初始化</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hi Tony, what can I do for you?&#34;</span><span class="p">)</span>
+
+<span class="c1"># 跑起</span>
+<span class="n">jarvis</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>效果：</p>
+<blockquote>
+<p>Hi Tony, what can I do for you?<br>
+You said: how are you<br>
+I am fine<br>
+You said: what time is it now<br>
+Fri Apr  7 18:16:54 2017<br>
+You said: where is London<br>
+Hold on Tony, I will show you where London is.<br>
+You said: ok bye bye<br>
+bye bye</p>
+</blockquote>
+<p>好啦！这样你的Javis就建好了，当然这个Javis的智能化看起来并不好，不过学科都是交叉的，想真的建立一套完整的Javis一定还需要不断的学习，多领域的知识都要涉及到才行哦！</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-24
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+          <a href="/tags/nlp/">NLP</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">TransE论文解读</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/">
+            <span class="next-text nav-default">Hyperleger简介</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

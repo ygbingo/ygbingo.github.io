@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图像识别 on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</link>
+    <description>Recent content in 图像识别 on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>几种常见的噪声</title>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</guid>
+      <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 常见的噪声 高斯噪声 高斯噪声是指</description>
+    </item>
+    
+  </channel>
+</rss>

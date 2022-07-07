@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Java DPI介绍 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Bingo" /><meta name="description" content="Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.89.2 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Java DPI介绍" />
+<meta property="og:description" content="Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2019-07-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-09T00:00:00+00:00" />
+
+<meta itemprop="name" content="Java DPI介绍">
+<meta itemprop="description" content="Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel"><meta itemprop="datePublished" content="2019-07-09T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-07-09T00:00:00+00:00" />
+<meta itemprop="wordCount" content="4797">
+<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java DPI介绍"/>
+<meta name="twitter:description" content="Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Java DPI介绍</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-09 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#java-bufferedimageclass">Java BufferedImageClass</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#例子在屏幕上画一些文本">例子：在屏幕上画一些文本</a></li>
+            <li><a href="#例子从网络上下载图片">例子：从网络上下载图片</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#图片像素">图片像素</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#例子显示一个1010尺寸图片的像素信息">例子：显示一个10✖️10尺寸图片的像素信息</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#灰度化">灰度化</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#以下示例演示如何使用java-bufferedimage类将图像转换为灰度">以下示例演示如何使用Java BufferedImage类将图像转换为灰度</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#图像增强增强图像对比度">图像增强：增强图像对比度</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc增强图片对比度">使用Imgproc增强图片对比度</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#增强图像亮度">增强图像亮度</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#增强一个图片的亮度">增强一个图片的亮度</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#增强图像清晰度">增强图像清晰度</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc和core蜕化图片">使用Imgproc和Core蜕化图片</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#图像压缩技术">图像压缩技术</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imagewriteparam压缩图片">使用ImageWriteParam压缩图片</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#给图片加边框">给图片加边框</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用opencv的copymakeborder方法给图片添加不同种类的边框">使用OpenCV的copyMakeBorder方法给图片添加不同种类的边框</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#图像金字塔技术">图像金字塔技术</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc类实现图像分辨率的调高或降低">使用Imgproc类实现图像分辨率的调高或降低</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#阈值基础">阈值基础</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc对图像做阈值处理">使用Imgproc对图像做阈值处理</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#图像形状转换">图像形状转换</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用core反转图像">使用Core反转图像</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#使用高斯滤波器">使用高斯滤波器</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc对一个图像应用高斯滤波器">使用Imgproc对一个图像应用高斯滤波器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#应用箱式滤波器">应用箱式滤波器</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc应用箱式滤波器">使用Imgproc应用箱式滤波器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#侵蚀和扩张">侵蚀和扩张</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用imgproc实现图片的侵蚀和扩张">使用Imgproc实现图片的侵蚀和扩张</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#使用水印">使用水印</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#应用文本水印">应用文本水印</a></li>
+            <li><a href="#应用图片水印">应用图片水印</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#了解卷积">了解卷积</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#对灰度图使用卷积">对灰度图使用卷积</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#使用prewitt算子">使用Prewitt算子</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#在灰度图片上使用prewitt算子">在灰度图片上使用prewitt算子</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#应用sobel算子">应用Sobel算子</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#对一个灰度图片使用sobel算子">对一个灰度图片使用Sobel算子</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#应用kirsch算子">应用Kirsch算子</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#在灰度图片上使用kirsch">在灰度图片上使用Kirsch</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#应用加权平均滤波器">应用加权平均滤波器</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#对灰度图应用加权滤波器">对灰度图应用加权滤波器</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#创造变焦效果">创造变焦效果</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#对一张图片添加变焦效果">对一张图片添加变焦效果</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#开源库">开源库</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="java-bufferedimageclass">Java BufferedImageClass</h1>
+<p>Java BufferedImage类是Image类的子类。
+它用于处理和操作图像数据。
+BufferedImage由图像数据的ColorModel组成。
+所有BufferedImage对象的左上角坐标为（0,0）。</p>
+<h3 id="例子在屏幕上画一些文本">例子：在屏幕上画一些文本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">java.awt.Graphics</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.Image</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JPanel</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Test</span> <span class="kd">extends</span> <span class="n">JPanel</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">paint</span><span class="o">(</span><span class="n">Graphics</span> <span class="n">g</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Image</span> <span class="n">img</span> <span class="o">=</span> <span class="n">createImageWithText</span><span class="o">();</span>
+        <span class="n">g</span><span class="o">.</span><span class="na">drawImage</span><span class="o">(</span><span class="n">img</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">20</span><span class="o">,</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="n">Image</span> <span class="nf">createImageWithText</span><span class="o">(){</span>
+        <span class="n">BufferedImage</span> <span class="n">bufferedImage</span> <span class="o">=</span> <span class="k">new</span>
+            <span class="n">BufferedImage</span><span class="o">(</span><span class="n">200</span><span class="o">,</span><span class="n">200</span><span class="o">,</span><span class="n">BufferedImage</span><span class="o">.</span><span class="na">TYPE_INT_RGB</span><span class="o">);</span>
+        <span class="n">Graphics</span> <span class="n">g</span> <span class="o">=</span> <span class="n">bufferedImage</span><span class="o">.</span><span class="na">getGraphics</span><span class="o">();</span>
+        <span class="n">g</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="s">&#34;www.tutorialspoint.com&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">20</span><span class="o">);</span>
+        <span class="n">g</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="s">&#34;www.tutorialspoint.com&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">40</span><span class="o">);</span>
+ <span class="n">g</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="s">&#34;www.tutorialspoint.com&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">60</span><span class="o">);</span>
+ <span class="n">g</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="s">&#34;www.tutorialspoint.com&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">80</span><span class="o">);</span>
+ <span class="n">g</span><span class="o">.</span><span class="na">drawString</span><span class="o">(</span><span class="s">&#34;www.tutorialspoint.com&#34;</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span><span class="n">100</span><span class="o">);</span>
+ <span class="k">return</span> <span class="n">bufferedImage</span><span class="o">;</span>
+ <span class="o">}</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+ <span class="n">JFrame</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JFrame</span><span class="o">();</span>
+ <span class="n">frame</span><span class="o">.</span><span class="na">getContentPane</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Test</span><span class="o">());</span>
+ <span class="n">frame</span><span class="o">.</span><span class="na">setDefaultCloseOperation</span><span class="o">(</span><span class="n">JFrame</span><span class="o">.</span><span class="na">EXIT_ON_CLOSE</span><span class="o">);</span>
+ <span class="n">frame</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="n">200</span><span class="o">,</span> <span class="n">200</span><span class="o">);</span>
+ <span class="n">frame</span><span class="o">.</span><span class="na">setVisible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="例子从网络上下载图片">例子：从网络上下载图片</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.OutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Download</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">;</span>
+            <span class="n">String</span> <span class="n">website</span> <span class="o">=</span><span class="s">&#34;http://tutorialspoint.com/java_dip/images/&#34;</span><span class="o">+</span><span class="n">fileName</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Downloading File From: &#34;</span> <span class="o">+</span> <span class="n">website</span><span class="o">);</span>
+            <span class="n">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">website</span><span class="o">);</span>
+            <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="na">openStream</span><span class="o">();</span>
+            <span class="n">OutputStream</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">fileName</span><span class="o">);</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">buffer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">2048</span><span class="o">];</span>
+            <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">length</span> <span class="o">=</span> <span class="n">inputStream</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buffer</span><span class="o">))</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Buffer Read of length: &#34;</span> <span class="o">+</span> <span class="n">length</span><span class="o">);</span>
+                <span class="n">outputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buffer</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">length</span><span class="o">);</span>
+            <span class="o">}</span>
+            <span class="n">inputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="n">outputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Exception: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="图片像素">图片像素</h1>
+<p>图像包含二维像素阵列。
+它实际上是构成图像的那些像素的值。
+通常，图像可以是彩色或灰度。
+在Java中，BufferedImage类用于处理图像。
+您需要调用BufferedImage类的getRGB（）方法来获取像素的值。</p>
+<h3 id="例子显示一个1010尺寸图片的像素信息">例子：显示一个10✖️10尺寸图片的像素信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kd">class</span> <span class="nc">Pixel</span> <span class="o">{</span>
+    <span class="n">BufferedImage</span> <span class="n">image</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">width</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">height</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">Pixel</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;blackandwhite.jpg&#34;</span><span class="o">);</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+            <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">height</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">width</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+                    <span class="n">count</span><span class="o">++;</span>
+                    <span class="n">Color</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Color</span><span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getRGB</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">i</span><span class="o">));</span>
+                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;S.No: &#34;</span> <span class="o">+</span> <span class="n">count</span> <span class="o">+</span> <span class="s">&#34; Red: &#34;</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getRed</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; Green: &#34;</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getGreen</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; Blue: &#34;</span> <span class="o">+</span> <span class="n">c</span><span class="o">.</span><span class="na">getBlue</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="o">}</span>
+ 
+    <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+        <span class="n">Pixel</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pixel</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="灰度化">灰度化</h1>
+<p>要将彩色图像转换为灰度图像，您需要使用File和ImageIO对象读取图像的像素或数据，并将图像存储在BufferedImage对象中。</p>
+<h3 id="以下示例演示如何使用java-bufferedimage类将图像转换为灰度">以下示例演示如何使用Java BufferedImage类将图像转换为灰度</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">java.awt.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.swing.JFrame</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GrayScale</span> <span class="o">{</span>
+    <span class="n">BufferedImage</span> <span class="n">image</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">width</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">height</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">GrayScale</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">File</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">);</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">height</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">width</span><span class="o">;</span> <span class="n">j</span><span class="o">++){</span>
+                    <span class="n">Color</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Color</span><span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getRGB</span><span class="o">(</span><span class="n">j</span><span class="o">,</span> <span class="n">i</span><span class="o">));</span>
+                    <span class="kt">int</span> <span class="n">red</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">c</span><span class="o">.</span><span class="na">getRed</span><span class="o">()</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">299</span><span class="o">);</span>
+                    <span class="kt">int</span> <span class="n">green</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">c</span><span class="o">.</span><span class="na">getGreen</span><span class="o">()</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">587</span><span class="o">);</span>
+                    <span class="kt">int</span> <span class="n">blue</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">c</span><span class="o">.</span><span class="na">getBlue</span><span class="o">()</span> <span class="o">*</span><span class="n">0</span><span class="o">.</span><span class="na">114</span><span class="o">);</span>
+                    <span class="n">Color</span> <span class="n">newColor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Color</span><span class="o">(</span><span class="n">red</span><span class="o">+</span><span class="n">green</span><span class="o">+</span><span class="n">blue</span><span class="o">,</span>
+                    <span class="n">red</span><span class="o">+</span><span class="n">green</span><span class="o">+</span><span class="n">blue</span><span class="o">,</span><span class="n">red</span><span class="o">+</span><span class="n">green</span><span class="o">+</span><span class="n">blue</span><span class="o">);</span>
+                    <span class="n">image</span><span class="o">.</span><span class="na">setRGB</span><span class="o">(</span><span class="n">j</span><span class="o">,</span><span class="n">i</span><span class="o">,</span><span class="n">newColor</span><span class="o">.</span><span class="na">getRGB</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">File</span> <span class="n">ouptut</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">);</span>
+            <span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="s">&#34;jpg&#34;</span><span class="o">,</span> <span class="n">ouptut</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+        <span class="o">}</span>
+ 
+    <span class="kd">static</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+        <span class="n">GrayScale</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GrayScale</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="图像增强增强图像对比度">图像增强：增强图像对比度</h1>
+<p>如何使用直方图均衡来增强图像的对比度。
+我们使用OpenCV函数equalizeHist（）方法。</p>
+<h3 id="使用imgproc增强图片对比度">使用Imgproc增强图片对比度</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">width</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">height</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">50</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">equalizeHist</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;contrast.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="增强图像亮度">增强图像亮度</h1>
+<p>在本章中，我们通过将图像的每个像素与alpha值相乘并向其添加另一个beta值来增强图像的亮度。
+我们OpenCV函数convertTo自动执行上述操作。</p>
+<h3 id="增强一个图片的亮度">增强一个图片的亮度</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">width</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">height</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">beta</span> <span class="o">=</span> <span class="n">50</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span><span class="o">=</span><span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">source</span><span class="o">.</span><span class="na">convertTo</span><span class="o">(</span><span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">alpha</span><span class="o">,</span> <span class="n">beta</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;brightWithAlpha2Beta50.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="增强图像清晰度">增强图像清晰度</h1>
+<p>在本章中，我们学习使用高斯滤波器来增加图像的清晰度。
+首先我们使用OpenCV函数GaussianBlur。
+它可以在Imgproc包下找到。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="n">Imgproc</span><span class="o">.</span><span class="na">GaussianBlur</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">),</span> <span class="n">sigmaX</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用imgproc和core蜕化图片">使用Imgproc和Core蜕化图片</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Size</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">GaussianBlur</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">),</span> <span class="n">10</span><span class="o">);</span>
+            <span class="n">Core</span><span class="o">.</span><span class="na">addWeighted</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">1</span><span class="o">.</span><span class="na">5</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;sharp.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="图像压缩技术">图像压缩技术</h1>
+<p>可以通过Java轻松压缩和存储图像。
+图像压缩涉及将图像转换为jpg并存储它。
+为了压缩图像，我们读取图像并转换为BufferedImage对象。
+此外，我们从ImageIO类中的getImageWritersByFormatName（）方法获取ImageWriter。
+从此ImageWriter中，创建一个ImageWriteParam对象。</p>
+<h3 id="使用imagewriteparam压缩图片">使用ImageWriteParam压缩图片</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">java.io.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.imageio.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.image.*</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.imageio.stream.ImageOutputStream</span><span class="o">;</span>
+<span class="kd">class</span> <span class="nc">Compresssion</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+        <span class="n">File</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">);</span>
+        <span class="n">BufferedImage</span> <span class="n">image</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+        <span class="n">File</span> <span class="n">compressedImageFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;compress.jpg&#34;</span><span class="o">);</span>
+        <span class="n">OutputStream</span> <span class="n">os</span> <span class="o">=</span><span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="n">compressedImageFile</span><span class="o">);</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">ImageWriter</span><span class="o">&gt;</span><span class="n">writers</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">getImageWritersByFormatName</span><span class="o">(</span><span class="s">&#34;jpg&#34;</span><span class="o">);</span>
+        <span class="n">ImageWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="o">(</span><span class="n">ImageWriter</span><span class="o">)</span> <span class="n">writers</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+        <span class="n">ImageOutputStream</span> <span class="n">ios</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">createImageOutputStream</span><span class="o">(</span><span class="n">os</span><span class="o">);</span>
+        <span class="n">writer</span><span class="o">.</span><span class="na">setOutput</span><span class="o">(</span><span class="n">ios</span><span class="o">);</span>
+        <span class="n">ImageWriteParam</span> <span class="n">param</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">getDefaultWriteParam</span><span class="o">();</span>
+        <span class="n">param</span><span class="o">.</span><span class="na">setCompressionMode</span><span class="o">(</span><span class="n">ImageWriteParam</span><span class="o">.</span><span class="na">MODE_EXPLICIT</span><span class="o">);</span>
+        <span class="n">param</span><span class="o">.</span><span class="na">setCompressionQuality</span><span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">05f</span><span class="o">);</span>
+        <span class="n">writer</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="k">new</span> <span class="n">IIOImage</span><span class="o">(</span><span class="n">image</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">),</span> <span class="n">param</span><span class="o">);</span>
+        <span class="n">os</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">ios</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+        <span class="n">writer</span><span class="o">.</span><span class="na">dispose</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="给图片加边框">给图片加边框</h1>
+<h3 id="使用opencv的copymakeborder方法给图片添加不同种类的边框">使用OpenCV的copyMakeBorder方法给图片添加不同种类的边框</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="kt">int</span> <span class="n">top</span><span class="o">,</span> <span class="n">bottom</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">borderType</span><span class="o">;</span>
+            <span class="c1">/// Initialize arguments for the filter
+</span><span class="c1"></span>            <span class="n">top</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">*</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">());</span>
+            <span class="n">bottom</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">*</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">());</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">*</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">());</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">0</span><span class="o">.</span><span class="na">05</span><span class="o">*</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">());</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">copyMakeBorder</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">top</span><span class="o">,</span> <span class="n">bottom</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">,</span> <span class="n">Imgproc</span><span class="o">.</span><span class="na">BORDER_WRAP</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;borderWrap.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="图像金字塔技术">图像金字塔技术</h1>
+<p>图像金字塔只不过是一种显示多分辨率图像的方法。
+最下层是图像的最高分辨率版本，最上层是图像的最低分辨率版本。
+图像金字塔用于处理不同比例的图像。</p>
+<h3 id="使用imgproc类实现图像分辨率的调高或降低">使用Imgproc类实现图像分辨率的调高或降低</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Size</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()*</span><span class="n">2</span><span class="o">,</span> <span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()*</span><span class="n">2</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">destination1</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">pyrUp</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination1</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()*</span><span class="n">2</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()*</span><span class="n">2</span><span class="o">));</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;pyrUp.jpg&#34;</span><span class="o">,</span> <span class="n">destination1</span><span class="o">);</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()/</span><span class="n">2</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()/</span><span class="n">2</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">pyrDown</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()/</span><span class="n">2</span><span class="o">,</span>
+            <span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()/</span><span class="n">2</span><span class="o">));</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;pyrDown.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="阈值基础">阈值基础</h1>
+<p>阈值处理能够以最简单的方式实现图像分割。
+图像分割意味着将完整图像划分为一组像素，使得每组中的像素具有一些共同特征。
+图像分割在定义对象及其边界时非常有用。</p>
+<h3 id="使用imgproc对图像做阈值处理">使用Imgproc对图像做阈值处理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">threshold</span><span class="o">(</span><span class="n">source</span><span class="o">,</span><span class="n">destination</span><span class="o">,</span><span class="n">127</span><span class="o">,</span><span class="n">255</span><span class="o">,</span><span class="n">Imgproc</span><span class="o">.</span><span class="na">THRESH_TOZERO</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;ThreshZero.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="图像形状转换">图像形状转换</h1>
+<p>使用OpenCV可以轻松更改图像的形状。
+图像可以在四个方向中的任何一个方向上翻转，缩放或旋转。</p>
+<h3 id="使用core反转图像">使用Core反转图像</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.awt.image.BufferedImage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.awt.image.DataBufferByte</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.imageio.ImageIO</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">File</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">);</span>
+            <span class="n">BufferedImage</span> <span class="n">image</span> <span class="o">=</span> <span class="n">ImageIO</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="o">((</span><span class="n">DataBufferByte</span><span class="o">)</span> <span class="n">image</span><span class="o">.</span><span class="na">getRaster</span><span class="o">().</span><span class="na">getDataBuffer</span><span class="o">()).</span><span class="na">getData</span><span class="o">();</span>
+            <span class="n">Mat</span> <span class="n">mat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span><span class="n">image</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span><span class="n">CvType</span><span class="o">.</span><span class="na">CV_8UC3</span><span class="o">);</span>
+            <span class="n">mat</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">mat1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">image</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span><span class="n">image</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span><span class="n">CvType</span><span class="o">.</span><span class="na">CV_8UC3</span><span class="o">);</span>
+            <span class="n">Core</span><span class="o">.</span><span class="na">flip</span><span class="o">(</span><span class="n">mat</span><span class="o">,</span> <span class="n">mat1</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">);</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">data1</span> <span class="o">=</span> <span class="k">new</span>
+            <span class="kt">byte</span><span class="o">[</span><span class="n">mat1</span><span class="o">.</span><span class="na">rows</span><span class="o">()*</span><span class="n">mat1</span><span class="o">.</span><span class="na">cols</span><span class="o">()*(</span><span class="kt">int</span><span class="o">)(</span><span class="n">mat1</span><span class="o">.</span><span class="na">elemSize</span><span class="o">())];</span>
+            <span class="n">mat1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">data1</span><span class="o">);</span>
+            <span class="n">BufferedImage</span> <span class="n">image1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedImage</span><span class="o">(</span><span class="n">mat1</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span> <span class="n">mat1</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span> <span class="n">5</span><span class="o">);</span>
+            <span class="n">image1</span><span class="o">.</span><span class="na">getRaster</span><span class="o">().</span><span class="na">setDataElements</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">mat1</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">mat1</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">data1</span><span class="o">);</span>
+            <span class="n">File</span> <span class="n">ouptut</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&#34;hsv.jpg&#34;</span><span class="o">);</span>
+            <span class="n">ImageIO</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">image1</span><span class="o">,</span> <span class="s">&#34;jpg&#34;</span><span class="o">,</span> <span class="n">ouptut</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="使用高斯滤波器">使用高斯滤波器</h1>
+<h3 id="使用imgproc对一个图像应用高斯滤波器">使用Imgproc对一个图像应用高斯滤波器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Size</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">GaussianBlur</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span><span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">45</span><span class="o">,</span><span class="n">45</span><span class="o">),</span> <span class="n">0</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;Gaussian45.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="应用箱式滤波器">应用箱式滤波器</h1>
+<p>我们应用模糊图像的Box过滤器。
+Box滤镜的尺寸可以是3x3,5x5,9x9等</p>
+<h3 id="使用imgproc应用箱式滤波器">使用Imgproc应用箱式滤波器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">9</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="n">Mat</span><span class="o">.</span><span class="na">ones</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">);</span>
+            <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">kernel</span><span class="o">.</span><span class="na">rows</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">kernel</span><span class="o">.</span><span class="na">cols</span><span class="o">();</span> <span class="n">j</span><span class="o">++){</span>
+                    <span class="kt">double</span><span class="o">[]</span> <span class="n">m</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">m</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++){</span>
+                            <span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]/(</span><span class="n">kernelSize</span> <span class="o">*</span> <span class="n">kernelSize</span><span class="o">);</span>
+                        <span class="o">}</span>
+                    <span class="n">kernel</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;output.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="侵蚀和扩张">侵蚀和扩张</h1>
+<p>两个常见的形态学运算：侵蚀(Erosion)、扩张(Dilation)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">Imgproc</span><span class="o">.</span><span class="na">erode</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">element</span><span class="o">);</span>
+<span class="n">Imgproc</span><span class="o">.</span><span class="na">dilate</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">element</span><span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="使用imgproc实现图片的侵蚀和扩张">使用Imgproc实现图片的侵蚀和扩张</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span><span class="k">new</span>
+            <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">destination</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">erosion_size</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">dilation_size</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span>
+            <span class="n">Mat</span> <span class="n">element</span> <span class="o">=</span> <span class="n">Imgproc</span><span class="o">.</span><span class="na">getStructuringElement</span><span class="o">(</span><span class="n">Imgproc</span><span class="o">.</span><span class="na">MORPH_RECT</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">2</span><span class="o">*</span><span class="n">erosion_size</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">*</span><span class="n">erosion_size</span><span class="o">+</span><span class="n">1</span><span class="o">));</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">erode</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">element</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;erosion.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+           <span class="n">destination</span> <span class="o">=</span> <span class="n">source</span><span class="o">;</span>
+            <span class="n">Mat</span> <span class="n">element1</span> <span class="o">=</span> <span class="n">Imgproc</span><span class="o">.</span><span class="na">getStructuringElement</span><span class="o">(</span><span class="n">Imgproc</span><span class="o">.</span><span class="na">MORPH_RECT</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">2</span><span class="o">*</span><span class="n">dilation_size</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">*</span><span class="n">dilation_size</span><span class="o">+</span><span class="n">1</span><span class="o">));</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">dilate</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">element1</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;dilation.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="使用水印">使用水印</h1>
+<h3 id="应用文本水印">应用文本水印</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Core</span><span class="o">.</span><span class="na">putText</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="s">&#34;Tutorialspoint.com&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()/</span><span class="n">2</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()/</span><span class="n">2</span><span class="o">),</span> <span class="n">Core</span><span class="o">.</span><span class="na">FONT_ITALIC</span><span class="o">,</span><span class="k">new</span> <span class="n">Double</span><span class="o">(</span><span class="n">1</span><span class="o">),</span><span class="k">new</span> <span class="n">Scalar</span><span class="o">(</span><span class="n">255</span><span class="o">));</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;watermarked.jpg&#34;</span><span class="o">,</span> <span class="n">source</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="应用图片水印">应用图片水印</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;digital_image_processing.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">waterMark</span><span class="o">=</span><span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;watermark.png&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_COLOR</span><span class="o">);</span>
+            <span class="n">Rect</span> <span class="n">ROI</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rect</span><span class="o">(</span><span class="n">waterMark</span><span class="o">.</span><span class="na">rows</span><span class="o">()*</span><span class="n">4</span><span class="o">,</span><span class="n">waterMark</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">waterMark</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">waterMark</span><span class="o">.</span><span class="na">rows</span><span class="o">());</span>
+            <span class="n">Core</span><span class="o">.</span><span class="na">addWeighted</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">submat</span><span class="o">(</span><span class="n">ROI</span><span class="o">),</span> <span class="n">0</span><span class="o">.</span><span class="na">8</span><span class="o">,</span> <span class="n">waterMark</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">2</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">source</span><span class="o">.</span><span class="na">submat</span><span class="o">(</span><span class="n">ROI</span><span class="o">));</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;watermarkedImage.jpg&#34;</span><span class="o">,</span> <span class="n">source</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="了解卷积">了解卷积</h1>
+<p>卷积是对两个函数的一种数学运算，因为图像是一种二维函数，所以常用卷积进行计算。
+进行卷积计算常用的步骤：
+1、将窗口反转(Flip the mask(horizontally and vertically) only once);
+2、在图像上滑动窗口(slide the mask onto the image)；
+3、将相应元素相乘，然后加起来；
+4、重复此过程，直到计算出所有值。</p>
+<p>使用卷积：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">filter2D</span><span class="o">(</span><span class="n">src</span><span class="o">,</span> <span class="n">dst</span><span class="o">,</span> <span class="n">ddepth</span> <span class="o">,</span> <span class="n">kernel</span><span class="o">,</span> <span class="n">anchor</span><span class="o">,</span> <span class="n">delta</span><span class="o">,</span> <span class="n">BORDER_DEFAULT</span> <span class="o">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="对灰度图使用卷积">对灰度图使用卷积</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">){</span>
+                <span class="o">{</span>   <span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;original.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="使用prewitt算子">使用Prewitt算子</h1>
+<p>Prewitt算子用于图像中的边缘检测。
+它检测两种类型的边：垂直边和水平边。</p>
+<h3 id="在灰度图片上使用prewitt算子">在灰度图片上使用prewitt算子</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">9</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">){</span>
+                <span class="o">{</span>   <span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,-</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">-</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">,-</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;output.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="应用sobel算子">应用Sobel算子</h1>
+<p>Sobel算子与Prewitt算子非常相似。
+它也是衍生掩模，用于边缘检测。
+Sobel算子用于检测图像中的两种边：垂直方向边和水平方向边。</p>
+<h3 id="对一个灰度图片使用sobel算子">对一个灰度图片使用Sobel算子</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">9</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">){</span>
+                <span class="o">{</span>   <span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,-</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">-</span><span class="n">2</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">2</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">,-</span><span class="n">1</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;output.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="应用kirsch算子">应用Kirsch算子</h1>
+<p>Kirsch罗盘掩模是另一种用于边缘检测的衍生掩模。
+该运算符也称为方向掩码。
+在这个操作符中，我们采用一个蒙版并在所有八个罗盘方向上旋转它以获得八个方向的边缘。</p>
+<h3 id="在灰度图片上使用kirsch">在灰度图片上使用Kirsch</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">9</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">){</span>
+                <span class="o">{</span>   <span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,-</span><span class="n">3</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">1</span><span class="o">,-</span><span class="n">3</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">2</span><span class="o">,-</span><span class="n">3</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">-</span><span class="n">3</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">1</span><span class="o">,</span><span class="n">2</span><span class="o">,-</span><span class="n">3</span><span class="o">);</span>
+                    <span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">5</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">5</span><span class="o">);</span><span class="n">put</span><span class="o">(</span><span class="n">2</span><span class="o">,</span><span class="n">2</span><span class="o">,</span><span class="n">5</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">};</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;output.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="应用加权平均滤波器">应用加权平均滤波器</h1>
+<p>在加权平均滤波器中，我们对中心值给予更多权重，由此中心的贡献变得大于其余值。
+由于加权平均滤波，我们可以控制图像的模糊。</p>
+<h3 id="对灰度图应用加权滤波器">对灰度图应用加权滤波器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.CvType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">convolution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">kernelSize</span> <span class="o">=</span> <span class="n">9</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;grayscale.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">(),</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Mat</span> <span class="n">kernel</span> <span class="o">=</span> <span class="n">Mat</span><span class="o">.</span><span class="na">ones</span><span class="o">(</span><span class="n">kernelSize</span><span class="o">,</span><span class="n">kernelSize</span><span class="o">,</span> <span class="n">CvType</span><span class="o">.</span><span class="na">CV_32F</span><span class="o">){</span>
+                <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">kernel</span><span class="o">.</span><span class="na">rows</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+                    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">kernel</span><span class="o">.</span><span class="na">cols</span><span class="o">();</span> <span class="n">j</span><span class="o">++){</span>
+                        <span class="kt">double</span><span class="o">[]</span> <span class="n">m</span> <span class="o">=</span> <span class="n">kernel</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+                        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span><span class="n">0</span><span class="o">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">m</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">k</span><span class="o">++){</span>
+                            <span class="k">if</span><span class="o">(</span><span class="n">i</span><span class="o">==</span><span class="n">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span><span class="o">==</span><span class="n">1</span><span class="o">){</span>
+                                <span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">10</span><span class="o">/</span><span class="n">18</span><span class="o">;</span>
+                            <span class="o">}</span>
+                            <span class="k">else</span><span class="o">{</span>
+                                <span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">[</span><span class="n">k</span><span class="o">]/(</span><span class="n">18</span><span class="o">);</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span>
+                        <span class="n">kernel</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">i</span><span class="o">,</span><span class="n">j</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">};</span> 
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">filter2D</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">,</span> <span class="n">kernel</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;output.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="创造变焦效果">创造变焦效果</h1>
+<p>缩放是放大图像以使图像中的细节变得更加明显和突出的过程。</p>
+<h3 id="对一张图片添加变焦效果">对一张图片添加变焦效果</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.highgui.Highgui</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span> <span class="n">String</span><span class="o">[]</span> <span class="n">args</span> <span class="o">){</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">zoomingFactor</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span> <span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span> <span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">source</span> <span class="o">=</span> <span class="n">Highgui</span><span class="o">.</span><span class="na">imread</span><span class="o">(</span><span class="s">&#34;image.jpg&#34;</span><span class="o">,</span><span class="n">Highgui</span><span class="o">.</span><span class="na">CV_LOAD_IMAGE_GRAYSCALE</span><span class="o">);</span>
+            <span class="n">Mat</span> <span class="n">destination</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">(</span><span class="n">source</span><span class="o">.</span><span class="na">rows</span><span class="o">()</span> <span class="o">*</span> <span class="n">zoomingFactor</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">cols</span><span class="o">()*</span> <span class="n">zoomingFactor</span><span class="o">,</span><span class="n">source</span><span class="o">.</span><span class="na">type</span><span class="o">());</span>
+            <span class="n">Imgproc</span><span class="o">.</span><span class="na">resize</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="n">destination</span><span class="o">,</span> <span class="n">destination</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span><span class="n">zoomingFactor</span><span class="o">,</span><span class="n">zoomingFactor</span><span class="o">,</span><span class="n">Imgproc</span><span class="o">.</span><span class="na">INTER_NEAREST</span><span class="o">);</span>
+            <span class="n">Highgui</span><span class="o">.</span><span class="na">imwrite</span><span class="o">(</span><span class="s">&#34;zoomed.jpg&#34;</span><span class="o">,</span> <span class="n">destination</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Error: &#34;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="开源库">开源库</h1>
+<p>一些常用的开源图像处理库</p>
+<ul>
+<li>ImageJ ：ImageJ是一个受NIH Image for the Macintosh启发的公共领域Java图像处理程序。它可以显示，编辑，分析，处理，保存和打印8位，16位和32位图像</li>
+<li>Fiji ：Fiji是一个图像处理包，它可以被描述为ImageJ和ImageJ2的分布以及Java，Java3D和许多组合成一致菜单结构的插件。</li>
+<li>Commons Imaging ：Apache Commons Imaging，以前称为Apache Commons Sanselan，是一个读取和写入各种图像格式的库，包括快速解析图像信息，如大小，颜色，空间，ICC配置文件等，以及元数据。</li>
+<li>ImageMagick ：ImageMagick是一个用于创建，编辑，编写或转换位图图像的软件套件。
+它可以读取和写入100多种格式的图像，包括DPX，EXR，GIF，JPEG，JPEG-2000，PDF，PNG，Postscript，SVG和TIFF。使用ImageMagick调整大小，翻转，镜像，旋转，扭曲，剪切和变换图像，调整图像颜色，应用各种特殊效果，或绘制文本，线条，多边形，椭圆和贝塞尔曲线。</li>
+<li>Endrov ：Endrov是一个多功能的图像分析程序。它是独立编写的，旨在解决其他免费软件和许多商业软件包的许多缺点。</li>
+<li>LeadTools ：提供超过200种图片处理方法，包括：文档清理，医学图像增强，颜色转换和校正，降噪，边缘检测等。</li>
+<li>OpenCv ：OpenCV是在BSD许可下发布的，因此它可以免费用于学术和商业用途。它具有C ++，C，Python和Java接口，支持Windows，Linux，Mac OS，iOS和Android。OpenCV专为提高计算效率而设计，专注于实时应用。该库以优化的C / C ++编写，可以利用多核处理。</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-09
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+          <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+          <a href="/tags/java/">Java</a>
+          <a href="/tags/opencv/">OpenCV</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【OpenCV4文档】目录</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/">
+            <span class="next-text nav-default">从0到1搭建Neo4j</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
