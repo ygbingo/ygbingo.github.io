@@ -3,7 +3,42 @@
   
   <url>
     <loc>https://ygbingo.github.io/</loc>
-    <lastmod>2021-11-04T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/pandas/</loc>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/</loc>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/python/</loc>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/</loc>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</loc>
+    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,20 +59,6 @@
   
   <url>
     <loc>https://ygbingo.github.io/tags/machine-learning/</loc>
-    <lastmod>2021-11-04T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/post/</loc>
-    <lastmod>2021-11-04T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/tags/</loc>
     <lastmod>2021-11-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -123,13 +144,6 @@
   <url>
     <loc>https://ygbingo.github.io/tags/prometheus/</loc>
     <lastmod>2021-01-18T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/tags/python/</loc>
-    <lastmod>2020-11-21T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

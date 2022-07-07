@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【python处理数据】使用pandas处理Excel</title>
+      <link>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</link>
+      <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</guid>
+      <description>思考一下这个问题： 有一个年纪成绩表.xlsx文件，包含：班级、姓名、语文、数学、英语，这个年级一共有五个班，现在想把五个班的成绩分别存到不同</description>
+    </item>
+    
     <item>
       <title>使用label studio标注对话文件</title>
       <link>https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</link>
