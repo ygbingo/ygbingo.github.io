@@ -49,7 +49,7 @@
 <meta itemprop="name" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller">
 <meta itemprop="description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"><meta itemprop="datePublished" content="2021-01-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-01-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1354">
+<meta itemprop="wordCount" content="1471">
 <meta itemprop="keywords" content="k8s,prometheus,grafana,nginx," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller"/>
 <meta name="twitter:description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"/>
@@ -471,7 +471,7 @@ spec:
 <hr>
 <h1 id="qa">Q&amp;A</h1>
 <ul>
-<li>出现Back-off restarting failed container</li>
+<li>Q. 出现Back-off restarting failed container</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -494,7 +494,7 @@ spec:
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>pod日志出现：Invalid IngressClass (Spec.Controller) value &ldquo;nginx.org/ingress-controller&rdquo;. Should be &ldquo;k8s.io/ingress-nginx&rdquo;</li>
+<li>Q. pod日志出现：Invalid IngressClass (Spec.Controller) value &ldquo;nginx.org/ingress-controller&rdquo;. Should be &ldquo;k8s.io/ingress-nginx&rdquo;</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -516,7 +516,7 @@ spec:
 </code></pre></td></tr></table>
 </div>
 </div><ul>
-<li>访问dashboard</li>
+<li>Q. 访问dashboard</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -528,10 +528,72 @@ spec:
 </div>
 </div><p>Brower open url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
 <ul>
-<li>新部署的nginx-ingress-controller,prometheus监控不到，grafana中的controller没有新的pod？</li>
+<li>Q. 新部署的nginx-ingress-controller,prometheus监控不到，grafana中的controller没有新的pod？</li>
 </ul>
 <p>检查自定义资源中，ServiceMonitor中对应的spec: selector是否与新的ingress controller一致</p>
-<hr>
+<ul>
+<li>Q. Promehteus监控不到其它namespace下的服务</li>
+</ul>
+<p>ClusterRole的权限不够，在创建ClusterRole中添加如下命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Yaml" data-lang="Yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-k8s</span><span class="w">
+</span><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">nodes/metrics</span><span class="w">
+</span><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
+</span><span class="w">  </span>- <span class="l">nodes/proxy</span><span class="w">
+</span><span class="w">  </span>- <span class="l">nodes</span><span class="w">
+</span><span class="w">  </span>- <span class="l">pods</span><span class="w">
+</span><span class="w">  </span>- <span class="l">services</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingresses.extensions</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w"></span>- <span class="nt">nonResourceURLs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">/metrics</span><span class="w">
+</span><span class="w">  </span>- <span class="l">/monitor/metrics</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="preference">Preference</h1>
 <ul>
 <li><a href="https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip">https://docs.microsoft.com/en-us/azure/aks/ingress-internal-ip</a></li>

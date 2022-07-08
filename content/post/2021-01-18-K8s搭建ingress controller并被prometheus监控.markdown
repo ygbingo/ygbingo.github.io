@@ -160,7 +160,7 @@ Grafana → Create Import → Input dashboard id: 9614 → Load → chose Promet
 ---
 
 # Q&A
-- 出现Back-off restarting failed container
+- Q. 出现Back-off restarting failed container
 ```
 ...
 spec:
@@ -170,7 +170,7 @@ spec:
     ...
 ...
 ```
-- pod日志出现：Invalid IngressClass (Spec.Controller) value "nginx.org/ingress-controller". Should be "k8s.io/ingress-nginx"
+- Q. pod日志出现：Invalid IngressClass (Spec.Controller) value "nginx.org/ingress-controller". Should be "k8s.io/ingress-nginx"
 ```
 kubectl delete ingressclass nginx
 ```
@@ -178,16 +178,47 @@ kubectl delete ingressclass nginx
 ```
 helm show values ingress-nginx/ingress-nginx
 ```
-- 访问dashboard
+- Q. 访问dashboard
 ```
 kubectl proxy
 ```
 Brower open url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-- 新部署的nginx-ingress-controller,prometheus监控不到，grafana中的controller没有新的pod？
+- Q. 新部署的nginx-ingress-controller,prometheus监控不到，grafana中的controller没有新的pod？
 
 检查自定义资源中，ServiceMonitor中对应的spec: selector是否与新的ingress controller一致
 
+- Q. Promehteus监控不到其它namespace下的服务
+
+ClusterRole的权限不够，在创建ClusterRole中添加如下命令
+```Yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-k8s
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes/metrics
+  - endpoints
+  - nodes/proxy
+  - nodes
+  - pods
+  - services
+  - ingresses.extensions
+  verbs:
+  - list
+  - watch
+  - get
+- nonResourceURLs:
+  - /metrics
+  - /monitor/metrics
+  verbs:
+  - list
+  - watch
+  - get
+```
 ---
 
 # Preference
