@@ -2,21 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ygbingo.github.io/</loc>
-    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <loc>https://ygbingo.github.io/post/2022-10-12-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80lecturenote1/</loc>
+    <lastmod>2022-10-12T22:39:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://ygbingo.github.io/tags/pandas/</loc>
-    <lastmod>2022-07-07T00:00:00+00:00</lastmod>
+    <loc>https://ygbingo.github.io/</loc>
+    <lastmod>2022-10-12T22:39:41+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://ygbingo.github.io/post/</loc>
+    <lastmod>2022-10-12T22:39:41+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/pandas/</loc>
     <lastmod>2022-07-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

@@ -1,7 +1,6 @@
 ---
 title: "[算法基础]LectureNote1"
 date: 2022-10-12T22:39:41+08:00
-draft: true
 ---
 
 # 算法的作用
