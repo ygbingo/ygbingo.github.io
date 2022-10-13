@@ -29,7 +29,7 @@ tags:
 
 ### 插入排序
 $INSERTION-SORT(A)$
-```java
+```Pseudocode
 for j = 2 to A.length:  //c1
     key = A[j]  //c2
     // Insert A[j] into the sorted sequence A[1..j-1]  //0
@@ -53,7 +53,7 @@ $T(n)=(\frac{c_5}{2}+\frac{c_6}{2}+\frac{c_7}{2})n^2+(c_1+c_2+c_4+\frac{c_5}{2}-
     - 满足: $p\leq{q}<r, 且A[p..q]、A[q+1..r]已排序$<br>
 
 $MERGE(A, p, q, r)$
-```java
+```Pseudocode
 n1 = q-p+1
 n2 = r-q
 let L[1..n1+1] and R[1..n2+1] be new arrays
@@ -78,7 +78,7 @@ for k=p to r:
 
 ### 冒泡排序
 $BUBBLESORT(A)$
-```python
+```Pseudocode
 for i=1 to A.length-1:
   for j=A.length downto i+1:
     if A[j] < A[j-1]:
