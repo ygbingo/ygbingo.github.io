@@ -108,6 +108,56 @@ if p<r:
 
 - 思考：能否结合归并排序和插入排序，排列数组: $[2,5,3,9,1,8,6,7]$
 
+- Python实现
+
+```python
+import math
+
+def merge(A, p, q, r):
+    n1 = q-p+1
+    n2 = r-q
+    L = [0] * n1
+    R = [0] * n2
+    # let L[1..n1+1] and R[1..n2+1] be new arrays
+    for i in range(0, n1):
+        L[i] = A[p+i]
+    for j in range(0, n2):
+        R[j] = A[q+1+j]
+    L.append(A[r] + 1)
+    R.append(A[r] + 1)
+    i=j=0
+    for k in range(p, r+1):
+        if L[i] <= R[j]:
+            A[k] = L[i]
+            i = i + 1
+        else:
+            A[k] = R[j]
+            j = j + 1
+    return A
+
+
+# if p<r:
+#   q = math.floor((p+r)/2)
+#   MERGE-SORT(A,p,q)
+#   MERGE-SORT(A,q+1,r)
+#   MERGE(A,p,q,r)
+
+def merge_sort(A,p,r):
+    if p<r:
+        q = math.floor((p+r)/2)
+        A = merge_sort(A,p,q)
+        A = merge_sort(A,q+1,r)  # -> merge_sort(A,q+1,r) -> if (q+1) < r:
+        A = merge(A,p,q,r)
+    else:
+        return A
+    return A
+
+A = [2,4,22,6,88,33]
+A = merge_sort(A, 0, len(A)-1)
+print(A)
+
+```
+
 ### 冒泡排序
 
 ![冒泡排序](https://www.runoob.com/wp-content/uploads/2019/03/bubbleSort.gif)
@@ -119,8 +169,25 @@ for i=1 to A.length-1:
     if A[j] < A[j-1]:
         exchange A[j] with A[j-1]
 ```
+
+
 - 时间复杂度
 - 空间复杂度
+- python实现
+
+```python
+A = [1,8,9,3,4,5]
+def bubble_sort(A):
+  for i in range(0, len(A)):
+      for j in range(len(A)-1, i, -1):
+          if A[j] < A[j-1]:
+              temp = A[j]
+              A[j] = A[j-1]
+              A[j-1] = temp
+  return A
+
+print(bubble_sort(A))
+```
 
 ## 查找
 **输入**: $n个数的一个序列<a_1, a_2, ..., a_n>$
