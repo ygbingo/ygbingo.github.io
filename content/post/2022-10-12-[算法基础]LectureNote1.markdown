@@ -4,6 +4,7 @@ date: 2022-10-12T22:39:41+08:00
 tags:
     - Python
     - Algorithm
+    - 《算法导论》
 ---
 
 # 算法的作用
@@ -28,6 +29,9 @@ tags:
 **输出**: 输入序列的排序$<{a_1}',{a_2}', ..., {a_n}'> $, 满足 ${a_1}'\leq{a_2}'...\leq{a_n}'$
 
 ### 插入排序
+
+![插入排序](https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif)
+
 $INSERTION-SORT(A)$
 ```Pseudocode
 for j = 2 to A.length:  //c1
@@ -48,6 +52,9 @@ $T(n)=(\frac{c_5}{2}+\frac{c_6}{2}+\frac{c_7}{2})n^2+(c_1+c_2+c_4+\frac{c_5}{2}-
 - 空间复杂度
 
 ### 归并排序
+
+![归并排序](https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif)
+
 - A: 数组
 - p、q、r: 数组下标
     - 满足: $p\leq{q}<r, 且A[p..q]、A[q+1..r]已排序$<br>
@@ -77,6 +84,9 @@ for k=p to r:
 - 思考：能否结合归并排序和插入排序，排列数组: $[2,5,3,9,1,8,6,7]$
 
 ### 冒泡排序
+
+![冒泡排序](https://www.runoob.com/wp-content/uploads/2019/03/bubbleSort.gif)
+
 $BUBBLESORT(A)$
 ```Pseudocode
 for i=1 to A.length-1:
@@ -89,10 +99,12 @@ for i=1 to A.length-1:
 
 ## 查找
 **输入**: $n个数的一个序列<a_1, a_2, ..., a_n>$
+
 **输出**: $输出序列中x的位置$
 
 ## 最大子数组问题
 **输入**: $10天内公司每天的股价[10,11,7,10,6]$
+
 **输出**: 请计算出你能做到的最大收益(卖出时的股价-买入时的股价)?
 
 - 写一个斐波那契数列
