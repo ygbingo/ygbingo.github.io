@@ -51,6 +51,20 @@ $T(n)=(\frac{c_5}{2}+\frac{c_6}{2}+\frac{c_7}{2})n^2+(c_1+c_2+c_4+\frac{c_5}{2}-
 - 时间复杂度
 - 空间复杂度
 
+- Python实现
+```python
+def insert_sort(A):
+    for i in range(1,len(A)):  #i=1,2,3,4,5,6
+        #比较A[1]和A[0],比较A[2]和A[0,1]....
+        Key=A[i]
+        j=i-1  #j=0,1,2,3,4,5
+        while j >= 0 and Key < A[j]:
+            A[j+1]=A[j]
+            j=j-1
+        A[j+1] = Key
+    return A
+```
+
 ### 归并排序
 
 ![归并排序](https://www.runoob.com/wp-content/uploads/2019/03/mergeSort.gif)
@@ -68,16 +82,27 @@ for i=1 to n1:
   L[i] = A[p+i-1]
 for j=1 to n2:
   R[j] = A[q+j]
-L[n1+1] = [...]
-R[n2+1] = [...]
+L[n1+1] = [MAX]
+R[n2+1] = [MAX]
 i=1,j=1
 for k=p to r:
   if L[i] <= R[j]:
     A[k] = L[i]
     i = i +1
-  else A[k] = R[j]:
+  else:
+    A[k] = R[j]
     j = j + 1
 ```
+
+$MERGE-SORT(A, p, r): 排序子数组A[p..r]$
+```Pseudocode
+if p<r:
+  q = math.floor((p+r)/2)
+  MERGE-SORT(A,p,q)
+  MERGE-SORT(A,q+1,r)
+  MERGE(A,p,q,r)
+```
+
 - 时间复杂度
 - 空间复杂度
 
