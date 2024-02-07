@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Python基础之每日练习 | Bingo&#39;s Blog</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两">
-    <meta name="generator" content="Hugo 0.122.0">
-    
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python基础之每日练习 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
+<meta name="author" content="Bingo" /><meta name="description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两" /><meta name="keywords" content="Bingo, blog" />
 
-    
 
-    
-      
 
-    
 
-    
 
-    
-      <link rel="canonical" href="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/">
-    
 
-    <meta property="og:title" content="Python基础之每日练习" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python基础之每日练习" />
 <meta property="og:description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" /><meta property="article:section" content="post" />
@@ -47,110 +53,106 @@
 <meta itemprop="keywords" content="python,python基础教学," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Python基础之每日练习"/>
 <meta name="twitter:description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两"/>
 
-	
-  </head>
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
 
-  <body class="ma0 avenir bg-near-white">
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
 
-    
-   
-  
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        Bingo&#39;s Blog
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-        <ul class="pl0 mr3">
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/" title="主页 page">
-              主页
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/post/" title="文章 page">
-              文章
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="/tags/" title="标签 page">
-              标签
-            </a>
-          </li>
-          
-          <li class="list f5 f4-ns fw4 dib pr3">
-            <a class="hover-white no-underline white-90" href="https://ygbingo.github.io/online-bingo/" title="关于 page">
-              关于
-            </a>
-          </li>
-          
-        </ul>
-      
-      
-<div class="ananke-socials">
-  
-</div>
-
-    </div>
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
   </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
 </nav>
 
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
-  
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside>
-      
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
 
 
 
 
 
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
 
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">Python基础之每日练习</h1>
-      
-      <p class="tracked">
-        By <strong>Bingo</strong>
-      </p>
-      
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2020-11-21T00:00:00Z">November 21, 2020</time>
-      
-
-      
-      
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><blockquote>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python基础之每日练习</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-11-21 </span>
+        
+          <span class="more-meta"> 990 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#qa2020-11-30">Q&amp;A(2020-11-30)</a></li>
+    <li><a href="#qa2020-11-28">Q&amp;A(2020-11-28)</a></li>
+    <li><a href="#如何理解类函数属性">如何理解类、函数、属性</a></li>
+    <li><a href="#qa2020-11-26">Q&amp;A(2020-11-26)</a></li>
+    <li><a href="#qa2020-11-24">Q&amp;A(2020-11-24)</a></li>
+    <li><a href="#qa2020-11-23">Q&amp;A(2020-11-23)</a></li>
+    <li><a href="#qa2020-11-22">Q&amp;A(2020-11-22)</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
 <p>Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。</p>
 </blockquote>
 <h1 id="qa2020-11-30">Q&amp;A(2020-11-30)</h1>
@@ -407,112 +409,100 @@
 </div><ol start="5">
 <li>注册一个<a href="https://leetcode-cn.com/">Leetcode账号</a>，并完成<a href="https://leetcode-cn.com/problems/palindrome-number/">LeetCode 9. 回文数</a> ?</li>
 </ol>
-<ul class="pa0">
-  
-   <li class="list di">
-     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
-   </li>
-  
-   <li class="list di">
-     <a href="/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python基础教学</a>
-   </li>
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
+
     </div>
 
-    <aside class="w-30-l mt6-l">
-
-
-
-
-  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
-    <p class="f5 b mb3">Related</p>
-    <ul class="pa0 list">
-	   
-	     <li  class="mb2">
-          <a href="/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">Python基础之数据类型</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-11-17-anaconda&#43;pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Anaconda&#43;Pycharm开发环境搭建</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/">通过修改系统时间进行仿真测试</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/">官方招聘网站收录</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">DeepMove论文解读</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/">几种常见的噪声</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/">时空数据挖掘</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/">【转】windows环境下安装Pytorch</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/">【十六大经典算法】K-NN最近邻</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">【十六大经典算法】开篇</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/">建立多个git域名关联</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/">知识图谱相关论文推荐</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/">【OpenCV4文档01】Core</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/">【OpenCV4文档09】Objdetect</a>
-        </li>
-	    
-	     <li  class="mb2">
-          <a href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/">【OpenCV4文档】目录</a>
-        </li>
-	    
-    </ul>
-</div>
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ygbingo.github.io/" >
-    &copy;  Bingo's Blog 2024 
-  </a>
-    <div>
-<div class="ananke-socials">
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-11-21
+        
+    </span>
+  </p>
+  
   
 </div>
-</div>
-  </div>
-</footer>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">python</a>
+          <a href="/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/">python基础教学</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">K8s搭建prometheus&#43;grafana&#43;ingress-controller</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+            <span class="next-text nav-default">Python基础之数据类型</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
 
-  </body>
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
 </html>
