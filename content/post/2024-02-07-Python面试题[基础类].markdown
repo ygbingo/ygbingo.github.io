@@ -9,10 +9,7 @@ tags:
 > 收录常见的Python面试题
 
 
-
-# 基础类
-
-### Python的好处
+# Python的好处
 - Python 是一种高级、解释型、通用编程语言。作为一种通用语言，它可以通过正确的工具/库来构建几乎任何类型的应用程序。此外，Python 支持对象、模块、线程、异常处理和自动内存管理，这有助于对现实问题进行建模并构建应用程序来解决这些问题。
 - Python is a high-level, interpreted, general-purpose programming language. Being a general-purpose language, it can be used to build almost any type of application with the right tools/libraries. Additionally, python supports objects, modules, threads, exception-handling, and automatic memory management which help in modelling real-world problems and building applications to solve these problems.
 
@@ -22,16 +19,16 @@ tags:
 - 其高级数据结构与动态类型和动态绑定相结合，吸引了庞大的开发人员社区进行快速应用程序开发和部署。
 - Its high-level data structures, combined with dynamic typing and dynamic binding, attract a huge community of developers for Rapid Application Development and deployment.
 
-### 什么是解释型语言
+# 什么是解释型语言
 解释型语言逐行执行其语句。 Python、Javascript、R、PHP 和 Ruby 等语言是解释型语言的主要示例。用解释性语言编写的程序直接从源代码运行，没有中间编译步骤。
 An Interpreted language executes its statements line by line. Languages such as Python, Javascript, R, PHP, and Ruby are prime examples of Interpreted languages. Programs written in an interpreted language runs directly from the source code, with no intermediary compilation step.
 
-### 介绍一下PEP8
+# 介绍一下PEP8
 PEP 代表 Python 增强提案。 PEP 是向 Python 社区提供信息或描述 Python 或其流程的新功能的官方设计文档。 PEP 8 尤其重要，因为它记录了 Python 代码的风格指南。显然，为 Python 开源社区做出贡献需要您真诚且严格地遵循这些风格指南。
 
 PEP stands for Python Enhancement Proposal. A PEP is an official design document providing information to the Python community, or describing a new feature for Python or its processes. PEP 8 is especially important since it documents the style guidelines for Python Code. Apparently contributing to the Python open-source community requires you to follow these style guidelines sincerely and strictly.
 
-### 介绍一下Python的作用域(Scope)
+# 介绍一下Python的作用域(Scope)
 Python 中的每个对象都在一个范围内运行。作用域是一个代码块，Python 中的对象在其中保持相关性。命名空间唯一标识程序内的所有对象。但是，这些命名空间还定义了一个范围，您可以在其中使用它们的对象而无需任何前缀。 Python 代码执行期间创建的作用域的一些示例如下：
 Every object in Python functions within a scope. A scope is a block of code where an object in Python remains relevant. Namespaces uniquely identify all the objects inside a program. However, these namespaces also have a scope defined for them where you could use their objects without any prefix. A few examples of scope created during code execution in Python are as follows:
 - 局部作用域: 是指当前函数中可用的局部对象。
@@ -45,14 +42,14 @@ Every object in Python functions within a scope. A scope is a block of code wher
 *注意：本地范围对象可以使用诸如 global 之类的关键字与全局范围对象同步。*
 *Note: Local scope objects can be synced with global scope objects using keywords such as global.*
 
-### 比较一下Python的列表(list)和元组(tuples)
+# 比较一下Python的列表(list)和元组(tuples)
 
 列表和元组都是Python中可以存储对象集合的序列数据类型。两个序列中存储的对象可以具有不同的数据类型。列表用方括号 ['sara', 6, 0.19] 表示，而元组用括号 ('ansh', 5, 0.97) 表示。
 但两者之间真正的区别是什么？两者之间的主要区别在于，虽然列表是可变的，但元组是不可变的对象。这意味着列表可以随时修改、追加或切片，但元组保持不变，不能以任何方式修改。
 - Lists and Tuples are both sequence data types that can store a collection of objects in Python. The objects stored in both sequences can have different data types. Lists are represented with square brackets ```['sara', 6, 0.19]```, while tuples are represented with parantheses ```('ansh', 5, 0.97)```.
 But what is the real difference between the two? The key difference between the two is that while lists are mutable, tuples on the other hand are immutable objects. This means that lists can be modified, appended or sliced on the go but tuples remain constant and cannot be modified in any manner. 
 
-### Python中常见的内置数据类型有哪些？
+# Python中常见的内置数据类型有哪些？
 
 Python 中有多种内置数据类型。尽管 Python 不要求在变量声明期间显式定义数据类型，但如果忽略数据类型及其相互兼容性的知识，则可能会出现类型错误。 Python 提供了 type() 和 isinstance() 函数来检查这些变量的类型。这些数据类型可以分为以下几类：
 There are several built-in data types in Python. Although, Python doesn't require data types to be defined explicitly during variable declarations type errors are likely to occur if the knowledge of data types and their compatibility with each other are neglected. Python provides type() and isinstance() functions to check the type of these variables. These data types can be grouped into the following categories-
@@ -81,11 +78,11 @@ There are several built-in data types in Python. Although, Python doesn't requir
     - 可调用类型是可以应用函数调用的类型。它们可以是用户定义的函数、实例方法、生成器函数以及其他一些内置函数、方法和类。
     - Callable types are the types to which function call can be applied. They can be user-defined functions, instance methods, generator functions, and some other built-in functions, methods and classes.
 
-### pass在Python中的作用
+# pass在Python中的作用
 在Python中，pass关键字表示一个空操作。它通常用于填充可能在运行时执行但尚未编写的空代码块。如果没有下面代码中的pass语句，我们可能会在代码执行期间遇到一些错误。
 The pass keyword represents a null operation in Python. It is generally used for the purpose of filling up empty blocks of code which may execute during runtime but has yet to be written. Without the pass statement in the following code, we may run into some errors during code execution.
 
-### Python中的模块(modules)和包(packages)
+# Python中的模块(modules)和包(packages)
 Python 包和 Python 模块是允许在 Python 中进行模块化编程的两种机制。模块化有几个优点——
 - **简单性**：处理单个模块可以帮助您专注于手头问题的相对较小的部分。这使得开发更加容易并且不易出错。
 - **可维护性**：模块旨在强制不同问题域之间的逻辑边界。如果它们以减少相互依赖性的方式编写，则模块中的修改不太可能影响程序的其他部分。
@@ -99,7 +96,7 @@ Python packages and Python modules are two mechanisms that allow for modular pro
 - **Reusability**: Functions defined in a module can be easily reused by other parts of the application.
 - **Scoping**: Modules typically define a separate namespace, which helps avoid confusion between identifiers from other parts of the program.
 
-### Python中的global, private, protected属性
+# Python中的global, private, protected属性
 - 全局变量是在全局范围内定义的公共变量。要在函数内的全局范围内使用变量，我们使用 global 关键字。
 - 受保护的属性是用其标识符前缀下划线定义的属性，例如。 _sara。仍然可以从定义它们的类外部访问和修改它们，但负责任的开发人员应该避免这样做。
 - 私有属性是其标识符前面带有双下划线的属性，例如。 __ansh。它们无法从外部直接访问或修改，如果进行此类尝试，将导致 AttributeError
@@ -107,18 +104,18 @@ Python packages and Python modules are two mechanisms that allow for modular pro
 - Protected attributes are attributes defined with an underscore prefixed to their identifier eg. _sara. They can still be accessed and modified from outside the class they are defined in but a responsible developer should refrain from doing so.
 - Private attributes are attributes with double underscore prefixed to their identifier eg. __ansh. They cannot be accessed or modified from the outside directly and will result in an AttributeError if such an attempt is made
 
-### Python中self的作用
+# Python中self的作用
 Self 用于表示类的实例。通过这个关键字，可以访问python中类的属性和方法。它将属性与给定的参数绑定。 self 用于不同的地方，通常被认为是一个关键字。但与 C++ 不同的是，self 在 Python 中不是关键字。
 
-### 介绍一下`__init__`
+# 介绍一下`__init__`
 `__init__` 是 Python 中的构造方法，当创建新对象/实例时，会自动调用它来分配内存。所有类都有一个与之关联的 `__init__` 方法。它有助于区分类的方法和属性与局部变量。
 
-### 介绍一下break, continue, pass
+# 介绍一下break, continue, pass
 - Break	The break statement terminates the loop immediately and the control flows to the statement after the body of the loop.
 - Continue	The continue statement terminates the current iteration of the statement, skips the rest of the code in the current iteration and the control flows to the next iteration of the loop.
 - Pass	As explained above, the pass keyword in Python is generally used to fill up empty blocks and is similar to an empty statement represented by a semi-colon in languages such as Java, C++, Javascript, etc.
 
-### 介绍一下Python的切片(slicing)
+# 介绍一下Python的切片(slicing)
 - As the name suggests, ‘slicing’ is taking parts of.
 - Syntax for slicing is [start : stop : step]
 - start is the starting index from where to slice a list or tuple
@@ -127,6 +124,6 @@ Self 用于表示类的实例。通过这个关键字，可以访问python中类
 - Default value for start is 0, stop is number of items, step is 1.
 - Slicing can be done on strings, arrays, lists, and tuples.
 
-### Python Arrays和List的区别
+# Python Arrays和List的区别
 - array: python中的数组只能包含相同数据类型的元素，即数组的数据类型应该是同构的。它是C语言数组的一个薄包装，比列表消耗的内存少得多。
 - list: python 中的列表可以包含不同数据类型的元素，即列表的数据类型可以是异构的。它的缺点是消耗大量内存。

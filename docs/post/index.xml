@@ -6,21 +6,28 @@
     <description>Recent content in Posts on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Feb 2024 15:25:02 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Feb 2024 21:04:27 +0800</lastBuildDate>
     <atom:link href="https://ygbingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MongoDB面试题[基础类]</title>
+      <link>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
+      <pubDate>Wed, 07 Feb 2024 21:04:27 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
+      <description>MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引</description>
+    </item>
     <item>
       <title>Python面试题[高级类]</title>
       <link>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 15:25:02 +0800</pubDate>
       <guid>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
-      <description>高级类 Python的GIL 为什么Python中的多线程不是真正的多线程？ GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线</description>
+      <description>比较一下进程、线程、协程 Python中的进程（Process），线程（Thread），和协程（Coroutine）是用于处理并发的不同工具，</description>
     </item>
     <item>
       <title>Python面试题[基础版]</title>
       <link>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 10:50:25 +0800</pubDate>
       <guid>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
-      <description>收录常见的Python面试题 基础类 Python的好处 Python 是一种高级、解释型、通用编程语言。作为一种通用语言，它可以通过正确的工具/库来构建几乎</description>
+      <description>收录常见的Python面试题 Python的好处 Python 是一种高级、解释型、通用编程语言。作为一种通用语言，它可以通过正确的工具/库来构建几乎任何类</description>
     </item>
     <item>
       <title>Meta市值下降,VR到底差在哪？</title>

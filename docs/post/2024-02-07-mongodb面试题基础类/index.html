@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MongoDB面试题[基础类] - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YG.Bingo" /><meta name="description" content="MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="MongoDB面试题[基础类]" />
+<meta property="og:description" content="MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-02-07T21:04:27+08:00" />
+<meta property="article:modified_time" content="2024-02-07T21:04:27+08:00" />
+
+<meta itemprop="name" content="MongoDB面试题[基础类]">
+<meta itemprop="description" content="MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引"><meta itemprop="datePublished" content="2024-02-07T21:04:27+08:00" />
+<meta itemprop="dateModified" content="2024-02-07T21:04:27+08:00" />
+<meta itemprop="wordCount" content="1670">
+<meta itemprop="keywords" content="interview,mongoDB," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MongoDB面试题[基础类]"/>
+<meta name="twitter:description" content="MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MongoDB面试题[基础类]</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-02-07 </span>
+        
+          <span class="more-meta"> 1670 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#mongodb有什么优势advantages">MongoDB有什么优势(advantages)</a></li>
+    <li><a href="#mongo中的document是什么">Mongo中的Document是什么</a></li>
+    <li><a href="#mongo中的集合collection">Mongo中的集合(Collection)</a></li>
+    <li><a href="#mongo中的数据库databases">Mongo中的数据库(Databases)</a></li>
+    <li><a href="#在mongo中如何进行横向扩展scale-out-occur">在Mongo中如何进行横向扩展(scale-out occur)</a></li>
+    <li><a href="#mongo的特性有哪些features">Mongo的特性有哪些(features)</a></li>
+    <li><a href="#如何插入数据">如何插入数据</a></li>
+    <li><a href="#如何更新文档">如何更新文档</a></li>
+    <li><a href="#如何删除某个文档">如何删除某个文档</a></li>
+    <li><a href="#如何查询某个数据">如何查询某个数据</a></li>
+    <li><a href="#什么时候使用mongodb">什么时候使用MongoDB</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="mongodb有什么优势advantages">MongoDB有什么优势(advantages)</h1>
+<ul>
+<li>
+<p>MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据</p>
+</li>
+<li>
+<p>MongoDB 支持任意字段的主索引和辅助索引</p>
+</li>
+<li>
+<p>MongoDB 基本上使用 JavaScript 对象来代替过程</p>
+</li>
+<li>
+<p>MongoDB 使用动态数据库模式</p>
+</li>
+<li>
+<p>MongoDB 非常容易扩展或缩小</p>
+</li>
+<li>
+<p>MongoDB 内置了对数据分区（Sharding）的支持。</p>
+</li>
+<li>
+<p>MongoDB supports field, range-based, string pattern matching type queries. for searching the data in the database</p>
+</li>
+<li>
+<p>MongoDB support primary and secondary index on any fields</p>
+</li>
+<li>
+<p>MongoDB basically uses JavaScript objects in place of procedures</p>
+</li>
+<li>
+<p>MongoDB uses a dynamic database schema</p>
+</li>
+<li>
+<p>MongoDB is very easy to scale up or down</p>
+</li>
+<li>
+<p>MongoDB has inbuilt support for data partitioning (Sharding).</p>
+</li>
+</ul>
+<h1 id="mongo中的document是什么">Mongo中的Document是什么</h1>
+<p>MongoDB 中的文档是具有关联值的有序键集。它由映射、哈希或字典表示。在 JavaScript 中，文档被表示为对象：
+<code>{&quot;greeting&quot; : &quot;Hello world!&quot;}</code>
+复杂的文档将包含多个键/值对：
+<code>{&quot;greeting&quot; : &quot;Hello world!&quot;, &quot;views&quot; : 3}</code></p>
+<p>A Document in MongoDB is an ordered set of keys with associated values. It is represented by a map, hash, or dictionary. In JavaScript, documents are represented as objects:
+<code>{&quot;greeting&quot; : &quot;Hello world!&quot;}</code></p>
+<p>Complex documents will contain multiple key/value pairs:
+<code>{&quot;greeting&quot; : &quot;Hello world!&quot;, &quot;views&quot; : 3}</code></p>
+<h1 id="mongo中的集合collection">Mongo中的集合(Collection)</h1>
+<p>MongoDB 中的集合是一组文档。如果文档是关系数据库中行的模拟，那么集合可以被视为表的模拟。</p>
+<p>单个集合中的文档可以具有任意数量的不同“形状”，即集合具有动态模式。</p>
+<p>A collection in MongoDB is a group of documents. If a document is the MongoDB analog of a row in a relational database, then a collection can be thought of as the analog to a table.
+Documents within a single collection can have any number of different “shapes.”, i.e. collections have dynamic schemas.
+For example, both of the following documents could be stored in a single collection:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;greeting&#34;</span> <span class="p">:</span> <span class="s2">&#34;Hello world!&#34;</span><span class="p">,</span> <span class="nt">&#34;views&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span><span class="nt">&#34;signoff&#34;</span><span class="p">:</span> <span class="s2">&#34;Good bye&#34;</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="mongo中的数据库databases">Mongo中的数据库(Databases)</h1>
+<p>MongoDB 将集合分组到数据库中。 MongoDB 可以托管多个数据库，每个数据库将集合分组在一起。
+MongoDB groups collections into databases. MongoDB can host several databases, each grouping together collections.
+Some reserved database names are as follows:
+<em>admin</em>
+<em>local</em>
+<em>config</em></p>
+<h1 id="在mongo中如何进行横向扩展scale-out-occur">在Mongo中如何进行横向扩展(scale-out occur)</h1>
+<p>MongoDB 面向文档的数据模型使得跨多个服务器分割数据变得更加容易。跨集群平衡和加载数据是由 MongoDB 完成的。然后它会自动重新分发文档。</p>
+<p>mongos 充当查询路由器，提供客户端应用程序和分片集群之间的接口。</p>
+<p>配置服务器存储集群的元数据和配置设置。 MongoDB 使用配置服务器来管理分布式锁。每个分片集群必须有自己的配置服务器。</p>
+<p>The document-oriented data model of MongoDB makes it easier to split data across multiple servers. Balancing and loading data across a cluster is done by MongoDB. It then redistributes documents automatically.</p>
+<p>The mongos acts as a query router, providing an interface between client applications and the sharded cluster.</p>
+<p>Config servers store metadata and configuration settings for the cluster. MongoDB uses the config servers to manage distributed locks. Each sharded cluster must have its own config servers.</p>
+<h1 id="mongo的特性有哪些features">Mongo的特性有哪些(features)</h1>
+<ul>
+<li>索引：它支持通用二级索引，并提供唯一、复合、地理空间和全文索引功能。</li>
+<li>聚合：它提供了基于数据处理管道概念的聚合框架。</li>
+<li>特殊的集合和索引类型：它支持应在特定时间过期的数据的生存时间（TTL）集合</li>
+<li>文件存储：它支持易于使用的协议来存储大文件和文件元数据。</li>
+<li>分片：分片是跨机器分割数据的过程。</li>
+<li>Indexing: It supports generic secondary indexes and provides unique, compound, geospatial, and full-text indexing capabilities as well.</li>
+<li>Aggregation: It provides an aggregation framework based on the concept of data processing pipelines.</li>
+<li>Special collection and index types: It supports time-to-live (TTL) collections for data that should expire at a certain time</li>
+<li>File storage: It supports an easy-to-use protocol for storing large files and file metadata.</li>
+<li>Sharding: Sharding is the process of splitting data up across machines.</li>
+</ul>
+<h1 id="如何插入数据">如何插入数据</h1>
+<p>The basic method for adding data to MongoDB is “inserts”. To insert a single document, use the collection’s <code>insertOne</code> method:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.books.insertOne<span class="o">({</span><span class="s2">&#34;title&#34;</span> : <span class="s2">&#34;Start With Why&#34;</span><span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>For inserting multiple documents into a collection, we use <code>insertMany</code>. This method enables passing an array of documents to the database.</p>
+<h1 id="如何更新文档">如何更新文档</h1>
+<p>Once a document is stored in the database, it can be changed using one of several update methods: <code>updateOne</code>, <code>updateMany</code>, and <code>replaceOne</code>. <code>updateOne</code> and <code>updateMany</code> each takes a filter document as their first parameter and a modifier document, which describes changes to make, as the second parameter. <code>replaceOne</code> also takes a filter as the first parameter, but as the second parameter <code>replaceOne</code> expects a document with which it will replace the document matching the filter.</p>
+<h1 id="如何删除某个文档">如何删除某个文档</h1>
+<p>The CRUD API in MongoDB provides <code>deleteOne</code> and <code>deleteMany</code> for this purpose. Both of these methods take a filter document as their first parameter. The filter specifies a set of criteria to match against in removing documents.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.books.deleteOne<span class="o">({</span><span class="s2">&#34;_id&#34;</span>: 3<span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="如何查询某个数据">如何查询某个数据</h1>
+<p>The find method is used to perform queries in MongoDB. Querying returns a subset of documents in a collection, from no documents at all to the entire collection. Which documents get returned is determined by the first argument to find, which is a document specifying the query criteria.</p>
+<p>Example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.find<span class="o">({</span><span class="s2">&#34;age&#34;</span> : 24<span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="什么时候使用mongodb">什么时候使用MongoDB</h1>
+<p>当您构建需要快速发展和优雅扩展的互联网和业务应用程序时，您应该使用 MongoDB。 MongoDB 深受使用敏捷方法构建可扩展应用程序的各类开发人员的欢迎。
+如果需要满足以下条件，MongoDB 是一个不错的选择：</p>
+<ul>
+<li>支持快速迭代开发。</li>
+<li>扩展到高水平的读写流量 - MongoDB 通过分片支持水平扩展，将数据分布在多台机器上，并促进对大量数据的高吞吐量操作。</li>
+<li>将您的数据存储库扩展到巨大的规模。</li>
+<li>随着业务的变化改进部署类型。</li>
+<li>使用文本、地理空间或时间序列维度存储、管理和搜索数据。</li>
+</ul>
+<p>You should use MongoDB when you are building internet and business applications that need to evolve quickly and scale elegantly. MongoDB is popular with developers of all kinds who are building scalable applications using agile methodologies.
+MongoDB is a great choice if one needs to:</p>
+<ul>
+<li>Support a rapid iterative development.</li>
+<li>Scale to high levels of read and write traffic - MongoDB supports horizontal scaling through Sharding, distributing data across several machines, and facilitating high throughput operations with large sets of data.</li>
+<li>Scale your data repository to a massive size.</li>
+<li>Evolve the type of deployment as the business changes.</li>
+<li>Store, manage and search data with text, geospatial, or time-series dimensions.</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">YG.Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2024-02-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/interview/">interview</a>
+          <a href="/tags/mongodb/">mongoDB</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/">
+            <span class="next-text nav-default">Python面试题[高级类]</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
