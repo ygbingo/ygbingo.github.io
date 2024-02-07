@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://ygbingo.github.io/sitemap.xml
+Disallow: /
