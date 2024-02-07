@@ -4,6 +4,10 @@ Personal Pages
 ## 步骤
 
 ### Hugo
+0. 安装choclately
+   ``` bash
+   Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+   ```
 
 1. 安装Hugo(以Mac为例)
 
@@ -97,3 +101,6 @@ Personal Pages
   path = themes/even
   url = git@github.com:olOwOlo/hugo-theme-even.git
 ```
+
+2. ```hugo```命令出现```no such template "_internal/google_news.html"```
+[hugo-commit](https://github.com/rhazdon/hugo-theme-hello-friend-ng/commit/ce85f9d057addc8cbd93f94892668ef24f4f9e2d)
