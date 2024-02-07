@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +49,8 @@
 <meta itemprop="name" content="Python基础之每日练习">
 <meta itemprop="description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两"><meta itemprop="datePublished" content="2020-11-21T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-11-21T00:00:00+00:00" />
-<meta itemprop="wordCount" content="991">
-<meta itemprop="keywords" content="python,python基础教学," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python基础之每日练习"/>
+<meta itemprop="wordCount" content="990">
+<meta itemprop="keywords" content="python,python基础教学," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Python基础之每日练习"/>
 <meta name="twitter:description" content="Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2020-11-21 </span>
         
+          <span class="more-meta"> 990 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -207,11 +173,11 @@ code.has-jax {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,math,physical,chemistry,biological
-000,Li,90,88,93,94
-001,Han,66,73,62,80
-002,Gao,78,87,88,90
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id,name,math,physical,chemistry,biological
+</span></span><span class="line"><span class="cl">000,Li,90,88,93,94
+</span></span><span class="line"><span class="cl">001,Han,66,73,62,80
+</span></span><span class="line"><span class="cl">002,Gao,78,87,88,90
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>score2.xlsx</p>
@@ -224,11 +190,11 @@ code.has-jax {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,chinese,english,history,geography,political
-000,Li,80,68,63,74
-001,Han,95,96,89,93
-003,Liu,88,87,89,92
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id,name,chinese,english,history,geography,political
+</span></span><span class="line"><span class="cl">000,Li,80,68,63,74
+</span></span><span class="line"><span class="cl">001,Han,95,96,89,93
+</span></span><span class="line"><span class="cl">003,Liu,88,87,89,92
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>对上面合并后的文件，计算每个同学的平均成绩并排名？</li>
@@ -254,12 +220,12 @@ code.has-jax {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> 
-    <span class="nt">&#34;country&#34;</span><span class="p">:</span> <span class="s2">&#34;中国&#34;</span> <span class="p">,</span> 
-    <span class="nt">&#34;province&#34;</span><span class="p">:</span> <span class="s2">&#34;辽宁省&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="s2">&#34;抚顺市&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;country&#34;</span><span class="p">:</span> <span class="s2">&#34;中国&#34;</span> <span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;province&#34;</span><span class="p">:</span> <span class="s2">&#34;辽宁省&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;city&#34;</span><span class="p">:</span> <span class="s2">&#34;抚顺市&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="3">
 <li>把下面这个数据写入excel格式的文件中？</li>
@@ -273,12 +239,12 @@ code.has-jax {
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">id,name,age
-1,Jordan,35
-2,Allen,28
-3,Jenny,41
-4,Lilei,18
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">id,name,age
+</span></span><span class="line"><span class="cl">1,Jordan,35
+</span></span><span class="line"><span class="cl">2,Allen,28
+</span></span><span class="line"><span class="cl">3,Jenny,41
+</span></span><span class="line"><span class="cl">4,Lilei,18
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="4">
 <li><a href="https://leetcode-cn.com/problems/valid-parentheses/">LeetCode 20</a></li>
@@ -302,18 +268,18 @@ code.has-jax {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
-    
-    <span class="k">def</span> <span class="nf">get_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span>
-    
-    <span class="o">...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">gender</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">weight</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">gender</span> <span class="o">=</span> <span class="n">gender</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">height</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">age</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="qa2020-11-26">Q&amp;A(2020-11-26)</h1>
 <blockquote>
@@ -345,9 +311,9 @@ code.has-jax {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="o">...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="qa2020-11-23">Q&amp;A(2020-11-23)</h1>
 <blockquote>
@@ -371,16 +337,16 @@ code.has-jax {
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># see below</span>
-        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
-    <span class="k">return</span> <span class="n">result</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python3" data-lang="python3"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>    <span class="c1"># see below</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="4">
 <li><a href="https://leetcode-cn.com/problems/fibonacci-number/">LeetCode509</a></li>
@@ -419,28 +385,26 @@ code.has-jax {
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
-</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
-<span class="n">person_score</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Zhou&#34;</span><span class="p">:[</span><span class="mi">88</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">97</span><span class="p">],</span> <span class="s2">&#34;Li&#34;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">92</span><span class="p">],</span> <span class="s2">&#34;Gao&#34;</span><span class="p">:[</span><span class="mi">91</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">80</span><span class="p">]}</span>
-<span class="n">names</span> <span class="o">=</span> <span class="n">person_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-<span class="n">cat</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Chinese&#34;</span><span class="p">,</span> <span class="s2">&#34;Math&#34;</span><span class="p">,</span> <span class="s2">&#34;English&#34;</span><span class="p">]</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">max_chinese</span><span class="p">,</span> <span class="n">max_math</span><span class="p">,</span> <span class="n">max_english</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-
-<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="n">max_name</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="n">max_score</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_score</span><span class="p">:</span>
-            <span class="n">max_name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="n">max_score</span> <span class="o">=</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;最好的是：&#34;</span> <span class="o">+</span> <span class="n">max_name</span> <span class="o">+</span> <span class="s2">&#34;, 他的成绩是：&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_score</span><span class="p">))</span>
-    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">person_score</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;Zhou&#34;</span><span class="p">:[</span><span class="mi">88</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">97</span><span class="p">],</span> <span class="s2">&#34;Li&#34;</span><span class="p">:[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">92</span><span class="p">],</span> <span class="s2">&#34;Gao&#34;</span><span class="p">:[</span><span class="mi">91</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">80</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="n">names</span> <span class="o">=</span> <span class="n">person_score</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">cat</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;Chinese&#34;</span><span class="p">,</span> <span class="s2">&#34;Math&#34;</span><span class="p">,</span> <span class="s2">&#34;English&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">max_chinese</span><span class="p">,</span> <span class="n">max_math</span><span class="p">,</span> <span class="n">max_english</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_name</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_score</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">max_score</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_score</span> <span class="o">=</span> <span class="n">person_score</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">cat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&#34;最好的是：&#34;</span> <span class="o">+</span> <span class="n">max_name</span> <span class="o">+</span> <span class="s2">&#34;, 他的成绩是：&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_score</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="5">
 <li>注册一个<a href="https://leetcode-cn.com/">Leetcode账号</a>，并完成<a href="https://leetcode-cn.com/problems/palindrome-number/">LeetCode 9. 回文数</a> ?</li>
@@ -526,7 +490,8 @@ code.has-jax {
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -543,7 +508,7 @@ code.has-jax {
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

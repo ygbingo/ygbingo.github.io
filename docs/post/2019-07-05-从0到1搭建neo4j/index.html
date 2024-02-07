@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="搭建Neo4j图形数据库环境 保持快乐，你就会干得好，就更成功、更健康，对别人也就更仁慈。——马克斯威尔·马尔兹 Neo4j是一个高性能的,NO"><meta itemprop="datePublished" content="2019-07-05T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-07-05T00:00:00+00:00" />
 <meta itemprop="wordCount" content="968">
-<meta itemprop="keywords" content="知识图谱,NLP,知识表示,Neo4j," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="从0到1搭建Neo4j"/>
+<meta itemprop="keywords" content="知识图谱,NLP,知识表示,Neo4j," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="从0到1搭建Neo4j"/>
 <meta name="twitter:description" content="搭建Neo4j图形数据库环境 保持快乐，你就会干得好，就更成功、更健康，对别人也就更仁慈。——马克斯威尔·马尔兹 Neo4j是一个高性能的,NO"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2019-07-05 </span>
         
+          <span class="more-meta"> 968 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -224,8 +190,8 @@ Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.</
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="n">java</span> <span class="o">-</span><span class="n">version</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">java</span><span class="w"> </span><span class="o">-</span><span class="n">version</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://img-blog.csdnimg.cn/20190705230744915.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="验证java安装成功"></p>
 <h3 id="2-安装neo4j">2 安装Neo4j</h3>
@@ -247,8 +213,8 @@ Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.</
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ./neo4j start
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ./neo4j start
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>出现如下提示代表启动成功
@@ -274,8 +240,8 @@ Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.</
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ./neo4j stop
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ./neo4j stop
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>出现如下内容
@@ -364,7 +330,8 @@ Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.</
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -381,7 +348,7 @@ Neo4j因其嵌入式、高性能、轻量级等优势，越来越受到关注.</
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

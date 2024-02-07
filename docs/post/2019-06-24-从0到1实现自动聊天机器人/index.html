@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="How are you ? I&rsquo;m fine, Thank you, And you? I&rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼"><meta itemprop="datePublished" content="2019-06-24T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-06-24T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1639">
-<meta itemprop="keywords" content="深度学习,NLP," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="从0到1实现自动聊天机器人"/>
+<meta itemprop="keywords" content="深度学习,NLP," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="从0到1实现自动聊天机器人"/>
 <meta name="twitter:description" content="How are you ? I&rsquo;m fine, Thank you, And you? I&rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2019-06-24 </span>
         
+          <span class="more-meta"> 1639 words </span>
+          <span class="more-meta"> 4 mins read </span>
         
       </div>
     </header>
@@ -218,33 +184,33 @@ I&rsquo;m fine too.<br></p>
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="c1"># 打招呼</span>
-<span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
-<span class="c1"># 回复打招呼</span>
-<span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
-
-<span class="c1"># 对于“你怎么样？”这个问题的回复</span>
-<span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;How are you?&#39;</span><span class="p">,</span><span class="s1">&#39;How are you doing?&#39;</span><span class="p">]</span>
-<span class="c1"># “我很好”</span>
-<span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Okay&#39;</span><span class="p">,</span><span class="s2">&#34;I&#39;m fine&#34;</span><span class="p">]</span>
-<span class="c1"># 随机选一个回</span>
-<span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-
-<span class="c1"># 机器人跑起来</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">greetings</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
-    <span class="c1"># 除非你说“拜拜”</span>
-    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
-        <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打招呼</span>
+</span></span><span class="line"><span class="cl"><span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 回复打招呼</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对于“你怎么样？”这个问题的回复</span>
+</span></span><span class="line"><span class="cl"><span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;How are you?&#39;</span><span class="p">,</span><span class="s1">&#39;How are you doing?&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># “我很好”</span>
+</span></span><span class="line"><span class="cl"><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Okay&#39;</span><span class="p">,</span><span class="s2">&#34;I&#39;m fine&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 随机选一个回</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 机器人跑起来</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">greetings</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">userInput</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 除非你说“拜拜”</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果：</p>
 <blockquote>
@@ -300,39 +266,39 @@ I&rsquo;m fine<br>
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
-<span class="kn">import</span> <span class="nn">random</span>
-
-<span class="c1"># 打招呼</span>
-<span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
-<span class="c1"># 回复打招呼</span>
-<span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
-
-<span class="c1"># 对于“假期”的话题关键词</span>
-<span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;break&#39;</span><span class="p">,</span><span class="s1">&#39;holiday&#39;</span><span class="p">,</span><span class="s1">&#39;vacation&#39;</span><span class="p">,</span><span class="s1">&#39;weekend&#39;</span><span class="p">]</span>
-<span class="c1"># 回复假期话题</span>
-<span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;It was nice! I went to Paris&#39;</span><span class="p">,</span><span class="s2">&#34;Sadly, I just stayed at home&#34;</span><span class="p">]</span>
-<span class="c1"># 随机选一个回</span>
-<span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
-
-
-
-<span class="c1"># 机器人跑起来</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
-    <span class="c1"># 清理一下输入，看看都有哪些词</span>
-    <span class="n">cleaned_input</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span>
-    <span class="c1"># 这里，我们比较一下关键词，确定他属于哪个问题</span>
-    <span class="k">if</span>  <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">greetings</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
-    <span class="c1"># 除非你说“拜拜”</span>
-    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
-        <span class="k">break</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 打招呼</span>
+</span></span><span class="line"><span class="cl"><span class="n">greetings</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hola&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">,</span> <span class="s1">&#39;hey!&#39;</span><span class="p">,</span><span class="s1">&#39;hey&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 回复打招呼</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_greeting</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">greetings</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对于“假期”的话题关键词</span>
+</span></span><span class="line"><span class="cl"><span class="n">question</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;break&#39;</span><span class="p">,</span><span class="s1">&#39;holiday&#39;</span><span class="p">,</span><span class="s1">&#39;vacation&#39;</span><span class="p">,</span><span class="s1">&#39;weekend&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 回复假期话题</span>
+</span></span><span class="line"><span class="cl"><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;It was nice! I went to Paris&#39;</span><span class="p">,</span><span class="s2">&#34;Sadly, I just stayed at home&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 随机选一个回</span>
+</span></span><span class="line"><span class="cl"><span class="n">random_response</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 机器人跑起来</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userInput</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;&gt;&gt;&gt; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 清理一下输入，看看都有哪些词</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cleaned_input</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">userInput</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 这里，我们比较一下关键词，确定他属于哪个问题</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span>  <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">greetings</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">random_greeting</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">set</span><span class="p">(</span><span class="n">cleaned_input</span><span class="p">)</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">question</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">random_response</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 除非你说“拜拜”</span>
+</span></span><span class="line"><span class="cl">    <span class="k">elif</span> <span class="n">userInput</span> <span class="o">==</span> <span class="s1">&#39;bye&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I did not understand what you said&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果：</p>
 <blockquote>
@@ -375,28 +341,28 @@ I did not understand what you said<br>
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="c1"># 建立一个基于目标行业的database</span>
-<span class="c1"># 比如 这里我们用python自带的graph</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;上海&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;苏州&#39;</span><span class="p">,</span> <span class="s1">&#39;常州&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;苏州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">,</span> <span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;常州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;镇江&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;盐城&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;南通&#39;</span><span class="p">],</span>
-         <span class="s1">&#39;南通&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">]}</span>
-
-<span class="c1"># 明确如何找到从A到B的路径</span>
-<span class="k">def</span> <span class="nf">find_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">path</span>
-    <span class="k">if</span> <span class="n">start</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
-            <span class="n">newpath</span> <span class="o">=</span> <span class="n">find_path</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">newpath</span><span class="p">:</span> <span class="k">return</span> <span class="n">newpath</span>
-    <span class="k">return</span> <span class="kc">None</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="c1"># 建立一个基于目标行业的database</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 比如 这里我们用python自带的graph</span>
+</span></span><span class="line"><span class="cl"><span class="n">graph</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;上海&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;苏州&#39;</span><span class="p">,</span> <span class="s1">&#39;常州&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="s1">&#39;苏州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">,</span> <span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="s1">&#39;常州&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;镇江&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="s1">&#39;镇江&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="s1">&#39;盐城&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;南通&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="s1">&#39;南通&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;常州&#39;</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 明确如何找到从A到B的路径</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="p">[]):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">start</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">path</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">start</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">start</span><span class="p">]:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">newpath</span> <span class="o">=</span> <span class="n">find_path</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">newpath</span><span class="p">:</span> <span class="k">return</span> <span class="n">newpath</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果</p>
 <blockquote>
@@ -415,12 +381,12 @@ I did not understand what you said<br>
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;您好，我是您的私人助手，我叫小辣椒&#39;</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;zh-tw&#39;</span><span class="p">)</span>
-<span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;hello.mp3&#34;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 hello.mp3&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;您好，我是您的私人助手，我叫小辣椒&#39;</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;zh-tw&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;hello.mp3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 hello.mp3&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>有了文本到语音的功能，<br>
 我们还可以运用Google API读出Jarvis的回复：</p>
@@ -490,69 +456,69 @@ I did not understand what you said<br>
 </span><span class="lnt">62
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">speech_recognition</span> <span class="k">as</span> <span class="nn">sr</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
-<span class="kn">import</span> <span class="nn">sys</span>
- 
-<span class="c1"># 讲出来AI的话</span>
-<span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">audioString</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">audioString</span><span class="p">)</span>
-    <span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">audioString</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
-    <span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;audio.mp3&#34;</span><span class="p">)</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 audio.mp3&#34;</span><span class="p">)</span>
-
-<span class="c1"># 录下来你讲的话</span>
-<span class="k">def</span> <span class="nf">recordAudio</span><span class="p">():</span>
-    <span class="c1"># 用麦克风记录下你的话</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">Recognizer</span><span class="p">()</span>
-    <span class="k">with</span> <span class="n">sr</span><span class="o">.</span><span class="n">Microphone</span><span class="p">()</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
-        <span class="n">audio</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
- 
-    <span class="c1"># 用Google API转化音频</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recognize_google</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;You said: &#34;</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">UnknownValueError</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Google Speech Recognition could not understand audio&#34;</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">RequestError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Could not request results from Google Speech Recognition service; </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
- 
-    <span class="k">return</span> <span class="n">data</span>
-
-<span class="c1"># 自带的对话技能（rules）</span>
-<span class="k">def</span> <span class="nf">jarvis</span><span class="p">():</span>
-    
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        
-        <span class="n">data</span> <span class="o">=</span> <span class="n">recordAudio</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="s2">&#34;how are you&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;I am fine&#34;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="s2">&#34;what time is it&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">speak</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
-
-        <span class="k">if</span> <span class="s2">&#34;where is&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
-            <span class="n">location</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hold on Tony, I will show you where &#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34; is.&#34;</span><span class="p">)</span>
-            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;open -a Safari https://www.google.com/maps/place/&#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34;/&amp;amp;&#34;</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="s2">&#34;bye&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;bye bye&#34;</span><span class="p">)</span>
-            <span class="k">break</span>
-
-<span class="c1"># 初始化</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hi Tony, what can I do for you?&#34;</span><span class="p">)</span>
-
-<span class="c1"># 跑起</span>
-<span class="n">jarvis</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">speech_recognition</span> <span class="k">as</span> <span class="nn">sr</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ctime</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 讲出来AI的话</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="n">audioString</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">audioString</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">audioString</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&#34;audio.mp3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;mpg321 audio.mp3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 录下来你讲的话</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">recordAudio</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用麦克风记录下你的话</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">Recognizer</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="n">sr</span><span class="o">.</span><span class="n">Microphone</span><span class="p">()</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">audio</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用Google API转化音频</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recognize_google</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;You said: &#34;</span> <span class="o">+</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">UnknownValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Google Speech Recognition could not understand audio&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">sr</span><span class="o">.</span><span class="n">RequestError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Could not request results from Google Speech Recognition service; </span><span class="si">{0}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自带的对话技能（rules）</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">jarvis</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="n">recordAudio</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;how are you&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;I am fine&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;what time is it&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">speak</span><span class="p">(</span><span class="n">ctime</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;where is&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">location</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hold on Tony, I will show you where &#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34; is.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s2">&#34;open -a Safari https://www.google.com/maps/place/&#34;</span> <span class="o">+</span> <span class="n">location</span> <span class="o">+</span> <span class="s2">&#34;/&amp;amp;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;bye&#34;</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">speak</span><span class="p">(</span><span class="s2">&#34;bye bye&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">speak</span><span class="p">(</span><span class="s2">&#34;Hi Tony, what can I do for you?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 跑起</span>
+</span></span><span class="line"><span class="cl"><span class="n">jarvis</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果：</p>
 <blockquote>
@@ -648,7 +614,8 @@ bye bye</p>
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -665,7 +632,7 @@ bye bye</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

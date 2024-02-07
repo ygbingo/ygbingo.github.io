@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +49,8 @@
 <meta itemprop="name" content="使用label studio标注音频文件">
 <meta itemprop="description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建"><meta itemprop="datePublished" content="2021-10-26T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-10-26T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1062">
-<meta itemprop="keywords" content="Machine Learning,Label Studio,ASR," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用label studio标注音频文件"/>
+<meta itemprop="wordCount" content="1060">
+<meta itemprop="keywords" content="Machine Learning,Label Studio,ASR," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用label studio标注音频文件"/>
 <meta name="twitter:description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2021-10-26 </span>
         
+          <span class="more-meta"> 1060 words </span>
+          <span class="more-meta"> 3 mins read </span>
         
       </div>
     </header>
@@ -258,45 +224,45 @@ code.has-jax {
 </span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="k">def</span> <span class="nf">create_url_task</span><span class="p">(</span><span class="n">audio_url</span><span class="p">):</span>
-    <span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
-    <span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
-        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
-        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
-
-        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
-        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
-
-        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="s2">&#34;SpeakerDiarization&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># 需要做说话人分割</span>
-            <span class="s2">&#34;SpeakerNumber&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-            <span class="s2">&#34;Url&#34;</span><span class="p">:</span> <span class="n">audio_url</span>  <span class="c1"># 音频地址</span>
-        <span class="p">}</span>
-        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">()</span>
-
-    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">create_url_task</span><span class="p">(</span><span class="n">audio_url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;SpeakerDiarization&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># 需要做说话人分割</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;SpeakerNumber&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Url&#34;</span><span class="p">:</span> <span class="n">audio_url</span>  <span class="c1"># 音频地址</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="1-2-获取转写任务结果">1-2. 获取转写任务结果</h2>
 <p>完成1后，会得到任务ID，再查询任务结果即可</p>
@@ -335,38 +301,38 @@ code.has-jax {
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="k">def</span> <span class="nf">get_url_res</span><span class="p">(</span><span class="n">task_id</span><span class="p">):</span>
-    <span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
-    <span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
-        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
-        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
-
-        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
-        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
-
-        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">task_id</span>
-        <span class="p">}</span>
-        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">()</span>
-
-    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_url_res</span><span class="p">(</span><span class="n">task_id</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;******&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+</span></span><span class="line"><span class="cl">        <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">task_id</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果大概长这样</p>
 <div class="highlight"><div class="chroma">
@@ -382,22 +348,20 @@ code.has-jax {
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;Data&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
-    <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="nt">&#34;StatusStr&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;Result&#34;</span><span class="p">:</span> <span class="s2">&#34;[0:0.930,0:2.640,0]  哎，你好，哎。\n[0:2.640,0:4.650,1]  你好，我是自如中介。\n&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;ErrorMsg&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;ResultDetail&#34;</span><span class="p">:</span> <span class="kc">null</span>
-  <span class="p">},</span>
-  <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span> <span class="s2">&#34;qq-qq-qq-qq&#34;</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Data&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span> <span class="mi">12345678</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Status&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;StatusStr&#34;</span><span class="p">:</span> <span class="s2">&#34;success&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Result&#34;</span><span class="p">:</span> <span class="s2">&#34;[0:0.930,0:2.640,0]  哎，你好，哎。\n[0:2.640,0:4.650,1]  你好，我是自如中介。\n&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ErrorMsg&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;ResultDetail&#34;</span><span class="p">:</span> <span class="kc">null</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span> <span class="s2">&#34;qq-qq-qq-qq&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="2-创建标注项目">2. 创建标注项目</h1>
 <h2 id="2-1-project-name">2-1. Project Name</h2>
@@ -526,113 +490,111 @@ code.has-jax {
 </span><span class="lnt">100
 </span><span class="lnt">101
 </span><span class="lnt">102
-</span><span class="lnt">103
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;
-</span><span class="s2">更新label studio的标注结果
-</span><span class="s2">&#34;&#34;&#34;</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">uuid</span>
-
-<span class="k">def</span> <span class="nf">profile_format</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&#34;Speaker-0&#34;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&#34;Speaker-1&#34;</span>
-
-<span class="k">def</span> <span class="nf">time_format</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    解析时间标签
-</span><span class="s2">    :param input: 0:0.930
-</span><span class="s2">    :return: 0.930
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Time Invalid!&#34;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
-    <span class="nb">min</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">analystic</span><span class="p">(</span><span class="n">res_file</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    解析转写结果
-</span><span class="s2">    :param res_file:
-</span><span class="s2">    :return:
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">original_length</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">res_file</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-    <span class="n">Result</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;Result&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">Result</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="k">continue</span>
-        <span class="n">uid</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>
-        <span class="n">time</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">time_format</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
-        <span class="n">end</span> <span class="o">=</span> <span class="n">time_format</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-        <span class="n">profile</span> <span class="o">=</span> <span class="n">profile_format</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
-        <span class="n">original_length</span> <span class="o">=</span> <span class="n">end</span>
-        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span>
-            <span class="s2">&#34;original_length&#34;</span><span class="p">:</span> <span class="n">original_length</span><span class="p">,</span>
-            <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&#34;start&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
-                <span class="s2">&#34;end&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
-                <span class="s2">&#34;labels&#34;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="n">profile</span>
-                <span class="p">]</span>
-            <span class="p">},</span>
-            <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;wavesufer_</span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;from_name&#34;</span><span class="p">:</span> <span class="s2">&#34;labels&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;to_name&#34;</span><span class="p">:</span> <span class="s2">&#34;audio&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;labels&#34;</span>
-        <span class="p">},{</span>
-            <span class="s2">&#34;original_length&#34;</span><span class="p">:</span> <span class="n">original_length</span><span class="p">,</span>
-            <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&#34;start&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
-                <span class="s2">&#34;end&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
-                <span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="p">[</span>
-                    <span class="n">text</span>
-                <span class="p">]</span>
-            <span class="p">},</span>
-            <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;wavesufer_</span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;from_name&#34;</span><span class="p">:</span> <span class="s2">&#34;transcription&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;to_name&#34;</span><span class="p">:</span> <span class="s2">&#34;audio&#34;</span><span class="p">,</span>
-            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;textarea&#34;</span>
-        <span class="p">}])</span>
-
-    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-        <span class="n">res</span><span class="p">[</span><span class="s2">&#34;original_length&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">original_length</span>
-    <span class="k">return</span> <span class="n">results</span>
-
-
-
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://localhost:8080/api/tasks/3/annotations/&#34;</span>
-
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Token ********&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="n">res_file</span> <span class="o">=</span> <span class="s2">&#34;response.json&#34;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&#34;result&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">analystic</span><span class="p">(</span><span class="n">res_file</span><span class="p">)</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&#34;was_cancelled&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&#34;ground_truth&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&#34;lead_time&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># 耗时</span>
-<span class="n">data</span><span class="p">[</span><span class="s2">&#34;task&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 任务ID</span>
-
-
-<span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&#34;PATCH&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">更新label studio的标注结果
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">uuid</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">profile_format</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Speaker-0&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;Speaker-1&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">time_format</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    解析时间标签
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param input: 0:0.930
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: 0.930
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Time Invalid!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">min</span><span class="p">,</span> <span class="n">sec</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">analystic</span><span class="p">(</span><span class="n">res_file</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    解析转写结果
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param res_file:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return:
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">original_length</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">res_file</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Result</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&#34;Data&#34;</span><span class="p">][</span><span class="s2">&#34;Result&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">Result</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span> <span class="k">continue</span>
+</span></span><span class="line"><span class="cl">        <span class="n">uid</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;  &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="n">time_format</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span> <span class="o">=</span> <span class="n">time_format</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">profile</span> <span class="o">=</span> <span class="n">profile_format</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">original_length</span> <span class="o">=</span> <span class="n">end</span>
+</span></span><span class="line"><span class="cl">        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;original_length&#34;</span><span class="p">:</span> <span class="n">original_length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;start&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;end&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;labels&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">profile</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;wavesufer_</span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;from_name&#34;</span><span class="p">:</span> <span class="s2">&#34;labels&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;to_name&#34;</span><span class="p">:</span> <span class="s2">&#34;audio&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;labels&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;original_length&#34;</span><span class="p">:</span> <span class="n">original_length</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;value&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;start&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;end&#34;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">end</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;text&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">text</span>
+</span></span><span class="line"><span class="cl">                <span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;id&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;wavesufer_</span><span class="si">{</span><span class="n">uid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;from_name&#34;</span><span class="p">:</span> <span class="s2">&#34;transcription&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;to_name&#34;</span><span class="p">:</span> <span class="s2">&#34;audio&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;textarea&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}])</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span><span class="p">[</span><span class="s2">&#34;original_length&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">original_length</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">results</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s2">&#34;http://localhost:8080/api/tasks/3/annotations/&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Token ********&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">res_file</span> <span class="o">=</span> <span class="s2">&#34;response.json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">[</span><span class="s2">&#34;result&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">analystic</span><span class="p">(</span><span class="n">res_file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">[</span><span class="s2">&#34;was_cancelled&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">[</span><span class="s2">&#34;ground_truth&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">[</span><span class="s2">&#34;lead_time&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>  <span class="c1"># 耗时</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span><span class="p">[</span><span class="s2">&#34;task&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># 任务ID</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&#34;PATCH&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="4-人工审核">4. 人工审核</h1>
 <p>然后再在UI界面上审核标注即可
@@ -719,7 +681,8 @@ code.has-jax {
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -736,7 +699,7 @@ code.has-jax {
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

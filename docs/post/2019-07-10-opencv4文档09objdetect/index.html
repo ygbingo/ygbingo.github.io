@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="级联分类器 支持语言：C&#43;&#43;，Java，Python 编译条件：&gt; OpenCV 2.0 学习如何从图片或视频中找到目标。 目标 使用 cv::CascadeClassifier 类从视频流中检测物体，将用"><meta itemprop="datePublished" content="2019-07-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-07-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="6074">
-<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Objdetect," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="【OpenCV4文档09】Objdetect"/>
+<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Objdetect," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="【OpenCV4文档09】Objdetect"/>
 <meta name="twitter:description" content="级联分类器 支持语言：C&#43;&#43;，Java，Python 编译条件：&gt; OpenCV 2.0 学习如何从图片或视频中找到目标。 目标 使用 cv::CascadeClassifier 类从视频流中检测物体，将用"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2019-07-10 </span>
         
+          <span class="more-meta"> 6074 words </span>
+          <span class="more-meta"> 13 mins read </span>
         
       </div>
     </header>
@@ -304,87 +270,87 @@ code.has-jax {
 </span><span class="lnt">80
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Core</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Mat</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.MatOfRect</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Point</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Rect</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Scalar</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.core.Size</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.highgui.HighGui</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.imgproc.Imgproc</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.objdetect.CascadeClassifier</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.opencv.videoio.VideoCapture</span><span class="o">;</span>
-<span class="kd">class</span> <span class="nc">ObjectDetection</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">detectAndDisplay</span><span class="o">(</span><span class="n">Mat</span> <span class="n">frame</span><span class="o">,</span> <span class="n">CascadeClassifier</span> <span class="n">faceCascade</span><span class="o">,</span> <span class="n">CascadeClassifier</span> <span class="n">eyesCascade</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Mat</span> <span class="n">frameGray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">();</span>
-        <span class="n">Imgproc</span><span class="o">.</span><span class="na">cvtColor</span><span class="o">(</span><span class="n">frame</span><span class="o">,</span> <span class="n">frameGray</span><span class="o">,</span> <span class="n">Imgproc</span><span class="o">.</span><span class="na">COLOR_BGR2GRAY</span><span class="o">);</span>
-        <span class="n">Imgproc</span><span class="o">.</span><span class="na">equalizeHist</span><span class="o">(</span><span class="n">frameGray</span><span class="o">,</span> <span class="n">frameGray</span><span class="o">);</span>
-        <span class="c1">// -- Detect faces
-</span><span class="c1"></span>        <span class="n">MatOfRect</span> <span class="n">faces</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MatOfRect</span><span class="o">();</span>
-        <span class="n">faceCascade</span><span class="o">.</span><span class="na">detectMultiScale</span><span class="o">(</span><span class="n">frameGray</span><span class="o">,</span> <span class="n">faces</span><span class="o">);</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Rect</span><span class="o">&gt;</span> <span class="n">listOfFaces</span> <span class="o">=</span> <span class="n">faces</span><span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Rect</span> <span class="n">face</span> <span class="o">:</span> <span class="n">listOfFaces</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">Point</span> <span class="n">center</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">face</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">face</span><span class="o">.</span><span class="na">width</span> <span class="o">/</span> <span class="n">2</span><span class="o">,</span> <span class="n">face</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">face</span><span class="o">.</span><span class="na">height</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span>
-            <span class="n">Imgproc</span><span class="o">.</span><span class="na">ellipse</span><span class="o">(</span><span class="n">frame</span><span class="o">,</span> <span class="n">center</span><span class="o">,</span> <span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="n">face</span><span class="o">.</span><span class="na">width</span> <span class="o">/</span> <span class="n">2</span><span class="o">,</span> <span class="n">face</span><span class="o">.</span><span class="na">height</span> <span class="o">/</span> <span class="n">2</span><span class="o">),</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">360</span><span class="o">,</span>
-                    <span class="k">new</span> <span class="n">Scalar</span><span class="o">(</span><span class="n">255</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">255</span><span class="o">));</span>
-            <span class="n">Mat</span> <span class="n">faceROI</span> <span class="o">=</span> <span class="n">frameGray</span><span class="o">.</span><span class="na">submat</span><span class="o">(</span><span class="n">face</span><span class="o">);</span>
-            <span class="c1">// -- In each face, detect eyes
-</span><span class="c1"></span>            <span class="n">MatOfRect</span> <span class="n">eyes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MatOfRect</span><span class="o">();</span>
-            <span class="n">eyesCascade</span><span class="o">.</span><span class="na">detectMultiScale</span><span class="o">(</span><span class="n">faceROI</span><span class="o">,</span> <span class="n">eyes</span><span class="o">);</span>
-            <span class="n">List</span><span class="o">&lt;</span><span class="n">Rect</span><span class="o">&gt;</span> <span class="n">listOfEyes</span> <span class="o">=</span> <span class="n">eyes</span><span class="o">.</span><span class="na">toList</span><span class="o">();</span>
-            <span class="k">for</span> <span class="o">(</span><span class="n">Rect</span> <span class="n">eye</span> <span class="o">:</span> <span class="n">listOfEyes</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">Point</span> <span class="n">eyeCenter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">face</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">eye</span><span class="o">.</span><span class="na">x</span> <span class="o">+</span> <span class="n">eye</span><span class="o">.</span><span class="na">width</span> <span class="o">/</span> <span class="n">2</span><span class="o">,</span> <span class="n">face</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">eye</span><span class="o">.</span><span class="na">y</span> <span class="o">+</span> <span class="n">eye</span><span class="o">.</span><span class="na">height</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span>
-                <span class="kt">int</span> <span class="n">radius</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">round</span><span class="o">((</span><span class="n">eye</span><span class="o">.</span><span class="na">width</span> <span class="o">+</span> <span class="n">eye</span><span class="o">.</span><span class="na">height</span><span class="o">)</span> <span class="o">*</span> <span class="n">0</span><span class="o">.</span><span class="na">25</span><span class="o">);</span>
-                <span class="n">Imgproc</span><span class="o">.</span><span class="na">circle</span><span class="o">(</span><span class="n">frame</span><span class="o">,</span> <span class="n">eyeCenter</span><span class="o">,</span> <span class="n">radius</span><span class="o">,</span> <span class="k">new</span> <span class="n">Scalar</span><span class="o">(</span><span class="n">255</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">),</span> <span class="n">4</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="c1">//-- Show what you got
-</span><span class="c1"></span>        <span class="n">HighGui</span><span class="o">.</span><span class="na">imshow</span><span class="o">(</span><span class="s">&#34;Capture - Face detection&#34;</span><span class="o">,</span> <span class="n">frame</span> <span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">filenameFaceCascade</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">2</span> <span class="o">?</span> <span class="n">args</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">:</span> <span class="s">&#34;../../data/haarcascades/haarcascade_frontalface_alt.xml&#34;</span><span class="o">;</span>
-        <span class="n">String</span> <span class="n">filenameEyesCascade</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">2</span> <span class="o">?</span> <span class="n">args</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">:</span> <span class="s">&#34;../../data/haarcascades/haarcascade_eye_tree_eyeglasses.xml&#34;</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">cameraDevice</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="n">2</span> <span class="o">?</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="n">2</span><span class="o">])</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
-        <span class="n">CascadeClassifier</span> <span class="n">faceCascade</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CascadeClassifier</span><span class="o">();</span>
-        <span class="n">CascadeClassifier</span> <span class="n">eyesCascade</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CascadeClassifier</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">faceCascade</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">filenameFaceCascade</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;--(!)Error loading face cascade: &#34;</span> <span class="o">+</span> <span class="n">filenameFaceCascade</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">eyesCascade</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">filenameEyesCascade</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;--(!)Error loading eyes cascade: &#34;</span> <span class="o">+</span> <span class="n">filenameEyesCascade</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">VideoCapture</span> <span class="n">capture</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VideoCapture</span><span class="o">(</span><span class="n">cameraDevice</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">capture</span><span class="o">.</span><span class="na">isOpened</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;--(!)Error opening video capture&#34;</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">Mat</span> <span class="n">frame</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Mat</span><span class="o">();</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">capture</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">frame</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">frame</span><span class="o">.</span><span class="na">empty</span><span class="o">())</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;--(!) No captured frame -- Break!&#34;</span><span class="o">);</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="c1">//-- 3. Apply the classifier to the frame
-</span><span class="c1"></span>            <span class="n">detectAndDisplay</span><span class="o">(</span><span class="n">frame</span><span class="o">,</span> <span class="n">faceCascade</span><span class="o">,</span> <span class="n">eyesCascade</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">HighGui</span><span class="o">.</span><span class="na">waitKey</span><span class="o">(</span><span class="n">10</span><span class="o">)</span> <span class="o">==</span> <span class="n">27</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">break</span><span class="o">;</span><span class="c1">// escape
-</span><span class="c1"></span>            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ObjectDetectionDemo</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// Load the native OpenCV library
-</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">loadLibrary</span><span class="o">(</span><span class="n">Core</span><span class="o">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="o">);</span>
-        <span class="k">new</span> <span class="n">ObjectDetection</span><span class="o">().</span><span class="na">run</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Core</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Mat</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.MatOfRect</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Point</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Rect</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Scalar</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.core.Size</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.highgui.HighGui</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.imgproc.Imgproc</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.objdetect.CascadeClassifier</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">org.opencv.videoio.VideoCapture</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">class</span> <span class="nc">ObjectDetection</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">detectAndDisplay</span><span class="p">(</span><span class="n">Mat</span><span class="w"> </span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">CascadeClassifier</span><span class="w"> </span><span class="n">faceCascade</span><span class="p">,</span><span class="w"> </span><span class="n">CascadeClassifier</span><span class="w"> </span><span class="n">eyesCascade</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Mat</span><span class="w"> </span><span class="n">frameGray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">frameGray</span><span class="p">,</span><span class="w"> </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">COLOR_BGR2GRAY</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">equalizeHist</span><span class="p">(</span><span class="n">frameGray</span><span class="p">,</span><span class="w"> </span><span class="n">frameGray</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// -- Detect faces</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">MatOfRect</span><span class="w"> </span><span class="n">faces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MatOfRect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">faceCascade</span><span class="p">.</span><span class="na">detectMultiScale</span><span class="p">(</span><span class="n">frameGray</span><span class="p">,</span><span class="w"> </span><span class="n">faces</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Rect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listOfFaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">faces</span><span class="p">.</span><span class="na">toList</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Rect</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">listOfFaces</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Point</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="n">face</span><span class="p">.</span><span class="na">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">face</span><span class="p">.</span><span class="na">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="p">.</span><span class="na">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">face</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">ellipse</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Size</span><span class="p">(</span><span class="n">face</span><span class="p">.</span><span class="na">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">),</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">360</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">new</span><span class="w"> </span><span class="n">Scalar</span><span class="p">(</span><span class="n">255</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">255</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">Mat</span><span class="w"> </span><span class="n">faceROI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">frameGray</span><span class="p">.</span><span class="na">submat</span><span class="p">(</span><span class="n">face</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">// -- In each face, detect eyes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">MatOfRect</span><span class="w"> </span><span class="n">eyes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MatOfRect</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">eyesCascade</span><span class="p">.</span><span class="na">detectMultiScale</span><span class="p">(</span><span class="n">faceROI</span><span class="p">,</span><span class="w"> </span><span class="n">eyes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Rect</span><span class="o">&gt;</span><span class="w"> </span><span class="n">listOfEyes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eyes</span><span class="p">.</span><span class="na">toList</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Rect</span><span class="w"> </span><span class="n">eye</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">listOfEyes</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">Point</span><span class="w"> </span><span class="n">eyeCenter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="n">face</span><span class="p">.</span><span class="na">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eye</span><span class="p">.</span><span class="na">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eye</span><span class="p">.</span><span class="na">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="p">.</span><span class="na">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eye</span><span class="p">.</span><span class="na">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eye</span><span class="p">.</span><span class="na">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">round</span><span class="p">((</span><span class="n">eye</span><span class="p">.</span><span class="na">width</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">eye</span><span class="p">.</span><span class="na">height</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">25</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">Imgproc</span><span class="p">.</span><span class="na">circle</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">eyeCenter</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scalar</span><span class="p">(</span><span class="n">255</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">),</span><span class="w"> </span><span class="n">4</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">//-- Show what you got</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">HighGui</span><span class="p">.</span><span class="na">imshow</span><span class="p">(</span><span class="s">&#34;Capture - Face detection&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filenameFaceCascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">args</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;../../data/haarcascades/haarcascade_frontalface_alt.xml&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">filenameEyesCascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">args</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">&#34;../../data/haarcascades/haarcascade_eye_tree_eyeglasses.xml&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cameraDevice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CascadeClassifier</span><span class="w"> </span><span class="n">faceCascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CascadeClassifier</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">CascadeClassifier</span><span class="w"> </span><span class="n">eyesCascade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CascadeClassifier</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">faceCascade</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">filenameFaceCascade</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;--(!)Error loading face cascade: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filenameFaceCascade</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">eyesCascade</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">filenameEyesCascade</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;--(!)Error loading eyes cascade: &#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">filenameEyesCascade</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">VideoCapture</span><span class="w"> </span><span class="n">capture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VideoCapture</span><span class="p">(</span><span class="n">cameraDevice</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">capture</span><span class="p">.</span><span class="na">isOpened</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;--(!)Error opening video capture&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Mat</span><span class="w"> </span><span class="n">frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Mat</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">capture</span><span class="p">.</span><span class="na">read</span><span class="p">(</span><span class="n">frame</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">frame</span><span class="p">.</span><span class="na">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;--(!) No captured frame -- Break!&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="c1">//-- 3. Apply the classifier to the frame</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">detectAndDisplay</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span><span class="w"> </span><span class="n">faceCascade</span><span class="p">,</span><span class="w"> </span><span class="n">eyesCascade</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">HighGui</span><span class="p">.</span><span class="na">waitKey</span><span class="p">(</span><span class="n">10</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">27</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="c1">// escape</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ObjectDetectionDemo</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c1">// Load the native OpenCV library</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">loadLibrary</span><span class="p">(</span><span class="n">Core</span><span class="p">.</span><span class="na">NATIVE_LIBRARY_NAME</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">ObjectDetection</span><span class="p">().</span><span class="na">run</span><span class="p">(</span><span class="n">args</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="效果">效果</h3>
 <ol>
@@ -434,11 +400,11 @@ code.has-jax {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/img
-  img1.jpg
-  img2.jpg
-bg.txt
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/img
+</span></span><span class="line"><span class="cl">  img1.jpg
+</span></span><span class="line"><span class="cl">  img2.jpg
+</span></span><span class="line"><span class="cl">bg.txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>bg.txt文件</p>
 <div class="highlight"><div class="chroma">
@@ -447,9 +413,9 @@ bg.txt
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt">img/img1.jpg
-img/img2.jpg
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">img/img1.jpg
+</span></span><span class="line"><span class="cl">img/img2.jpg
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在您尝试查找感兴趣的对象时，您的负窗口样本集将用于告知机器学习步骤，在这种情况下提升，不要寻找什么。</p>
 <h4 id="正样本">正样本</h4>
@@ -493,11 +459,11 @@ bg_color + bg_c​​olor_threshold]范围被解释为透明。白噪声被添�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">/img
-    img1.jpg
-    img2.jpg
-info.dat
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/img
+</span></span><span class="line"><span class="cl">    img1.jpg
+</span></span><span class="line"><span class="cl">    img2.jpg
+</span></span><span class="line"><span class="cl">info.dat
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>info.dat:</p>
 <div class="highlight"><div class="chroma">
@@ -506,9 +472,9 @@ info.dat
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">img/img1.jpg  1  140 100 45 45
-img/img2.jpg  2  100 200 50 50   50 30 25 25
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">img/img1.jpg  1  140 100 45 45
+</span></span><span class="line"><span class="cl">img/img2.jpg  2  100 200 50 50   50 30 25 25
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Image img1.jpg包含具有以下边界矩形坐标的单个对象实例：（140,100,45,45）。
 Image img2.jpg包含两个对象实例.</p>
@@ -538,8 +504,8 @@ Image img2.jpg包含两个对象实例.</p>
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">opencv_annotation --annotations<span class="o">=</span>/path/to/annotations/file.txt --images<span class="o">=</span>/path/to/image/folder/
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">opencv_annotation --annotations<span class="o">=</span>/path/to/annotations/file.txt --images<span class="o">=</span>/path/to/image/folder/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此命令将启动一个窗口，其中包含将用于注释的第一个图像和鼠标光标。
 可以在此处找到有关如何使用注释工具的视频。
@@ -613,8 +579,8 @@ Image img2.jpg包含两个对象实例.</p>
             <span class="prev-text nav-default">【OpenCV4文档01】Core</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/">
-            <span class="next-text nav-default">【OpenCV4文档】目录</span>
+        <a class="next" href="/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/">
+            <span class="next-text nav-default">Java DPI介绍</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -665,7 +631,8 @@ Image img2.jpg包含两个对象实例.</p>
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -682,7 +649,7 @@ Image img2.jpg包含两个对象实例.</p>
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

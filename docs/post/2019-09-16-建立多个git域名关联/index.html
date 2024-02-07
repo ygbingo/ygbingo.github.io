@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em"><meta itemprop="datePublished" content="2019-09-16T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-09-16T00:00:00+00:00" />
 <meta itemprop="wordCount" content="400">
-<meta itemprop="keywords" content="git," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="建立多个git域名关联"/>
+<meta itemprop="keywords" content="git," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="建立多个git域名关联"/>
 <meta name="twitter:description" content="要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2019-09-16 </span>
         
+          <span class="more-meta"> 400 words </span>
+          <span class="more-meta"> 1 min read </span>
         
       </div>
     </header>
@@ -209,8 +175,8 @@ code.has-jax {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh-keygen -t rsa -f filename -C email@email.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ssh-keygen -t rsa -f filename -C email@email.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@email.com是你在网站(github/gitlab)上注册的邮箱</strong></p>
 <p>执行该命令后，会在~/.ssh中生成对应的密钥文件</p>
@@ -222,8 +188,8 @@ code.has-jax {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ vi ~/.ssh/*.pub
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ vi ~/.ssh/*.pub
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://img-blog.csdnimg.cn/20190914152957199.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmh1aWJpbjMxNQ==,size_16,color_FFFFFF,t_70" alt="密钥内容复制"></p>
 <p><strong>所有内容都要复制</strong></p>
@@ -245,8 +211,8 @@ code.has-jax {
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ vi ~/.ssh/config
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ vi ~/.ssh/config
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="配置config">配置config</h3>
 <div class="highlight"><div class="chroma">
@@ -264,18 +230,18 @@ code.has-jax {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"># 配置github.com
-Host github.com                 
-HostName github.com
-IdentityFile /User/Username/home/.ssh/github_id_rsa.pub
-User username1
-
-# 配置gitlab.com
-Host gitlab.com 
-HostName gitlab.com
-IdentityFile /User/Username/home/.ssh/gitlab_id_rsa.pub
-User username2
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 配置github.com
+</span></span><span class="line"><span class="cl">Host github.com                 
+</span></span><span class="line"><span class="cl">HostName github.com
+</span></span><span class="line"><span class="cl">IdentityFile /User/Username/home/.ssh/github_id_rsa.pub
+</span></span><span class="line"><span class="cl">User username1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># 配置gitlab.com
+</span></span><span class="line"><span class="cl">Host gitlab.com 
+</span></span><span class="line"><span class="cl">HostName gitlab.com
+</span></span><span class="line"><span class="cl">IdentityFile /User/Username/home/.ssh/gitlab_id_rsa.pub
+</span></span><span class="line"><span class="cl">User username2
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>通过上述配置，系统就会在建立连接时自动根据域名匹配对应的密钥文件了</p>
@@ -360,7 +326,8 @@ User username2
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -377,7 +344,7 @@ User username2
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

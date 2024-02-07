@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="思考一下这个问题： 有一个年纪成绩表.xlsx文件，包含：班级、姓名、语文、数学、英语，这个年级一共有五个班，现在想把五个班的成绩分别存到不同"><meta itemprop="datePublished" content="2022-07-07T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-07-07T00:00:00+00:00" />
 <meta itemprop="wordCount" content="462">
-<meta itemprop="keywords" content="Python,Pandas," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="【python处理数据】使用pandas处理Excel"/>
+<meta itemprop="keywords" content="Python,Pandas," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="【python处理数据】使用pandas处理Excel"/>
 <meta name="twitter:description" content="思考一下这个问题： 有一个年纪成绩表.xlsx文件，包含：班级、姓名、语文、数学、英语，这个年级一共有五个班，现在想把五个班的成绩分别存到不同"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2022-07-07 </span>
         
+          <span class="more-meta"> 462 words </span>
+          <span class="more-meta"> 1 min read </span>
         
       </div>
     </header>
@@ -212,18 +178,18 @@ code.has-jax {
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 引用pandas包</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="c1"># 直接读取文件(文件名：path_to_file.xlsx，表名：Sheet1)到DataFrame</span>
-
-<span class="c1">## 方法1</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>  
-
-<span class="c1">## 方法2</span>
-<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">excel</span><span class="p">:</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">excel</span><span class="o">.</span><span class="n">sheet_names</span><span class="p">)</span>  <span class="c1"># 打印excel全部表名称</span>
-  <span class="n">df2</span> <span class="o">=</span> <span class="n">excel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 引用pandas包</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接读取文件(文件名：path_to_file.xlsx，表名：Sheet1)到DataFrame</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 方法1</span>
+</span></span><span class="line"><span class="cl"><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 方法2</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">excel</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">print</span><span class="p">(</span><span class="n">excel</span><span class="o">.</span><span class="n">sheet_names</span><span class="p">)</span>  <span class="c1"># 打印excel全部表名称</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df2</span> <span class="o">=</span> <span class="n">excel</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="写入excel文件">写入Excel文件</h1>
 <div class="highlight"><div class="chroma">
@@ -237,14 +203,14 @@ code.has-jax {
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 把DataFrame数据写入到文件中(文件名：path_to_file.xlsx，表名：Sheet1)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
-
-<span class="c1"># 两个DataFrame数据分别写入到同一个文件的不同表中(文件名：path_to_file.xlsx，表名：Sheet1、Sheet2)</span>
-<span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
-    <span class="n">df1</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
-    <span class="n">df2</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet2&#34;</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 把DataFrame数据写入到文件中(文件名：path_to_file.xlsx，表名：Sheet1)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 两个DataFrame数据分别写入到同一个文件的不同表中(文件名：path_to_file.xlsx，表名：Sheet1、Sheet2)</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="s2">&#34;path_to_file.xlsx&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df1</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet1&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">df2</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&#34;Sheet2&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="参考">参考</h1>
 <ol>
@@ -331,7 +297,8 @@ code.has-jax {
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -348,7 +315,7 @@ code.has-jax {
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

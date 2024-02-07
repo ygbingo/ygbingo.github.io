@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +49,8 @@
 <meta itemprop="name" content="使用label studio标注对话文件">
 <meta itemprop="description" content="最近有个小朋友接个任务，已经收集了一些对话，需要对里面的对话内容打标，提取出质量较好的对话。 前提 已有的对话样本 已经搭建好Label Studio 步骤 创建"><meta itemprop="datePublished" content="2021-11-04T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-11-04T00:00:00+00:00" />
-<meta itemprop="wordCount" content="708">
-<meta itemprop="keywords" content="Machine Learning,Label Studio,Dialogue," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="使用label studio标注对话文件"/>
+<meta itemprop="wordCount" content="706">
+<meta itemprop="keywords" content="Machine Learning,Label Studio,Dialogue," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用label studio标注对话文件"/>
 <meta name="twitter:description" content="最近有个小朋友接个任务，已经收集了一些对话，需要对里面的对话内容打标，提取出质量较好的对话。 前提 已有的对话样本 已经搭建好Label Studio 步骤 创建"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2021-11-04 </span>
         
+          <span class="more-meta"> 706 words </span>
+          <span class="more-meta"> 2 mins read </span>
         
       </div>
     </header>
@@ -233,23 +199,21 @@ code.has-jax {
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">
-<span class="nt">&lt;View&gt;</span>
-  <span class="nt">&lt;HyperText</span> <span class="na">name=</span><span class="s">&#34;dialog&#34;</span> <span class="na">value=</span><span class="s">&#34;$dialogs&#34;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;Header</span> <span class="na">value=</span><span class="s">&#34;Rate last answer&#34;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;Choices</span> <span class="na">name=</span><span class="s">&#34;rating&#34;</span> <span class="na">choice=</span><span class="s">&#34;single-radio&#34;</span> <span class="na">toName=</span><span class="s">&#34;dialog&#34;</span> <span class="na">showInline=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Bad answer&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Neutral answer&#34;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Good answer&#34;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;/Choices&gt;</span>
-  <span class="nt">&lt;Header</span> <span class="na">value=</span><span class="s">&#34;Write your answer and press Enter&#34;</span><span class="nt">/&gt;</span>
-  <span class="nt">&lt;TextArea</span> <span class="na">toName=</span><span class="s">&#34;dialog&#34;</span> <span class="na">name=</span><span class="s">&#34;answer&#34;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/View&gt;</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;View&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;HyperText</span> <span class="na">name=</span><span class="s">&#34;dialog&#34;</span> <span class="na">value=</span><span class="s">&#34;$dialogs&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;Header</span> <span class="na">value=</span><span class="s">&#34;Rate last answer&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;Choices</span> <span class="na">name=</span><span class="s">&#34;rating&#34;</span> <span class="na">choice=</span><span class="s">&#34;single-radio&#34;</span> <span class="na">toName=</span><span class="s">&#34;dialog&#34;</span> <span class="na">showInline=</span><span class="s">&#34;true&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Bad answer&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Neutral answer&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Choice</span> <span class="na">value=</span><span class="s">&#34;Good answer&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/Choices&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;Header</span> <span class="na">value=</span><span class="s">&#34;Write your answer and press Enter&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;TextArea</span> <span class="na">toName=</span><span class="s">&#34;dialog&#34;</span> <span class="na">name=</span><span class="s">&#34;answer&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/View&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="2-创建label-task">2. 创建label task</h1>
 <p><strong>假设已经有了几个待标注的对话样本：</strong></p>
@@ -261,11 +225,11 @@ code.has-jax {
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">[&#34;还没睡咩&#34;, &#34;没有你呢&#34;, &#34;我也是&#34;, &#34;怎么办阿&#34;, &#34;有点困了&#34;, &#34;睡不着阿&#34;]
-[&#34;大点儿声&#34;, &#34;听不见&#34;, &#34;大点声&#34;, &#34;要多大声啊&#34;, &#34;明天&#34;, &#34;后天还有后天&#34;]
-[&#34;祝融号火星车此时此刻在火星上做什么呢&#34;, &#34;这句话我没法接…&#34;]
-[&#34;大一点声&#34;, &#34;大声叫&#34;, &#34;小声点&#34;, &#34;说话大声点&#34;, &#34;小声点&#34;, &#34;太小声！&#34;]
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[&#34;还没睡咩&#34;, &#34;没有你呢&#34;, &#34;我也是&#34;, &#34;怎么办阿&#34;, &#34;有点困了&#34;, &#34;睡不着阿&#34;]
+</span></span><span class="line"><span class="cl">[&#34;大点儿声&#34;, &#34;听不见&#34;, &#34;大点声&#34;, &#34;要多大声啊&#34;, &#34;明天&#34;, &#34;后天还有后天&#34;]
+</span></span><span class="line"><span class="cl">[&#34;祝融号火星车此时此刻在火星上做什么呢&#34;, &#34;这句话我没法接…&#34;]
+</span></span><span class="line"><span class="cl">[&#34;大一点声&#34;, &#34;大声叫&#34;, &#34;小声点&#34;, &#34;说话大声点&#34;, &#34;小声点&#34;, &#34;太小声！&#34;]
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>通过api的形式创建label task</strong></p>
 <div class="highlight"><div class="chroma">
@@ -301,42 +265,40 @@ code.has-jax {
 </span><span class="lnt">29
 </span><span class="lnt">30
 </span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">jsonlines</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">json</span>
-
-<span class="n">PROJECT_ID</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># 此处使用自己的项目id</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://localhost:8080/api/projects/</span><span class="si">{</span><span class="n">PROJECT_ID</span><span class="si">}</span><span class="s2">/import&#34;</span>
-
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Token ******&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
-<span class="p">}</span>
-
-<span class="n">reader</span> <span class="o">=</span> <span class="n">jsonlines</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;dialogue.jsonl&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span>
-
-<span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">MAX_TASK_NUM</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">datas</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">reader</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-        <span class="n">data</span><span class="p">[</span><span class="s2">&#34;dialogs&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="n">datas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">MAX_TASK_NUM</span><span class="p">:</span> <span class="k">break</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&#34;POST&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&#34;ALL task created!&#34;</span><span class="p">)</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">jsonlines</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">PROJECT_ID</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># 此处使用自己的项目id</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://localhost:8080/api/projects/</span><span class="si">{</span><span class="n">PROJECT_ID</span><span class="si">}</span><span class="s2">/import&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;Token ******&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reader</span> <span class="o">=</span> <span class="n">jsonlines</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;dialogue.jsonl&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">iter</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="n">MAX_TASK_NUM</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="n">datas</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">reader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">[</span><span class="s2">&#34;dialogs&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">reader</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">datas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">MAX_TASK_NUM</span><span class="p">:</span> <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&#34;POST&#34;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;ALL task created!&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="3-标注">3. 标注</h1>
 <p><img src="https://raw.githubusercontent.com/yanhuibin315/yanhuibin315.github.io/master/img/post-1104-label-task.png" alt=""></p>
@@ -424,7 +386,8 @@ code.has-jax {
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -441,7 +404,7 @@ code.has-jax {
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

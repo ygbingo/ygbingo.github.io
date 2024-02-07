@@ -6,24 +6,21 @@
     <description>Recent content in Label Studio on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/tags/label-studio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/tags/label-studio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用label studio标注对话文件</title>
       <link>https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</link>
       <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</guid>
       <description>最近有个小朋友接个任务，已经收集了一些对话，需要对里面的对话内容打标，提取出质量较好的对话。 前提 已有的对话样本 已经搭建好Label Studio 步骤 创建</description>
     </item>
-    
     <item>
       <title>使用label studio标注音频文件</title>
       <link>https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</guid>
       <description>最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建</description>
     </item>
-    
   </channel>
 </rss>

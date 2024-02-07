@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -50,8 +50,7 @@
 <meta itemprop="description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像"><meta itemprop="datePublished" content="2019-07-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2019-07-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="2753">
-<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Core," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="【OpenCV4文档01】Core"/>
+<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Core," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="【OpenCV4文档01】Core"/>
 <meta name="twitter:description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2019-07-10 </span>
         
+          <span class="more-meta"> 2753 words </span>
+          <span class="more-meta"> 6 mins read </span>
         
       </div>
     </header>
@@ -239,11 +205,11 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Mat</span> <span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">;</span>                          <span class="c1">// creates just the header parts
-</span><span class="c1"></span><span class="n">A</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">IMREAD_COLOR</span><span class="p">);</span> <span class="c1">// here we&#39;ll know the method used (allocate matrix)
-</span><span class="c1"></span><span class="n">Mat</span> <span class="nf">B</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>                                <span class="c1">// Use the copy constructor
-</span><span class="c1"></span><span class="n">C</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>                                    <span class="c1">// Assignment operator
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Mat</span> <span class="n">A</span><span class="p">,</span> <span class="n">C</span><span class="p">;</span>                          <span class="c1">// creates just the header parts
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">A</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">IMREAD_COLOR</span><span class="p">);</span> <span class="c1">// here we&#39;ll know the method used (allocate matrix)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Mat</span> <span class="nf">B</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>                                <span class="c1">// Use the copy constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">C</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>                                    <span class="c1">// Assignment operator
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后，所有上述对象都指向相同的单个数据矩阵。
 但是，它们的标题不同，并且使用它们中的任何一个进行修改也会影响所有其他标题。
@@ -257,9 +223,9 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Mat</span> <span class="nf">D</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// using a rectangle
-</span><span class="c1"></span><span class="n">Mat</span> <span class="n">E</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">Range</span><span class="o">::</span><span class="n">all</span><span class="p">(),</span> <span class="n">Range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// using row and column boundaries
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Mat</span> <span class="nf">D</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">Rect</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// using a rectangle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Mat</span> <span class="n">E</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="n">Range</span><span class="o">::</span><span class="n">all</span><span class="p">(),</span> <span class="n">Range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// using row and column boundaries
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在您可能会问矩阵本身是否属于多个Mat对象，这些对象在不再需要时负责清理它。
 简短的回答是：使用它的最后一个对象。
@@ -275,10 +241,10 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Mat</span> <span class="n">F</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-<span class="n">Mat</span> <span class="n">G</span><span class="p">;</span>
-<span class="n">A</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Mat</span> <span class="n">F</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mat</span> <span class="n">G</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">A</span><span class="p">.</span><span class="n">copyTo</span><span class="p">(</span><span class="n">G</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在修改F或G不会影响Mat头指向的矩阵。
 你需要记住的是：</p>
@@ -311,9 +277,9 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Mat</span> <span class="nf">M</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">));</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;M = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">M</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Mat</span> <span class="nf">M</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">CV_8UC3</span><span class="p">,</span> <span class="n">Scalar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;M = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">M</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -342,9 +308,9 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
           <a href="/tags/core/">Core</a>
           </div>
       <nav class="post-nav">
-        <a class="prev" href="/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/">
+        <a class="prev" href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">知识图谱相关论文推荐</span>
+            <span class="prev-text nav-default">【OpenCV4文档】目录</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
         <a class="next" href="/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/">
@@ -399,7 +365,8 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -416,7 +383,7 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

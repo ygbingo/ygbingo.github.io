@@ -6,15 +6,14 @@
     <description>Recent content in Core on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 10 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://ygbingo.github.io/tags/core/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/tags/core/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【OpenCV4文档01】Core</title>
       <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
       <description>矩阵：基本图像容器 兼容性：&amp;gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像</description>
     </item>
-    
   </channel>
 </rss>

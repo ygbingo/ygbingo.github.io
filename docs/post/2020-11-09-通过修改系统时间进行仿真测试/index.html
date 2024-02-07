@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +49,8 @@
 <meta itemprop="name" content="通过修改系统时间进行仿真测试">
 <meta itemprop="description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数"><meta itemprop="datePublished" content="2020-11-09T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-11-09T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1313">
-<meta itemprop="keywords" content="python,faketime," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="通过修改系统时间进行仿真测试"/>
+<meta itemprop="wordCount" content="1293">
+<meta itemprop="keywords" content="python,faketime," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="通过修改系统时间进行仿真测试"/>
 <meta name="twitter:description" content="最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2020-11-09 </span>
         
+          <span class="more-meta"> 1293 words </span>
+          <span class="more-meta"> 3 mins read </span>
         
       </div>
     </header>
@@ -228,19 +194,19 @@ code.has-jax {
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="k">FROM</span><span class="s"> ...(自己找一个基础docker image, 比如ubuntu)</span><span class="err">
-</span><span class="err"></span><span class="c"># 为了防止某些基础ubuntu镜像不带make命令，先安装一些必要的命令</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get -y install gcc automake autoconf libtool make git<span class="err">
-</span><span class="err"></span><span class="c"># clone faketime代码</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> git clone https://github.com/wolfcw/libfaketime<span class="err">
-</span><span class="err"></span><span class="c"># 进入目录并安装</span><span class="err">
-</span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> libfaketime</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> make<span class="err">
-</span><span class="err"></span><span class="k">RUN</span> make install<span class="err">
-</span><span class="err"></span><span class="c"># 配置环境变量</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/local/lib/faketime/libfaketime.so.1 <span class="se">\
-</span><span class="se"></span>    <span class="nv">FAKETIME_NO_CACHE</span><span class="o">=</span><span class="m">1</span><span class="err">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> ...(自己找一个基础docker image, 比如ubuntu)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 为了防止某些基础ubuntu镜像不带make命令，先安装一些必要的命令</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get -y install gcc automake autoconf libtool make git<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># clone faketime代码</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> git clone https://github.com/wolfcw/libfaketime<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 进入目录并安装</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> libfaketime</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> make<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> make install<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 配置环境变量</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/local/lib/faketime/libfaketime.so.1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="nv">FAKETIME_NO_CACHE</span><span class="o">=</span><span class="m">1</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="第二步生成时间序列">第二步：生成时间序列</h3>
 <p>由于使用faketime后，系统时间无法实现自增操作，我们需要为每次时间间隔后的系统时间都进行指定，假设我们希望系统初试时间是“2020-01-01 00:00:00”，然后每隔“20s”，时间递增“六个小时”。</p>
@@ -272,31 +238,31 @@ code.has-jax {
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">get_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
-    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">timeArray</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">get_utc</span><span class="p">(</span><span class="n">timestamp</span><span class="p">):</span>
-    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">,</span> <span class="n">timeArray</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">generate_time_pipeline</span><span class="p">():</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;generate time pipeline&#34;</span><span class="p">)</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">init_time</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">while</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">end_time</span><span class="p">:</span>
-        <span class="n">time_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
-        <span class="n">start_time</span> <span class="o">+=</span> <span class="n">overlay_interval</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">return</span> <span class="n">time_list</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># 字符串不好叠加，我们使用时间戳来实现</span>
-    <span class="n">init_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-01 00:00:00&#34;</span><span class="p">)</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-02 00:00:00&#34;</span><span class="p">)</span>
-    <span class="n">overlay_interval</span> <span class="o">=</span> <span class="mi">6</span>
-    <span class="n">time_list</span> <span class="o">=</span> <span class="n">generate_time_pipeline</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_timestamp</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">mktime</span><span class="p">(</span><span class="n">timeArray</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_utc</span><span class="p">(</span><span class="n">timestamp</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">timeArray</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">,</span> <span class="n">timeArray</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">generate_time_pipeline</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;generate time pipeline&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">start_time</span> <span class="o">=</span> <span class="n">init_time</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">end_time</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start_time</span> <span class="o">+=</span> <span class="n">overlay_interval</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">time_list</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 字符串不好叠加，我们使用时间戳来实现</span>
+</span></span><span class="line"><span class="cl">    <span class="n">init_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-01 00:00:00&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end_time</span> <span class="o">=</span> <span class="n">get_timestamp</span><span class="p">(</span><span class="s2">&#34;2020-01-02 00:00:00&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">overlay_interval</span> <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl">    <span class="n">time_list</span> <span class="o">=</span> <span class="n">generate_time_pipeline</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="第三步设置系统时间">第三步：设置系统时间</h3>
 <p>因为我们还有测试程序要执行，所以我们通过多线程来设置系统时间，我们每隔6秒，设置一次系统时间。</p>
@@ -331,34 +297,34 @@ code.has-jax {
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">SetDateThread</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">regular_interval</span><span class="p">,</span> <span class="n">time_list</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span> <span class="o">=</span> <span class="n">regular_interval</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 用来标志时光机结束</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span> <span class="o">=</span> <span class="n">time_list</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">tts</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_sys_time</span><span class="p">(</span><span class="n">get_utc</span><span class="p">(</span><span class="n">tts</span><span class="p">))</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">True</span>
-
-    <span class="k">def</span> <span class="nf">set_sys_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tts</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tts</span><span class="p">)</span>
-
-<span class="o">...</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="o">...</span>
-    <span class="n">sdt</span> <span class="o">=</span> <span class="n">SetDateThread</span><span class="p">()</span>
-    <span class="n">sdt</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="c1"># 可以通过time_over来判断时间pipe是否设置完成</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">sdt</span><span class="o">.</span><span class="n">time_over</span><span class="p">:</span>
-       <span class="o">...</span>
-    <span class="n">sdt</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-        
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">SetDateThread</span><span class="p">(</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">engine</span><span class="p">,</span> <span class="n">regular_interval</span><span class="p">,</span> <span class="n">time_list</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span> <span class="o">=</span> <span class="n">regular_interval</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># 用来标志时光机结束</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span> <span class="o">=</span> <span class="n">time_list</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">tts</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">set_sys_time</span><span class="p">(</span><span class="n">get_utc</span><span class="p">(</span><span class="n">tts</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regular_interval</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">time_over</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">set_sys_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tts</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sdt</span> <span class="o">=</span> <span class="n">SetDateThread</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sdt</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 可以通过time_over来判断时间pipe是否设置完成</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="ow">not</span> <span class="n">sdt</span><span class="o">.</span><span class="n">time_over</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">       <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sdt</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="后记">后记</h2>
 <blockquote>
@@ -375,10 +341,10 @@ code.has-jax {
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">...</span>
-<span class="k">del</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span>
-<span class="o">...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FAKETIME&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>如果我们能连接到某个数据库服务器，或者网络服务器，可以获取网络时间</li>
@@ -400,20 +366,20 @@ code.has-jax {
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">...</span>
-<span class="k">def</span> <span class="nf">get_now_time</span><span class="p">(</span><span class="n">if_utc</span><span class="p">,</span> <span class="n">engine</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    获取当前网络时间
-</span><span class="s2">    :param if_utc: 是否要转换成utc时间格式
-</span><span class="s2">    :param engine: 数据库连接引擎
-</span><span class="s2">    :return: 当前时间
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">date_sql</span> <span class="o">=</span> <span class="s2">&#34;select now();&#34;</span>
-    <span class="n">date_res</span><span class="p">:</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ResultProxy</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">date_sql</span><span class="p">))</span>
-    <span class="n">date</span> <span class="o">=</span> <span class="n">date_res</span><span class="o">.</span><span class="n">first</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">date</span> <span class="k">if</span> <span class="n">if_utc</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_timestamp</span><span class="p">(</span><span class="n">date</span><span class="p">))</span>
-<span class="o">...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_now_time</span><span class="p">(</span><span class="n">if_utc</span><span class="p">,</span> <span class="n">engine</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    获取当前网络时间
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param if_utc: 是否要转换成utc时间格式
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :param engine: 数据库连接引擎
+</span></span></span><span class="line"><span class="cl"><span class="s2">    :return: 当前时间
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date_sql</span> <span class="o">=</span> <span class="s2">&#34;select now();&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date_res</span><span class="p">:</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">ResultProxy</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">date_sql</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">date</span> <span class="o">=</span> <span class="n">date_res</span><span class="o">.</span><span class="n">first</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&#34;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">date</span> <span class="k">if</span> <span class="n">if_utc</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">get_timestamp</span><span class="p">(</span><span class="n">date</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -496,7 +462,8 @@ code.has-jax {
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -513,7 +480,7 @@ code.has-jax {
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>2024 02 07 Python面试题[高级类] - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YG.Bingo" /><meta name="description" content="高级类 Python的GIL 为什么Python中的多线程不是真正的多线程？ GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="2024 02 07 Python面试题[高级类]" />
+<meta property="og:description" content="高级类 Python的GIL 为什么Python中的多线程不是真正的多线程？ GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-02-07T15:25:02+08:00" />
+<meta property="article:modified_time" content="2024-02-07T15:25:02+08:00" />
+
+<meta itemprop="name" content="2024 02 07 Python面试题[高级类]">
+<meta itemprop="description" content="高级类 Python的GIL 为什么Python中的多线程不是真正的多线程？ GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线"><meta itemprop="datePublished" content="2024-02-07T15:25:02+08:00" />
+<meta itemprop="dateModified" content="2024-02-07T15:25:02+08:00" />
+<meta itemprop="wordCount" content="3273">
+<meta itemprop="keywords" content="Python,面经," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="2024 02 07 Python面试题[高级类]"/>
+<meta name="twitter:description" content="高级类 Python的GIL 为什么Python中的多线程不是真正的多线程？ GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="https://ygbingo.github.io/online-bingo/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">2024 02 07 Python面试题[高级类]</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-02-07 </span>
+        
+          <span class="more-meta"> 3273 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#高级类">高级类</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#python的gil">Python的GIL</a></li>
+            <li><a href="#python中如何进行内存管理的">Python中如何进行内存管理的</a></li>
+            <li><a href="#介绍一下python的生成器generators">介绍一下Python的生成器(generators)</a></li>
+            <li><a href="#介绍一下python装饰器decorators">介绍一下Python装饰器(decorators)</a></li>
+            <li><a href="#介绍一下python的迭代器iterators">介绍一下Python的迭代器(iterators)</a></li>
+            <li><a href="#介绍一下dict和list的推导器comprehensions">介绍一下dict和list的推导器(comprehensions)</a></li>
+            <li><a href="#介绍一下lambda表达式">介绍一下lambda表达式</a></li>
+            <li><a href="#如何复制一个对象">如何复制一个对象</a></li>
+            <li><a href="#range和xrange的区别">range和xrange的区别</a></li>
+            <li><a href="#什么是pythonpath">什么是PYTHONPATH</a></li>
+            <li><a href="#py-和-pyc-有什么区别">.py 和 .pyc 有什么区别</a></li>
+            <li><a href="#python的解释过程interpreted">python的解释过程(interpreted)</a></li>
+            <li><a href="#args和kwargs"><code>*args</code>和<code>**kwargs</code></a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="高级类">高级类</h1>
+<h3 id="python的gil">Python的GIL</h3>
+<p><strong>为什么Python中的多线程不是真正的多线程？</strong></p>
+<ul>
+<li>GIL 是python的全局解释器锁，同一进程中假如有多个线程运行，一个线程在运行python程序的时候会霸占python解释器（加了一把锁即GIL），使该进程内的其他线程无法运行，等该线程运行完后其他线程才能运行。如果线程运行过程中遇到耗时操作，则解释器锁解开，使其他线程运行。所以在多线程中，线程的运行仍是有先后顺序的，并不是同时进行。</li>
+<li>多进程中因为每个进程都能被系统分配资源，相当于每个进程有了一个python解释器，所以多进程可以实现多个进程的同时运行，缺点是进程系统资源开销大。</li>
+</ul>
+<h3 id="python中如何进行内存管理的">Python中如何进行内存管理的</h3>
+<ul>
+<li>Python 中的内存管理由 Python 内存管理器处理。管理器分配的内存是专用于Python的私有堆空间的形式。所有Python对象都存储在这个堆中，并且是私有的，程序员无法访问它。不过，Python 确实提供了一些核心 API 函数来处理私有堆空间。</li>
+<li>此外，Python 有一个内置的垃圾收集功能，可以为私有堆空间回收未使用的内存。</li>
+<li>Memory management in Python is handled by the Python Memory Manager. The memory allocated by the manager is in form of a private heap space dedicated to Python. All Python objects are stored in this heap and being private, it is inaccessible to the programmer. Though, python does provide some core API functions to work upon the private heap space.</li>
+<li>Additionally, Python has an in-built garbage collection to recycle the unused memory for the private heap space.</li>
+</ul>
+<h3 id="介绍一下python的生成器generators">介绍一下Python的生成器(generators)</h3>
+<p>生成器是一种以设定的方式返回项目的可迭代集合的函数，一次一个。一般来说，生成器用于通过不同的方法创建迭代器。他们使用<code>yield</code>关键字而不是<code>return</code>来返回生成器对象。
+Generators are functions that return an iterable collection of items, one at a time, in a set manner. Generators, in general, are used to create iterators with a different approach. They employ the use of yield keyword rather than return to return a generator object.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1">## generate fibonacci numbers upto n</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">   <span class="k">while</span><span class="p">(</span><span class="n">p</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">       <span class="k">yield</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">       <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">q</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="n">q</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>    <span class="c1"># create generator object </span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">## iterating using __next__(), for Python2, use next()</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 5</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># output =&gt; 8</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>    <span class="c1"># error</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">## iterating using loop</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>    <span class="c1"># output =&gt; 0 1 1 2 3 5 8</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="介绍一下python装饰器decorators">介绍一下Python装饰器(decorators)</h3>
+<ul>
+<li>Python 中的装饰器本质上是向 Python 中现有函数添加功能而不更改函数本身结构的函数。它们在 Python 中用 @decorator_name 表示，并以自下而上的方式调用。</li>
+<li>Decorators in Python are essentially functions that add functionality to an existing function in Python without changing the structure of the function itself. They are represented the @decorator_name in Python and are called in a bottom-up fashion.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">lowercase_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">       <span class="n">func</span> <span class="o">=</span> <span class="n">func</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">       <span class="n">string_lowercase</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">string_lowercase</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@lowercase_decorator</span> <span class="c1"># this is executed first</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">hello</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="s1">&#39;Hello World&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hello</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>装饰器的美妙之处在于，除了向方法的输出添加功能之外，它们甚至可以接受函数的参数，并且可以在将这些参数传递给函数本身之前进一步修改这些参数。内部嵌套函数，即“包装器”函数，在这里发挥着重要作用。它的实现是为了强制封装，从而使其自身在全局范围内隐藏。
+The beauty of the decorators lies in the fact that besides adding functionality to the output of the method, they can even accept arguments for functions and can further modify those arguments before passing it to the function itself. The inner nested function, i.e. &lsquo;wrapper&rsquo; function, plays a significant role here. It is implemented to enforce encapsulation and thus, keep itself hidden from the global scope.</p>
+<h3 id="介绍一下python的迭代器iterators">介绍一下Python的迭代器(iterators)</h3>
+<ul>
+<li>迭代器是一个对象。</li>
+<li>它会记住它的状态，即迭代期间它所在的位置（请参阅下面的代码以了解如何进行）
+<code>__iter__()</code> 方法初始化一个迭代器。</li>
+<li>它有一个 <code>__next__()</code> 方法，该方法返回迭代中的下一个项目并指向下一个元素。到达可迭代对象的末尾时， <code>__next__()</code> 必须返回 StopIteration 异常。</li>
+<li>它也是可自我迭代的。</li>
+<li>迭代器是我们可以迭代可迭代对象（如列表、字符串等）的对象。</li>
+</ul>
+<h3 id="介绍一下dict和list的推导器comprehensions">介绍一下dict和list的推导器(comprehensions)</h3>
+<p>Python 推导式与装饰器一样，是语法糖结构，可帮助从给定列表、字典或集合构建更改和过滤的列表、字典或集合。使用推导式可以节省大量时间和代码，这些代码可能会更加冗长（包含更多代码行）。让我们看一些例子，其中推导式确实有用
+Python comprehensions, like decorators, are syntactic sugar constructs that help build altered and filtered lists, dictionaries, or sets from a given list, dictionary, or set. Using comprehensions saves a lot of time and code that might be considerably more verbose (containing more lines of code). Let&rsquo;s check out some examples, where comprehensions can be truly beneficial</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">squared_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">]</span>    <span class="c1"># list comprehension</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; [4 , 9 , 25 , 49 , 121]</span>
+</span></span><span class="line"><span class="cl"><span class="n">squared_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">}</span>    <span class="c1"># dict comprehension</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; {11: 121, 2: 4 , 3: 9 , 5: 25 , 7: 49}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">squared_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">if</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">]</span>    <span class="c1"># list comprehension</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; [9 , 25 , 49 , 121]</span>
+</span></span><span class="line"><span class="cl"><span class="n">squared_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">if</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">}</span>    <span class="c1"># dict comprehension</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; {11: 121, 3: 9 , 5: 25 , 7: 49}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)]</span>  <span class="c1"># parallel iterators</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; [8, 10, 12]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">b</span><span class="p">]</span>    <span class="c1"># nested iterators</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; [(1, 7), (1, 8), (1, 9), (2, 7), (2, 8), (2, 9), (3, 7), (3, 8), (3, 9)] </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">my_list</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">],[</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">],[</span><span class="mi">70</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">flattened</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">temp</span> <span class="ow">in</span> <span class="n">my_list</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># output =&gt; [10, 20, 30, 40, 50, 60, 70, 80, 90]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="介绍一下lambda表达式">介绍一下lambda表达式</h3>
+<p>Lambda 是 Python 中的一个匿名函数，它可以接受任意数量的参数，但只能有一个表达式。它通常用于需要短时间匿名函数的情况。 Lambda 函数可以通过以下两种方式使用：
+Lambda is an anonymous function in Python, that can accept any number of arguments, but can only have a single expression. It is generally used in situations requiring an anonymous function for a short time period. Lambda functions can be used in either of the two ways:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">mul</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="p">:</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">mul</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>    <span class="c1"># output =&gt; 10</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="如何复制一个对象">如何复制一个对象</h3>
+<p>在Python中，赋值语句（=运算符）不会复制对象。相反，它会在现有对象和目标变量名称之间创建绑定。要在Python中创建对象的副本，我们需要使用copy模块。此外，有两种使用复制模块为给定对象创建副本的方法 -</p>
+<ul>
+<li><strong>浅拷贝</strong>: 是对象的按位复制。创建的复制对象具有原始对象中值的精确副本。如果其中一个值是对其他对象的引用，则仅复制该对象的引用地址。</li>
+<li><strong>深拷贝</strong>: 将所有值从源对象递归复制到目标对象，即它甚至复制源对象引用的对象。
+In Python, the assignment statement (= operator) does not copy objects. Instead, it creates a binding between the existing object and the target variable name. To create copies of an object in Python, we need to use the copy module. Moreover, there are two ways of creating copies for the given object using the copy module -</li>
+<li><strong>Shallow Copy</strong> is a bit-wise copy of an object. The copied object created has an exact copy of the values in the original object. If either of the values is a reference to other objects, just the reference addresses for the same are copied.</li>
+<li><strong>Deep Copy</strong> copies all values recursively from source to target object, i.e. it even duplicates the objects referenced by the source object.</li>
+</ul>
+<h3 id="range和xrange的区别">range和xrange的区别</h3>
+<p>xrange() 和 range() 在功能上非常相似。它们都生成一个整数序列，唯一的区别是 range() 返回一个 Python 列表，而 xrange() 返回一个 xrange 对象。
+那么这有何不同呢？确实如此，因为与 range() 不同，xrange() 不会生成静态列表，而是动态创建值。该技术通常与对象类型生成器一起使用，并被称为“yielding”。</p>
+<ul>
+<li>yielding: 在内存受限的应用中，良率至关重要。在这种情况下，在 range() 中创建静态列表可能会导致内存错误，而 xrange() 可以通过为生成器使用足够的内存（相比之下要少得多）来最佳地处理它。</li>
+</ul>
+<h3 id="什么是pythonpath">什么是PYTHONPATH</h3>
+<p>PYTHONPATH 是一个环境变量，您可以设置它来添加 Python 将在其中查找模块和包的其他目录。这对于维护您不希望安装在全局默认位置的 Python 库特别有用。
+PYTHONPATH is an environment variable which you can set to add additional directories where Python will look for modules and packages. This is especially useful in maintaining Python libraries that you do not wish to install in the global default location.</p>
+<h3 id="py-和-pyc-有什么区别">.py 和 .pyc 有什么区别</h3>
+<ul>
+<li>.py 文件包含程序的源代码。而 .pyc 文件包含程序的字节码。编译 .py 文件（源代码）后我们得到字节码。不会为您运行的所有文件创建 .pyc 文件。它仅为您导入的文件创建。</li>
+<li>在执行 python 程序之前，python 解释器会检查已编译的文件。如果该文件存在，虚拟机就会执行它。如果未找到，它将检查 .py 文件。如果找到，则将其编译为 .pyc 文件，然后 python 虚拟机执行它。</li>
+<li>拥有 .pyc 文件可以节省编译时间</li>
+</ul>
+<h3 id="python的解释过程interpreted">python的解释过程(interpreted)</h3>
+<ul>
+<li>Python 作为一种语言，不是解释型的，也不是编译型的。解释或编译是实现的属性。 Python 是一种通常解释的字节码（解释器可读指令集）。</li>
+<li>源代码是一个扩展名为 .py 的文件。</li>
+<li>Python 将源代码编译为虚拟机的一组指令。 Python 解释器是该虚拟机的实现。这种中间格式称为“字节码”。</li>
+<li>.py 源代码首先被编译为 .pyc，即字节码。然后，该字节码可以由 PyPy 编译的官方 CPython 或 JIT（即时编译器）进行解释。</li>
+<li>Python as a language is not interpreted or compiled. Interpreted or compiled is the property of the implementation. Python is a bytecode(set of interpreter readable instructions) interpreted generally.</li>
+<li>Source code is a file with .py extension.</li>
+<li>Python compiles the source code to a set of instructions for a virtual machine. The Python interpreter is an implementation of that virtual machine. This intermediate format is called “bytecode”.</li>
+<li>.py source code is first compiled to give .pyc which is bytecode. This bytecode can be then interpreted by the official CPython or JIT(Just in Time compiler) compiled by PyPy.</li>
+</ul>
+<h3 id="args和kwargs"><code>*args</code>和<code>**kwargs</code></h3>
+<p>*<strong>args</strong></p>
+<ul>
+<li><code>*args</code> 是函数定义中用于传递可变长度参数的特殊语法。</li>
+<li><code>*</code>表示可变长度，<code>args</code>是约定使用的名称。您可以使用任何其他。
+**<strong>kwargs</strong></li>
+<li><code>**kwargs</code> 是函数定义中使用的一种特殊语法，用于传递可变长度关键字参数。</li>
+<li>在这里，“kwargs”也只是按照惯例使用。您可以使用任何其他名称。</li>
+<li>关键字参数是指传递给函数时具有名称的变量。</li>
+<li>它实际上是变量名称及其值的字典。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">argv</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="n">mul</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">argv</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">       <span class="n">mul</span> <span class="o">*=</span> <span class="n">num</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="n">mul</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">multiply</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">#output: 120</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tellArguments</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">   <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">       <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&#34;: &#34;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tellArguments</span><span class="p">(</span><span class="n">arg1</span> <span class="o">=</span> <span class="s2">&#34;argument 1&#34;</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="s2">&#34;argument 2&#34;</span><span class="p">,</span> <span class="n">arg3</span> <span class="o">=</span> <span class="s2">&#34;argument 3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#output:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># arg1: argument 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># arg2: argument 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># arg3: argument 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">YG.Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2024-02-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          <a href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/">
+            <span class="next-text nav-default">Python面试题[基础版]</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

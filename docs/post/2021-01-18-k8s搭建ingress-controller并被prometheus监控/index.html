@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.89.2 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
 <link rel="canonical" href="https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/" />
@@ -35,7 +35,7 @@
 
 
 
-<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
@@ -49,9 +49,8 @@
 <meta itemprop="name" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller">
 <meta itemprop="description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"><meta itemprop="datePublished" content="2021-01-18T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-01-18T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1471">
-<meta itemprop="keywords" content="k8s,prometheus,grafana,nginx," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller"/>
+<meta itemprop="wordCount" content="1499">
+<meta itemprop="keywords" content="k8s,prometheus,grafana,nginx," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="K8s搭建prometheus&#43;grafana&#43;ingress-controller"/>
 <meta name="twitter:description" content="最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome"/>
 
 <!--[if lte IE 9]>
@@ -117,41 +116,6 @@
   </ul>
 </nav>
 
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[\[','\]\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
-
-MathJax.Hub.Queue(function() {
-    
-    
-    
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-</style>
     </header>
 
     <main id="main" class="main">
@@ -165,6 +129,8 @@ code.has-jax {
       <div class="post-meta">
         <span class="post-time"> 2021-01-18 </span>
         
+          <span class="more-meta"> 1499 words </span>
+          <span class="more-meta"> 3 mins read </span>
         
       </div>
     </header>
@@ -242,9 +208,9 @@ code.has-jax {
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">az account set --subscription &lt;yourself_subscriptionId&gt;
-az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &lt;yourself_cluster_name&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">az account set --subscription &lt;yourself_subscriptionId&gt;
+</span></span><span class="line"><span class="cl">az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &lt;yourself_cluster_name&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>检查本地kubectl配置项</li>
@@ -254,8 +220,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl config get-contexts
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl config get-contexts
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>切换到你的aks中(比如切换到namespace为**************的aks中)</li>
@@ -265,8 +231,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl config use-context &lt;yourself_cluster_name&gt;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl config use-context &lt;yourself_cluster_name&gt;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="c-验证是否连接成功">c. 验证是否连接成功</h3>
 <ul>
@@ -277,8 +243,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get namespaces
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl get namespaces
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取所有部署项</li>
@@ -288,8 +254,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get deployments --all-namespaces=true
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl get deployments --all-namespaces=true
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取所有服务</li>
@@ -299,8 +265,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get svc --all-namespaces=true
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl get svc --all-namespaces=true
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="3-k8s-dashboard">3. K8s Dashboard</h1>
@@ -311,8 +277,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="b-在本地访问dashboard">b. 在本地访问dashboard</h3>
 <ul>
@@ -323,8 +289,8 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl proxy
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl proxy
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后再浏览器中直接访问连接即可：http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
 <ul>
@@ -344,10 +310,10 @@ az aks get-credentials --resource-group &lt;yourself_resource_group&gt; --name &
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">git clone -b release-0.6 git@github.com:prometheus-operator/kube-prometheus.git
-cd kube-prometheus
-kubectl create -f manifests/setup
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git clone -b release-0.6 git@github.com:prometheus-operator/kube-prometheus.git
+</span></span><span class="line"><span class="cl">cd kube-prometheus
+</span></span><span class="line"><span class="cl">kubectl create -f manifests/setup
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>等上面的应用部署完成后再执行下面这个命令!</li>
@@ -357,8 +323,8 @@ kubectl create -f manifests/setup
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl create -f manifests/
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl create -f manifests/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="b-访问prometheus">b. 访问prometheus</h3>
 <p>公网IP：修改service/grafana的type为LoadBanlancer，稍等片刻会出现对应的external ip地址</p>
@@ -372,13 +338,13 @@ kubectl create -f manifests/setup
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
-spec:
-  ...
-  type: LoadBalancer
-  ...
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">spec:
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  type: LoadBalancer
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://pic2.zhimg.com/80/v2-fece38580065c4a7ef7e526b418a6e3d_1440w.png" alt="prometheus-dashboard"></p>
 <h3 id="c-访问grafana">c. 访问grafana</h3>
@@ -404,24 +370,24 @@ spec:
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
-spec:
-  ...
-  template:
-    ...
-    containers:
-      - name: grafana
-        ...
-        env:
-          - name: GF_AUTH_PROXY_ENABLED
-            value: &#39;true&#39;
-          - name: GF_AUTH_ANONYMOUS_ENABLED
-            value: &#39;true&#39;
-          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
-            value: Admin
-        ...
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">spec:
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  template:
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">    containers:
+</span></span><span class="line"><span class="cl">      - name: grafana
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">        env:
+</span></span><span class="line"><span class="cl">          - name: GF_AUTH_PROXY_ENABLED
+</span></span><span class="line"><span class="cl">            value: &#39;true&#39;
+</span></span><span class="line"><span class="cl">          - name: GF_AUTH_ANONYMOUS_ENABLED
+</span></span><span class="line"><span class="cl">            value: &#39;true&#39;
+</span></span><span class="line"><span class="cl">          - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+</span></span><span class="line"><span class="cl">            value: Admin
+</span></span><span class="line"><span class="cl">        ...
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>公网IP：修改service/grafana的type为LoadBanlancer，稍等片刻会出现对应的external ip地址</li>
@@ -436,13 +402,13 @@ spec:
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
-spec:
-  ...
-  type: LoadBalancer
-  ...
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">spec:
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">  type: LoadBalancer
+</span></span><span class="line"><span class="cl">  ...
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img src="https://pic4.zhimg.com/80/v2-51d0d1d1cf21e3c8304cefc5fe6e24d6_1440w.png" alt="grafana-dashboard"></p>
 <hr>
@@ -456,8 +422,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>更新helm源</li>
@@ -467,8 +433,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm repo update
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">helm repo update
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>获取ingress-nginx参数(非必须)</li>
@@ -478,8 +444,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm show values ingress-nginx/ingress-nginx
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">helm show values ingress-nginx/ingress-nginx
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>安装ingress-nginx</li>
@@ -493,12 +459,12 @@ spec:
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm install nginx-ingress ingress-nginx/ingress-nginx \
-      --namespace monitoring \
-      --set controller.metrics.enabled=true \
-      --set controller.metrics.serviceMonitor.enabled=true \
-      --set defaultBackend.enabled=true
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">helm install nginx-ingress ingress-nginx/ingress-nginx \
+</span></span><span class="line"><span class="cl">      --namespace monitoring \
+</span></span><span class="line"><span class="cl">      --set controller.metrics.enabled=true \
+</span></span><span class="line"><span class="cl">      --set controller.metrics.serviceMonitor.enabled=true \
+</span></span><span class="line"><span class="cl">      --set defaultBackend.enabled=true
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="b-grafana中添加nginx-ingress-controller面板">b. Grafana中添加nginx ingress controller面板</h3>
 <p>Grafana → Create Import → Input dashboard id: 9614 → Load → chose Prometheus data source (default) → Import</p>
@@ -519,14 +485,14 @@ spec:
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">...
-spec:
-  containers:
-  - name: ingress-nginx
-    command: [ &#34;/bin/bash&#34;, &#34;-ce&#34;, &#34;tail -f /dev/null&#34; ]
-    ...
-...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">spec:
+</span></span><span class="line"><span class="cl">  containers:
+</span></span><span class="line"><span class="cl">  - name: ingress-nginx
+</span></span><span class="line"><span class="cl">    command: [ &#34;/bin/bash&#34;, &#34;-ce&#34;, &#34;tail -f /dev/null&#34; ]
+</span></span><span class="line"><span class="cl">    ...
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Q. pod日志出现：Invalid IngressClass (Spec.Controller) value &ldquo;nginx.org/ingress-controller&rdquo;. Should be &ldquo;k8s.io/ingress-nginx&rdquo;</li>
@@ -536,8 +502,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl delete ingressclass nginx
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl delete ingressclass nginx
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>查看helm可配置的参数</li>
@@ -547,8 +513,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">helm show values ingress-nginx/ingress-nginx
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">helm show values ingress-nginx/ingress-nginx
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>Q. 访问dashboard</li>
@@ -558,8 +524,8 @@ spec:
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">kubectl proxy
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">kubectl proxy
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Brower open url: http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/</p>
 <ul>
@@ -600,33 +566,33 @@ spec:
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-Yaml" data-lang="Yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-k8s</span><span class="w">
-</span><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="l">nodes/metrics</span><span class="w">
-</span><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
-</span><span class="w">  </span>- <span class="l">nodes/proxy</span><span class="w">
-</span><span class="w">  </span>- <span class="l">nodes</span><span class="w">
-</span><span class="w">  </span>- <span class="l">pods</span><span class="w">
-</span><span class="w">  </span>- <span class="l">services</span><span class="w">
-</span><span class="w">  </span>- <span class="l">ingresses.extensions</span><span class="w">
-</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span><span class="w"></span>- <span class="nt">nonResourceURLs</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="l">/metrics</span><span class="w">
-</span><span class="w">  </span>- <span class="l">/monitor/metrics</span><span class="w">
-</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-Yaml" data-lang="Yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prometheus-k8s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nodes/metrics</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nodes/proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nodes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pods</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">services</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingresses.extensions</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">nonResourceURLs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">/metrics</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">/monitor/metrics</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <h1 id="preference">Preference</h1>
@@ -718,7 +684,8 @@ spec:
 
   <span class="copyright-year">
     &copy; 
-    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2022 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 
@@ -735,7 +702,7 @@ spec:
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
 
 
 
