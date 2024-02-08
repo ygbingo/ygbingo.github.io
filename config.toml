@@ -5,7 +5,7 @@ title = "Bingo's Blog"
 preserveTaxonomyNames = true
 enableRobotsTXT = true
 enableEmoji = true
-theme = "even"
+theme = "seven"
 publishDir = "docs"
 enableGitInfo = false # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 
@@ -164,11 +164,11 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     placeholder = '哇，你来啦...'
     visitor = true
 
-  [params.flowchartDiagrams]# see https://blog.olowolo.com/example-site/post/js-flowchart-diagrams/
+  [params.flowchartDiagrams]# see https://blog.ygbingo.com/example-site/post/js-flowchart-diagrams/
     enable = false
     options = ""
 
-  [params.sequenceDiagrams] # see https://blog.olowolo.com/example-site/post/js-sequence-diagrams/
+  [params.sequenceDiagrams] # see https://blog.ygbingo.com/example-site/post/js-sequence-diagrams/
     enable = false
     options = ""            # default: "{theme: 'simple'}"
 
