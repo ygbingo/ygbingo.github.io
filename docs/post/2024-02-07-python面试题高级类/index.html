@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -82,7 +82,7 @@
         <li class="mobile-menu-item">文章</li>
       </a><a href="/tags/">
         <li class="mobile-menu-item">标签</li>
-      </a><a href="https://ygbingo.github.io/online-bingo/">
+      </a><a href="/about/">
         <li class="mobile-menu-item">关于</li>
       </a>
   </ul>
@@ -111,7 +111,7 @@
       </li><li class="menu-item">
         <a class="menu-item-link" href="/tags/">标签</a>
       </li><li class="menu-item">
-        <a class="menu-item-link" href="https://ygbingo.github.io/online-bingo/">关于</a>
+        <a class="menu-item-link" href="/about/">关于</a>
       </li>
   </ul>
 </nav>
@@ -129,14 +129,14 @@
       <div class="post-meta">
         <span class="post-time"> 2024-02-07 </span>
         
-          <span class="more-meta"> 3729 words </span>
-          <span class="more-meta"> 8 mins read </span>
+          <span class="more-meta"> 约 3729 字 </span>
+          <span class="more-meta"> 预计阅读 8 分钟 </span>
         
       </div>
     </header>
 
     <div class="post-toc" id="post-toc">
-  <h2 class="post-toc-title">Contents</h2>
+  <h2 class="post-toc-title">文章目录</h2>
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
@@ -478,11 +478,11 @@ PYTHONPATH is an environment variable which you can set to add additional direct
 
     <div class="post-copyright">
   <p class="copyright-item">
-    <span class="item-title">Author</span>
+    <span class="item-title">文章作者</span>
     <span class="item-content">YG.Bingo</span>
   </p>
   <p class="copyright-item">
-    <span class="item-title">LastMod</span>
+    <span class="item-title">上次更新</span>
     <span class="item-content">
         2024-02-07
         
@@ -491,7 +491,18 @@ PYTHONPATH is an environment variable which you can set to add additional direct
   
   
 </div>
-<footer class="post-footer">
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="https://raw.githubusercontent.com/ygbingo/hugo-theme-even/main/static/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    
+  </div>
+</div><footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/python/">Python</a>
           <a href="/tags/%E9%9D%A2%E7%BB%8F/">面经</a>
@@ -500,20 +511,55 @@ PYTHONPATH is an environment variable which you can set to add additional direct
         <a class="prev" href="/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/">
             <i class="iconfont icon-left"></i>
             <span class="prev-text nav-default">MongoDB面试题[基础类]</span>
-            <span class="prev-text nav-mobile">Prev</span>
+            <span class="prev-text nav-mobile">上一篇</span>
           </a>
         <a class="next" href="/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/">
             <span class="next-text nav-default">Python面试题[基础版]</span>
-            <span class="next-text nav-mobile">Next</span>
+            <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
       </nav>
     </footer>
   </article>
         </div>
-        
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2024-02-07 15:25:02 \u002b0800 CST',
+        title: 'Python面试题[高级类]',
+        clientID: '3e4b82575206b75760c1',
+        clientSecret: 'd3aa444dedf47396f143760cd879686e3d573191',
+        repo: 'ygbingo.github.io',
+        owner: 'ygbingo',
+        admin: ['ygbingo'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
 
-  
+  <span id="/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" class="leancloud_visitors" data-flag-title="Python面试题[高级类]">
+		<span class="post-meta-item-text">文章阅读量 </span>
+		<span class="leancloud-visitors-count">0</span>
+		<p></p>
+	  </span>
+  <div id="vcomments"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+  <script type="text/javascript">
+    new Valine({
+        el: '#vcomments' ,
+        appId: 'Tazy5ldRTBQgaek90rkrHT2q-MdYXbMMI',
+        appKey: 'gIZefMc3C83WzHUNcLUpLUNz',
+        notify:  false ,
+        verify:  false ,
+        avatar:'mm',
+        placeholder: '哇，你来啦...',
+        visitor:  true 
+    });
+  </script>
 
   
 
@@ -529,11 +575,11 @@ PYTHONPATH is an environment variable which you can set to add additional direct
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 - 
     <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
   </span>
 
@@ -541,7 +587,7 @@ PYTHONPATH is an environment variable which you can set to add additional direct
 
   <span class="copyright-year">
     &copy; 
-    2022 - 
+    2019 - 
     2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
@@ -560,6 +606,15 @@ PYTHONPATH is an environment variable which you can set to add additional direct
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 
