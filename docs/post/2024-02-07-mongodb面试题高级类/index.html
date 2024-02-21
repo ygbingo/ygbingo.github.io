@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>2024 02 07 MongoDB面试题[高级类] - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YG.Bingo" /><meta name="description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="2024 02 07 MongoDB面试题[高级类]" />
+<meta property="og:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2024-02-07T21:39:23+08:00" />
+<meta property="article:modified_time" content="2024-02-07T21:39:23+08:00" />
+
+<meta itemprop="name" content="2024 02 07 MongoDB面试题[高级类]">
+<meta itemprop="description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决"><meta itemprop="datePublished" content="2024-02-07T21:39:23+08:00" />
+<meta itemprop="dateModified" content="2024-02-07T21:39:23+08:00" />
+<meta itemprop="wordCount" content="4606">
+<meta itemprop="keywords" content="interview,mongoDB," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="2024 02 07 MongoDB面试题[高级类]"/>
+<meta name="twitter:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">2024 02 07 MongoDB面试题[高级类]</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-02-07 </span>
+        
+          <span class="more-meta"> 约 4606 字 </span>
+          <span class="more-meta"> 预计阅读 10 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#在mongodb中如何搜索">在MongoDB中如何搜索</a></li>
+    <li><a href="#解释一下索引indexing">解释一下索引(Indexing)</a></li>
+    <li><a href="#mongodb中的地理空间索引是什么what-are-geospatial-indexes-in-mongodb">MongoDB中的地理空间索引是什么(What are Geospatial Indexes in MongoDB?)</a></li>
+    <li><a href="#解释一下分片sharding">解释一下分片(Sharding)</a></li>
+    <li><a href="#解释一下-mongodb-中的-set-修饰符">解释一下 MongoDB 中的 SET 修饰符？</a></li>
+    <li><a href="#解释一下事务transactions">解释一下事务(Transactions)</a></li>
+    <li><a href="#mongo的图表charts是什么">Mongo的图表(Charts)是什么</a></li>
+    <li><a href="#解释一下mongo的聚合框架aggregation-framework">解释一下Mongo的聚合框架(Aggregation Framework)</a></li>
+    <li><a href="#什么是mongo的副本集replica-set">什么是Mongo的副本集(Replica Set)</a></li>
+    <li><a href="#解释mongo的复制架构replication-architecture">解释Mongo的复制架构(Replication Architecture)</a></li>
+    <li><a href="#mongo备份和恢复常用工具">Mongo备份和恢复常用工具</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="在mongodb中如何搜索">在MongoDB中如何搜索</h1>
+<p>“find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决定，该参数是指定查询条件的文档。</p>
+<p>例如：如果我们有一个想要匹配的字符串，例如带有值“alice”的“username”键，我们将使用该键/值对：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.find<span class="o">({</span><span class="s2">&#34;username&#34;</span> : <span class="s2">&#34;alice&#34;</span><span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <code>find</code> method is used to perform queries in MongoDB. Querying returns a subset of documents in a collection, from no documents at all to the entire collection. Which documents get returned is determined by the first argument to find, which is a document specifying the query criteria.</p>
+<p>For example: If we have a string we want to match, such as a &ldquo;username&rdquo; key with the value &ldquo;alice&rdquo;, we use that key/value pair instead:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.find<span class="o">({</span><span class="s2">&#34;username&#34;</span> : <span class="s2">&#34;alice&#34;</span><span class="o">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="解释一下索引indexing">解释一下索引(Indexing)</h1>
+<p>在 MongoDB 中，索引有助于有效地解决查询。索引的作用是以易于遍历的形式存储一小部分数据集。索引存储特定字段或字段集的值，按索引中指定的字段值排序。
+MongoDB 的索引与典型关系数据库索引的工作方式几乎相同。
+索引查看包含内容引用的有序列表。这些反过来又使 MongoDB 的查询速度提高了几个数量级。要创建索引，请使用 <code>createIndex</code> 集合方法。
+例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.find<span class="o">({</span><span class="s2">&#34;username&#34;</span>: <span class="s2">&#34;user101&#34;</span><span class="o">})</span>.explain<span class="o">(</span><span class="s2">&#34;executionStats&#34;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里，<code>executionStats</code>模式帮助我们理解使用索引来满足查询的效果</p>
+<p>In MongoDB, indexes help in efficiently resolving queries. What an Index does is that it stores a small part of the data set in a form that is easy to traverse. The index stores the value of the specific field or set of fields, ordered by the value of the field as specified in the index.
+MongoDB’s indexes work almost identically to typical relational database indexes.</p>
+<p>Indexes look at an ordered list with references to the content. These in turn allow MongoDB to query orders of magnitude faster. To create an index, use the <code>createIndex</code> collection method.</p>
+<p>For example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.find<span class="o">({</span><span class="s2">&#34;username&#34;</span>: <span class="s2">&#34;user101&#34;</span><span class="o">})</span>.explain<span class="o">(</span><span class="s2">&#34;executionStats&#34;</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here, <code>executionStats</code> mode helps us understand the effect of using an index to satisfy queries</p>
+<h1 id="mongodb中的地理空间索引是什么what-are-geospatial-indexes-in-mongodb">MongoDB中的地理空间索引是什么(What are Geospatial Indexes in MongoDB?)</h1>
+<p>MongoDB 有两种类型的地理空间索引：2dsphere 和 2d。 2dsphere 索引适用于基于 WGS84 基准对地球表面进行建模的球形几何形状。该基准将地球表面建模为扁球体，这意味着两极有一定程度的扁平化。因此，使用 2sphere 索引进行距离计算会考虑地球的形状，并且比 2d 索引更准确地处理两个城市之间的距离。对存储在二维平面上的点使用二维索引。</p>
+<p>2dsphere 允许您以 GeoJSON 格式指定点、线和多边形的几何形状。一个点由一个二元素数组给出，表示[longitude, latitude]：</p>
+<p>MongoDB has two types of geospatial indexes: 2dsphere and 2d. 2dsphere indexes work with spherical geometries that model the surface of the earth based on the WGS84 datum. This datum model the surface of the earth as an oblate spheroid, meaning that there is some flattening at the poles. Distance calculations using 2sphere indexes, therefore, take the shape of the earth into account and provide a more accurate treatment of distance between, for example, two cities, than do 2d indexes. Use 2d indexes for points stored on a two-dimensional plane.</p>
+<p>2dsphere allows you to specify geometries for points, lines, and polygons in the GeoJSON format. A point is given by a two-element array, representing [longitude, latitude]:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;name&#34;</span> <span class="p">:</span> <span class="s2">&#34;New York City&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;loc&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;Point&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&#34;coordinates&#34;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A line is given by an array of points:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;name&#34;</span> <span class="p">:</span> <span class="s2">&#34;Hudson River&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&#34;loc&#34;</span> <span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&#34;type&#34;</span> <span class="p">:</span> <span class="s2">&#34;LineString&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&#34;coordinates&#34;</span> <span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="解释一下分片sharding">解释一下分片(Sharding)</h1>
+<p>分片是跨机器分割数据的过程。我们有时也使用术语“分区”来描述这个概念。通过在每台机器上放置数据子集，我们可以存储更多数据并处理更多负载，而不需要更大或更强大的机器。
+下图中，RS0和RS1是分片。 MongoDB 的分片允许您创建由许多机器（分片）组成的集群，并在它们之间分解集合，将数据子集放在每个分片上。这允许您的应用程序的增长超出独立服务器或副本集的资源限制。</p>
+<p>Sharding is the process of splitting data up across machines. We also use the term “partitioning” sometimes to describe this concept. We can store more data and handle more load without requiring larger or more powerful machines, by putting a subset of data on each machine.
+In the figure below, RS0 and RS1 are shards. MongoDB’s sharding allows you to create a cluster of many machines (shards) and break up a collection across them, putting a subset of data on each shard. This allows your application to grow beyond the resource limits of a standalone server or replica set.</p>
+<h1 id="解释一下-mongodb-中的-set-修饰符">解释一下 MongoDB 中的 SET 修饰符？</h1>
+<p>如果字段的值尚不存在，则“$set”设置该值。这对于更新架构或添加用户定义的键非常有用。</p>
+<p>If the value of a field does not yet exist, the &ldquo;$set&rdquo; sets the value. This can be useful for updating schemas or adding user-defined keys.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">&gt; db.users.findOne<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;_id&#34;</span> : ObjectId<span class="o">(</span><span class="s2">&#34;4b253b067525f35f94b60a31&#34;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;name&#34;</span> : <span class="s2">&#34;alice&#34;</span>,
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;age&#34;</span> : 23,
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;sex&#34;</span> : <span class="s2">&#34;female&#34;</span>,
+</span></span><span class="line"><span class="cl">   <span class="s2">&#34;location&#34;</span> : <span class="s2">&#34;India&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; db.users.updateOne<span class="o">({</span><span class="s2">&#34;_id&#34;</span> : 
+</span></span><span class="line"><span class="cl">ObjectId<span class="o">(</span><span class="s2">&#34;4b253b067525f35f94b60a31&#34;</span><span class="o">)}</span>,
+</span></span><span class="line"><span class="cl">... <span class="o">{</span><span class="s2">&#34;</span><span class="nv">$set</span><span class="s2">&#34;</span> : <span class="o">{</span><span class="s2">&#34;favorite book&#34;</span> : <span class="s2">&#34;Start with Why&#34;</span><span class="o">}})</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="解释一下事务transactions">解释一下事务(Transactions)</h1>
+<p>事务是数据库中的处理逻辑单元，包括一个或多个数据库操作，可以是读取或写入操作。事务在 MongoDB 中提供了一个有用的功能来确保一致性。
+MongoDB 提供了两个 API 来使用事务。</p>
+<ul>
+<li>核心API：与关系数据库的语法类似（例如start_transaction和commit_transaction）</li>
+<li>回调 API：这是使用事务的推荐方法。它启动一个事务，执行指定的操作，然后提交（或因错误而中止）。它还自动合并“TransientTransactionError”和“UnknownTransactionCommitResult”的错误处理逻辑</li>
+</ul>
+<p>A transaction is a logical unit of processing in a database that includes one or more database operations, which can be read or write operations. Transactions provide a useful feature in MongoDB to ensure consistency.</p>
+<p>MongoDB provides two APIs to use transactions.</p>
+<ul>
+<li>Core API: It is a similar syntax to relational databases (e.g., start_transaction and commit_transaction)</li>
+<li>Call-back API: This is the recommended approach to using transactions. It starts a transaction, executes the specified operations, and commits (or aborts on the error). It also automatically incorporates error handling logic for &ldquo;TransientTransactionError&rdquo; and&quot;UnknownTransactionCommitResult&quot;</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 MongoClient 实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建数据库和集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="n">collection</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 开始事务</span>
+</span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">start_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 在事务范围内执行操作</span>
+</span></span><span class="line"><span class="cl">    <span class="n">collection</span><span class="o">.</span><span class="n">insert_one</span><span class="p">({</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;John Doe&#34;</span><span class="p">},</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">collection</span><span class="o">.</span><span class="n">update_one</span><span class="p">({</span><span class="s2">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;John Doe&#34;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&#34;$set&#34;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&#34;age&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}},</span> <span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交事务</span>
+</span></span><span class="line"><span class="cl"><span class="n">session</span><span class="o">.</span><span class="n">commit_transaction</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="mongo的图表charts是什么">Mongo的图表(Charts)是什么</h1>
+<p>MongoDB Charts 是 MongoDB 中用于数据可视化的新集成工具。
+MongoDB Charts 提供了使用 MongoDB 数据库中的数据创建可视化效果的最佳方法。
+它允许用户从数据库执行快速数据表示，而无需使用 Java 或 Python 等编程语言编写代码。</p>
+<p>MongoDB Charts is a new, integrated tool in MongoDB for data visualization.</p>
+<p>MongoDB Charts offers the best way to create visualizations using data from a MongoDB database.
+It allows users to perform quick data representation from a database without writing code in a programming language such as Java or Python.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 创建一个 MongoClient 实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">client</span> <span class="o">=</span> <span class="n">MongoClient</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建数据库和集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="n">collection</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建图表</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span> <span class="o">=</span> <span class="n">Charts</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="n">collection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置图表类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="s2">&#34;line&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置数据源</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">set_data_source</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置图表选项</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Test Chart&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">set_x_axis</span><span class="p">(</span><span class="s2">&#34;name&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">set_y_axis</span><span class="p">(</span><span class="s2">&#34;age&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 预览图表</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">preview</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存图表</span>
+</span></span><span class="line"><span class="cl"><span class="n">chart</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="解释一下mongo的聚合框架aggregation-framework">解释一下Mongo的聚合框架(Aggregation Framework)</h1>
+<ul>
+<li>
+<p>聚合框架是 MongoDB 中的一组分析工具，允许您对一个或多个集合中的文档进行分析。</p>
+</li>
+<li>
+<p>聚合框架基于管道的概念。通过聚合管道，我们从 MongoDB 集合获取输入，并将该集合中的文档传递到一个或多个阶段，每个阶段对其输入执行不同的操作（见下图）。每个阶段都将其之前的阶段作为输出作为输入。所有阶段的输入和输出都是文档——文档流。
+The aggregation framework is a set of analytics tools within MongoDB that allow you to do analytics on documents in one or more collections.
+The aggregation framework is based on the concept of a pipeline. With an aggregation pipeline, we take input from a MongoDB collection and pass the documents from that collection through one or more stages, each of which performs a different operation on its inputs (See figure below). Each stage takes as input whatever the stage before it produced as output. The inputs and outputs for all stages are documents—a stream of documents.</p>
+</li>
+<li>
+<p>聚合管道阶段
+以下是 MongoDB 聚合中常用的阶段：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">$match</span>：根据条件过滤文档
+</span></span><span class="line"><span class="cl"><span class="nv">$project</span>：选择要输出的字段
+</span></span><span class="line"><span class="cl"><span class="nv">$group</span>：按字段分组并计算聚合值
+</span></span><span class="line"><span class="cl"><span class="nv">$sort</span>：按字段排序
+</span></span><span class="line"><span class="cl"><span class="nv">$limit</span>：限制输出文档的数量
+</span></span><span class="line"><span class="cl"><span class="nv">$skip</span>：跳过指定数量的文档
+</span></span><span class="line"><span class="cl"><span class="nv">$unwind</span>：将数组解开为单独的文档
+</span></span><span class="line"><span class="cl"><span class="nv">$lookup</span>：从另一个集合中查找并关联文档
+</span></span><span class="line"><span class="cl"><span class="nv">$facet</span>：将管道分成多个并行管道
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>聚合执行流程</li>
+</ul>
+<ol>
+<li>文档从集合中流入管道。</li>
+<li>文档流依次经过每个阶段。</li>
+<li>每个阶段对文档流进行转换。</li>
+<li>最终结果文档输出到结果集合或游标。</li>
+</ol>
+<ul>
+<li>聚合示例</li>
+</ul>
+<p>以下是一个简单的聚合示例，用于计算集合中所有文档的平均年龄：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">db.collection.aggregate<span class="o">([</span>
+</span></span><span class="line"><span class="cl">  <span class="o">{</span> <span class="nv">$match</span>: <span class="o">{</span> age: <span class="o">{</span> <span class="nv">$gt</span>: <span class="m">18</span> <span class="o">}</span> <span class="o">}</span> <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">  <span class="o">{</span> <span class="nv">$group</span>: <span class="o">{</span> _id: null, averageAge: <span class="o">{</span> <span class="nv">$avg</span>: <span class="s2">&#34;</span><span class="nv">$age</span><span class="s2">&#34;</span> <span class="o">}</span> <span class="o">}</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该聚合管道首先使用 <code>$match</code> 阶段过滤年龄大于 18 岁的文档。然后，它使用 <code>$group</code> 阶段计算所有文档的平均年龄。</p>
+<h1 id="什么是mongo的副本集replica-set">什么是Mongo的副本集(Replica Set)</h1>
+<p>为了在多个服务器上保留相同的数据副本，我们使用复制。建议用于所有生产部署。使用复制来保持应用程序运行和数据安全，即使一台或多台服务器发生问题也是如此。</p>
+<p>这种复制可以通过 MongoDB 的副本集来创建。副本集是一组服务器，其中一个主服务器负责写入，多个辅助服务器保留主服务器数据的副本。如果主节点崩溃，辅助节点可以从它们之间选举一个新的主节点</p>
+<p>To keep identical copies of your data on multiple servers, we use replication. It is recommended for all production deployments. Use replication to keep your application running and your data safe, even if something happens to one or more of your servers.</p>
+<p>Such replication can be created by a replica set with MongoDB. A replica set is a group of servers with one primary, the server taking writes, and multiple secondaries, servers that keep copies of the primary’s data. If the primary crashes, the secondaries can elect a new primary from amongst themselves.</p>
+<ul>
+<li>
+<p>Replica Set 的主要优点包括：</p>
+<ul>
+<li>高可用性：即使主节点发生故障，应用程序也能继续运行。</li>
+<li>数据一致性：所有节点都保存相同的数据副本。</li>
+<li>读扩展性：可以通过增加从节点的数量来提高读取性能。</li>
+<li>写入扩展性：可以通过使用多个主节点来提高写入性能。</li>
+</ul>
+</li>
+<li>
+<p>Replica Set 的工作原理如下：</p>
+<ul>
+<li>所有写操作都发送到主节点。</li>
+<li>主节点将写操作应用到其数据副本上。</li>
+<li>主节点将写操作异步复制到从节点。</li>
+<li>从节点将写操作应用到其数据副本上。</li>
+</ul>
+</li>
+<li>
+<p>如果主节点发生故障，则从节点会进行选举以选出一个新的主节点。 选举过程如下：</p>
+</li>
+</ul>
+<ol>
+<li>所有从节点都投票给自己。</li>
+<li>得票最多的从节点成为新的主节点。</li>
+<li>新的主节点开始接受写操作。</li>
+</ol>
+<ul>
+<li>
+<p>Replica Set 的常见配置包括：</p>
+</li>
+<li>
+<p>3 个节点：这是最常见的配置，它提供良好的可用性和数据一致性。</p>
+</li>
+<li>
+<p>2 个节点：这种配置提供较低的成本，但可用性较低。</p>
+</li>
+<li>
+<p>4 个或更多节点：这种配置提供更高的可用性和数据一致性，但成本也更高。</p>
+</li>
+</ul>
+<h1 id="解释mongo的复制架构replication-architecture">解释Mongo的复制架构(Replication Architecture)</h1>
+<p>MongoDB 使用 Replica Sets 来确保数据的冗余和可用性。以下是其架构以及如何保证数据一致性的详细解释：</p>
+<ul>
+<li>
+<p>核心组件：</p>
+<ul>
+<li>主节点： 负责处理所有写操作的单个节点。它是您的数据的“真相来源”。</li>
+<li>从节点： 主节点的副本，接收并存储数据的副本。它们无法直接处理写入，但可以提供读取请求。</li>
+<li>仲裁者（可选）： 仅投票的成员，不存储数据，但有助于选举过程。</li>
+</ul>
+</li>
+<li>
+<p>数据复制过程：</p>
+<ul>
+<li>写入： 所有写入首先进入主节点。</li>
+<li>操作日志： 主节点将操作记录在专用的“操作日志”(oplog)中。</li>
+<li>复制： 操作日志会持续复制到所有从节点。</li>
+<li>从节点更新： 每个从节点在其自身数据上重放操作日志更新，保持一致性。</li>
+</ul>
+</li>
+<li>
+<p>数据一致性：</p>
+<ul>
+<li>最终一致性： 从节点上的数据最终会与主节点保持一致。但是，根据网络和系统负载，可能存在短暂的延迟。</li>
+<li>读取您自己的写入： 从主节点读取始终反映最新数据。</li>
+<li>写入关注： 您可以配置“写入关注”以指定在写入被视为完成之前，应该有多少个从节点确认它，增强一致性保证。</li>
+</ul>
+</li>
+<li>
+<p>高可用性：</p>
+<ul>
+<li>如果主节点失败，从节点将参与选举以选出新的主节点。</li>
+<li>新的主节点将以最小的停机时间恢复操作，确保持续的数据访问。</li>
+</ul>
+</li>
+<li>
+<p>优点：</p>
+<ul>
+<li>提高数据可用性： 如果一个节点失败，其他节点可以提供服务。</li>
+<li>灾难恢复： 副本在发生灾难性故障时充当备份。</li>
+<li>读取扩展性： 将读取负载分散到多个节点以提高性能。</li>
+</ul>
+</li>
+<li>
+<p>其他注意事项：</p>
+<ul>
+<li>您可以配置多个从节点甚至多个主节点，以增强冗余性和可扩展性。</li>
+<li>复制会带来一些开销，因此请根据您的需求选择平衡可用性、性能和成本的配置。</li>
+</ul>
+</li>
+</ul>
+<p>MongoDB utilizes Replica Sets to ensure data redundancy and availability. Here&rsquo;s a breakdown of its architecture and how it guarantees data consistency:</p>
+<p>Core Components:</p>
+<p>Primary Node: Single node responsible for processing all write operations. It acts as the &ldquo;source of truth&rdquo; for your data.
+Secondary Nodes: Replicas of the primary node that receive and store copies of the data. They can&rsquo;t handle writes directly but serve read requests.
+Arbiter (Optional): Vote-only member that doesn&rsquo;t store data but helps with election process.
+Data Replication Process:</p>
+<p>Writes: All writes go to the primary node first.
+Oplog: The primary logs operations in a dedicated &ldquo;oplog&rdquo; (operations log).
+Replication: The oplog is continuously replicated to all secondaries.
+Secondary Updates: Each secondary replays the oplog updates on its own data, maintaining consistency.
+Data Consistency:</p>
+<p>Eventual Consistency: Data on secondaries eventually becomes consistent with the primary. However, there might be a short lag depending on network and system load.
+Read Your Own Writes: Reads from the primary always reflect the latest data.
+Write Concerns: You can configure &ldquo;write concerns&rdquo; to specify how many secondaries should acknowledge a write before it&rsquo;s considered complete, enhancing consistency guarantees.
+High Availability:</p>
+<p>If the primary fails, secondaries participate in an election to elect a new one.
+The new primary resumes operations with minimal downtime, ensuring continuous data access.
+Benefits:</p>
+<p>Increased Data Availability: If one node fails, others can serve requests.
+Disaster Recovery: Replicas act as backups in case of catastrophic failure.
+Read Scalability: Spread read load across multiple nodes for better performance.
+Additional Notes:</p>
+<p>You can configure multiple secondaries and even multiple primaries for enhanced redundancy and scalability.
+Replication introduces some overhead, so choose a configuration that balances availability, performance, and cost based on your needs.
+I hope this explanation clarifies the Replication Architecture in MongoDB! Feel free to ask any further questions you might have.</p>
+<h1 id="mongo备份和恢复常用工具">Mongo备份和恢复常用工具</h1>
+<p>The mongo shell does not include functions for exporting, importing, backup, or restore. However, MongoDB has created methods for accomplishing this, so that no scripting work or complex GUIs are needed. For this, several utility scripts are provided that can be used to get data in or out of the database in bulk. These utility scripts are:</p>
+<ul>
+<li>mongoimport
+<ul>
+<li>将数据导入到 MongoDB 数据库中。</li>
+<li>支持 JSON、CSV、TSV 等格式的数据导入。</li>
+<li>可以指定导入的数据库、集合、字段等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mongoimport --db <span class="nb">test</span> --collection users --file users.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>mongoexport
+<ul>
+<li>将 MongoDB 数据库中的数据导出到文件。</li>
+<li>支持 JSON、CSV、TSV 等格式的数据导出。</li>
+<li>可以指定导出的数据库、集合、字段、查询条件等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mongoexport --db <span class="nb">test</span> --collection users --file users.json --query <span class="s1">&#39;{age: {$gt: 18}}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>mongodump
+<ul>
+<li>将 MongoDB 数据库备份到文件。</li>
+<li>导出的是 BSON 格式的数据，可以用于恢复数据库。</li>
+<li>可以指定备份的数据库、集合等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mongodump --db <span class="nb">test</span> --collection users --out users.bson
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>mongorestore
+<ul>
+<li>将 MongoDB 数据库从备份文件中恢复。</li>
+<li>可以恢复整个数据库或部分集合。</li>
+<li>可以指定恢复的数据库、集合等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">mongorestore --db <span class="nb">test</span> --collection users --file users.bson
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">YG.Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-02-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞助我一杯咖啡吧！</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="https://raw.githubusercontent.com/ygbingo/hugo-theme-even/main/static/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/interview/">interview</a>
+          <a href="/tags/mongodb/">mongoDB</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/">
+            <span class="next-text nav-default">MongoDB面试题[基础类]</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2024-02-07 21:39:23 \u002b0800 CST',
+        title: '2024 02 07 MongoDB面试题[高级类]',
+        clientID: '3e4b82575206b75760c1',
+        clientSecret: 'd3aa444dedf47396f143760cd879686e3d573191',
+        repo: 'ygbingo.github.io',
+        owner: 'ygbingo',
+        admin: ['ygbingo'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

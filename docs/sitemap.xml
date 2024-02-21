@@ -2,42 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</loc>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://ygbingo.github.io/</loc>
-    <lastmod>2024-02-07T21:04:27+08:00</lastmod>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://ygbingo.github.io/tags/interview/</loc>
-    <lastmod>2024-02-07T21:04:27+08:00</lastmod>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://ygbingo.github.io/tags/mongodb/</loc>
-    <lastmod>2024-02-07T21:04:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</loc>
-    <lastmod>2024-02-07T21:04:27+08:00</lastmod>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://ygbingo.github.io/post/</loc>
-    <lastmod>2024-02-07T21:04:27+08:00</lastmod>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://ygbingo.github.io/tags/</loc>
+    <lastmod>2024-02-07T21:39:23+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</loc>
     <lastmod>2024-02-07T21:04:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

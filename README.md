@@ -42,7 +42,7 @@ Personal Pages
 1. 下载主题到blog下的themes目录，在blog所在目录执行如下命令：
 
    ```bash
-   $ git clone https://github.com/ygbingo/hugo-theme-seven themes/even
+   $ git clone https://github.com/ygbingo/hugo-theme-seven themes/seven
    ```
 
 2. 使用even主题自带的全局配置config.toml覆盖Hugo初始安装的config.toml

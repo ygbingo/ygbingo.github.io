@@ -155,9 +155,9 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   # You can get your appid and appkey from https://leancloud.cn
   # more info please open https://valine.js.org
   [params.valine]
-    enable = true
-    appId = 'Tazy5ldRTBQgaek90rkrHT2q-MdYXbMMI'
-    appKey = 'gIZefMc3C83WzHUNcLUpLUNz'
+    enable = false
+    appId = '*'
+    appKey = '*'
     notify = false  # mail notifier , https://github.com/xCss/Valine/wiki
     verify = false # Verification code
     avatar = 'mm'

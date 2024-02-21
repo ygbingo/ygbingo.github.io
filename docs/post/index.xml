@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 07 Feb 2024 21:04:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 07 Feb 2024 21:39:23 +0800</lastBuildDate>
     <atom:link href="https://ygbingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2024 02 07 MongoDB面试题[高级类]</title>
+      <link>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
+      <pubDate>Wed, 07 Feb 2024 21:39:23 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
+      <description>在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决</description>
+    </item>
     <item>
       <title>MongoDB面试题[基础类]</title>
       <link>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
