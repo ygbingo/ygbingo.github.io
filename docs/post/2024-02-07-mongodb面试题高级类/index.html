@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>MongoDB面试题[高级类] - Bingo&#39;s Blog</title>
@@ -23,10 +23,10 @@
 
 
 
-<meta name="generator" content="Hugo 0.122.0 with theme even" />
+<meta name="generator" content="Hugo 0.125.7 with theme even" />
 
 
-<link rel="canonical" href="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" />
+<link rel="canonical" href="http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,19 +39,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="MongoDB面试题[高级类]" />
-<meta property="og:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2024-02-07T21:39:23+08:00" />
-<meta property="article:modified_time" content="2024-02-07T21:39:23+08:00" />
+<meta property="og:url" content="http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/">
+  <meta property="og:site_name" content="Bingo&#39;s Blog">
+  <meta property="og:title" content="MongoDB面试题[高级类]">
+  <meta property="og:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决">
+  <meta property="og:locale" content="zh-cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-02-07T21:39:23+08:00">
+    <meta property="article:modified_time" content="2024-02-07T21:39:23+08:00">
+    <meta property="article:tag" content="Interview">
+    <meta property="article:tag" content="MongoDB">
 
-<meta itemprop="name" content="MongoDB面试题[高级类]">
-<meta itemprop="description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决"><meta itemprop="datePublished" content="2024-02-07T21:39:23+08:00" />
-<meta itemprop="dateModified" content="2024-02-07T21:39:23+08:00" />
-<meta itemprop="wordCount" content="4606">
-<meta itemprop="keywords" content="interview,mongoDB," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="MongoDB面试题[高级类]"/>
-<meta name="twitter:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决"/>
+  <meta itemprop="name" content="MongoDB面试题[高级类]">
+  <meta itemprop="description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决">
+  <meta itemprop="datePublished" content="2024-02-07T21:39:23+08:00">
+  <meta itemprop="dateModified" content="2024-02-07T21:39:23+08:00">
+  <meta itemprop="wordCount" content="4606">
+  <meta itemprop="keywords" content="Interview,MongoDB"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="MongoDB面试题[高级类]">
+<meta name="twitter:description" content="在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -738,7 +744,7 @@ I hope this explanation clarifies the Replication Architecture in MongoDB! Feel 
       <div class="social-links">
       <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
-  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">

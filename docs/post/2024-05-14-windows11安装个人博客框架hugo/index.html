@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Windows11安装个人博客框架hugo - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YG.Bingo" /><meta name="description" content="本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.125.7 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/">
+  <meta property="og:site_name" content="Bingo&#39;s Blog">
+  <meta property="og:title" content="Windows11安装个人博客框架hugo">
+  <meta property="og:description" content="本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示">
+  <meta property="og:locale" content="zh-cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-05-14T11:54:44+08:00">
+    <meta property="article:modified_time" content="2024-05-14T11:54:44+08:00">
+    <meta property="article:tag" content="Hugo">
+    <meta property="article:tag" content="Choco">
+    <meta property="article:tag" content="博客">
+
+  <meta itemprop="name" content="Windows11安装个人博客框架hugo">
+  <meta itemprop="description" content="本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示">
+  <meta itemprop="datePublished" content="2024-05-14T11:54:44+08:00">
+  <meta itemprop="dateModified" content="2024-05-14T11:54:44+08:00">
+  <meta itemprop="wordCount" content="224">
+  <meta itemprop="keywords" content="Hugo,Choco,博客"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Windows11安装个人博客框架hugo">
+<meta name="twitter:description" content="本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Windows11安装个人博客框架hugo</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2024-05-14 </span>
+        
+          <span class="more-meta"> 约 224 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#installing">Installing</a>
+      <ul>
+        <li><a href="#install-choco">Install choco</a></li>
+        <li><a href="#install-hugo">Install Hugo</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>本篇博客采用choco的方式安装hugo</p>
+</blockquote>
+<h1 id="installing">Installing</h1>
+<h2 id="install-choco">Install choco</h2>
+<ol>
+<li>使用管理员方式打开Powershell</li>
+<li>执行<code>Get-ExecutionPolicy</code>, 如果出现提示是否确认，输入A可以自动确认所有环节</li>
+</ol>
+<ul>
+<li>如果返回<code>Restricted</code>: 执行<code>Set-ExecutionPolicy AllSigned</code>, 然后弹出&gt;, 再执行<code>&gt; Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1')) </code></li>
+</ul>
+<ol start="3">
+<li>等待&hellip;</li>
+<li>如果没有异常提示，就代表安装成功啦！可以执行<code>choco</code>验证。</li>
+</ol>
+<h2 id="install-hugo">Install Hugo</h2>
+<ol>
+<li>安装choco之后，直接执行 <code>choco install hugo-extended</code></li>
+<li>等待安装完成</li>
+</ol>
+<h1 id="reference">Reference</h1>
+<ol>
+<li><a href="https://gohugo.io/installation/windows/">hugo install</a></li>
+<li><a href="https://chocolatey.org/install">Installing Chocolatey</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">YG.Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2024-05-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞助我一杯咖啡吧！</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="https://raw.githubusercontent.com/ygbingo/hugo-theme-even/main/static/img/reward/wechat.png">
+        <span>微信打赏</span>
+      </label>
+    
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/hugo/">hugo</a>
+          <a href="/tags/choco/">choco</a>
+          <a href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2024-05-14-fastapi&#43;orm%E6%90%AD%E5%BB%BApython%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1/">
+            <span class="next-text nav-default">FastApi&#43;Orm搭建Python后端服务</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2024-05-14 11:54:44 \u002b0800 CST',
+        title: 'Windows11安装个人博客框架hugo',
+        clientID: '3e4b82575206b75760c1',
+        clientSecret: 'd3aa444dedf47396f143760cd879686e3d573191',
+        repo: 'ygbingo.github.io',
+        owner: 'ygbingo',
+        admin: ['ygbingo'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

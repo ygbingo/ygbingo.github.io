@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>知识图谱 on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</link>
+    <link>http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</link>
     <description>Recent content in 知识图谱 on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>知识图谱相关论文推荐</title>
-      <link>https://ygbingo.github.io/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</link>
+      <link>http://localhost:1313/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</guid>
+      <guid>http://localhost:1313/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</guid>
       <description>学海无涯苦作舟，独居深山老林中 知识推理 2010，PRA：Relational retrieval using a combination of path-constrained random walks, Machine Learning. 将图谱中的路径做为特征，构建路径的关系分类模</description>
     </item>
     <item>
       <title>从0到1搭建Neo4j</title>
-      <link>https://ygbingo.github.io/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</link>
+      <link>http://localhost:1313/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</guid>
+      <guid>http://localhost:1313/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</guid>
       <description>搭建Neo4j图形数据库环境 保持快乐，你就会干得好，就更成功、更健康，对别人也就更仁慈。——马克斯威尔·马尔兹 Neo4j是一个高性能的,NO</description>
     </item>
     <item>
       <title>视频检测系统</title>
-      <link>https://ygbingo.github.io/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</link>
+      <link>http://localhost:1313/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>http://localhost:1313/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</guid>
       <description>海康威视视频流解析 产品型号：DS-2DC2204IW-D3/W 基于Java对视频流的图像解析 基于Java的实体检测 基于Java的颜色识别 基于</description>
     </item>
     <item>
       <title>HyTE论文解读</title>
-      <link>https://ygbingo.github.io/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>http://localhost:1313/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>http://localhost:1313/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>一个人可以非常清贫、困顿、低微，但是不可以没有梦想。只要梦想一天，只要梦想存在一天，就可以改变自己的处境。 &amp;mdash; 奥普拉·温弗瑞 Trans系列的主</description>
     </item>
     <item>
       <title>动态知识图谱补全整合</title>
-      <link>https://ygbingo.github.io/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</link>
+      <link>http://localhost:1313/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</guid>
+      <guid>http://localhost:1313/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</guid>
       <description>喷泉的高度不会超越它的源头，一个人的事业也是这样，他的成就决不会超过自己的信念。&amp;mdash; 亚莫拉罕·林肯 动态知识图谱简介 本页面总结了有关</description>
     </item>
     <item>
       <title>TransE论文解读</title>
-      <link>https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>http://localhost:1313/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>http://localhost:1313/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free</description>
     </item>
   </channel>

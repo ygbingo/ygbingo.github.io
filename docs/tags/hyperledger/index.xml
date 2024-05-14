@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hyperledger on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/hyperledger/</link>
+    <link>http://localhost:1313/tags/hyperledger/</link>
     <description>Recent content in Hyperledger on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 22 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/hyperledger/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/hyperledger/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hyperleger简介</title>
-      <link>https://ygbingo.github.io/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</link>
+      <link>http://localhost:1313/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</guid>
+      <guid>http://localhost:1313/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</guid>
       <description>Hyperledger是一项开源协作，旨在推动跨行业区块链技术的发展。 这是一项全球合作，包括银行，金融，物联网，制造，供应链和技术领域的领导</description>
     </item>
   </channel>

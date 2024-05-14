@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nginx on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/nginx/</link>
-    <description>Recent content in nginx on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Nginx on Bingo&#39;s Blog</title>
+    <link>http://localhost:1313/tags/nginx/</link>
+    <description>Recent content in Nginx on Bingo&#39;s Blog</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 18 Jan 2021 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>K8s搭建prometheus&#43;grafana&#43;ingress-controller</title>
-      <link>https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</link>
+      <link>http://localhost:1313/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</link>
       <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</guid>
+      <guid>http://localhost:1313/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</guid>
       <description>最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome</description>
     </item>
   </channel>

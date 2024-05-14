@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>图像处理 on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+    <link>http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
     <description>Recent content in 图像处理 on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 10 Jul 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【OpenCV4文档】目录</title>
-      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
+      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
+      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
       <description>【OpenCV文档】目录 最近接到一个图像项目，之前都是直接从github上找现成的，这次从头学起发现有很多内容，看了看官方文档，通过该形式记</description>
     </item>
     <item>
       <title>【OpenCV4文档01】Core</title>
-      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
+      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
+      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
       <description>矩阵：基本图像容器 兼容性：&amp;gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像</description>
     </item>
     <item>
       <title>【OpenCV4文档09】Objdetect</title>
-      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
+      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
+      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
       <description>级联分类器 支持语言：C++，Java，Python 编译条件：&amp;gt; OpenCV 2.0 学习如何从图片或视频中找到目标。 目标 使用 cv::CascadeClassifier 类从视频流中检测物体，将用</description>
     </item>
     <item>
       <title>Java DPI介绍</title>
-      <link>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
+      <link>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
       <description>Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel</description>
     </item>
   </channel>

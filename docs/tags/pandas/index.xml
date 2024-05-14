@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pandas on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/pandas/</link>
+    <link>http://localhost:1313/tags/pandas/</link>
     <description>Recent content in Pandas on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 07 Jul 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【python处理数据】使用pandas处理Excel</title>
-      <link>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</link>
+      <link>http://localhost:1313/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</link>
       <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</guid>
+      <guid>http://localhost:1313/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</guid>
       <description>思考一下这个问题： 有一个年纪成绩表.xlsx文件，包含：班级、姓名、语文、数学、英语，这个年级一共有五个班，现在想把五个班的成绩分别存到不同</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>深度学习 on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+    <link>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 深度学习 on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 24 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从0到1实现自动聊天机器人</title>
-      <link>https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
+      <link>http://localhost:1313/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
+      <guid>http://localhost:1313/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
       <description>How are you ? I&amp;rsquo;m fine, Thank you, And you? I&amp;rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼</description>
     </item>
   </channel>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pytorch on Bingo&#39;s Blog</title>
-    <link>https://ygbingo.github.io/tags/pytorch/</link>
+    <link>http://localhost:1313/tags/pytorch/</link>
     <description>Recent content in Pytorch on Bingo&#39;s Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 24 Oct 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ygbingo.github.io/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/pytorch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【转】windows环境下安装Pytorch</title>
-      <link>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
+      <link>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
       <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
+      <guid>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
       <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 WIn10+Anaconda环</description>
     </item>
   </channel>

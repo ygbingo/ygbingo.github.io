@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>【OpenCV4文档01】Core - Bingo&#39;s Blog</title>
@@ -23,10 +23,10 @@
 
 
 
-<meta name="generator" content="Hugo 0.122.0 with theme even" />
+<meta name="generator" content="Hugo 0.125.7 with theme even" />
 
 
-<link rel="canonical" href="https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/" />
+<link rel="canonical" href="http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,19 +39,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="【OpenCV4文档01】Core" />
-<meta property="og:description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2019-07-10T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-07-10T00:00:00+00:00" />
+<meta property="og:url" content="http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/">
+  <meta property="og:site_name" content="Bingo&#39;s Blog">
+  <meta property="og:title" content="【OpenCV4文档01】Core">
+  <meta property="og:description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像">
+  <meta property="og:locale" content="zh-cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-07-10T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-10T00:00:00+00:00">
+    <meta property="article:tag" content="机器学习">
+    <meta property="article:tag" content="图像处理">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="OpenCV">
+    <meta property="article:tag" content="Core">
 
-<meta itemprop="name" content="【OpenCV4文档01】Core">
-<meta itemprop="description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像"><meta itemprop="datePublished" content="2019-07-10T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-07-10T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2753">
-<meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Core," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="【OpenCV4文档01】Core"/>
-<meta name="twitter:description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像"/>
+  <meta itemprop="name" content="【OpenCV4文档01】Core">
+  <meta itemprop="description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像">
+  <meta itemprop="datePublished" content="2019-07-10T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-07-10T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2753">
+  <meta itemprop="keywords" content="机器学习,图像处理,Java,OpenCV,Core"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="【OpenCV4文档01】Core">
+<meta name="twitter:description" content="矩阵：基本图像容器 兼容性：&gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -362,7 +371,7 @@ C ++界面的主要缺点是目前许多嵌入式开发系统只支持C.因此�
       <div class="social-links">
       <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
-  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
