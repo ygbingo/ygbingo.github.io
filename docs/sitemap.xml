@@ -2,8 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://ygbingo.github.io/</loc>
-    <lastmod>2025-04-14T10:31:23+08:00</lastmod>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/celery/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/fastapi/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/python/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/</loc>
+    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</loc>
+    <lastmod>2025-04-15T09:54:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -24,20 +73,6 @@
   
   <url>
     <loc>https://ygbingo.github.io/tags/interview/</loc>
-    <lastmod>2025-04-14T10:31:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/post/</loc>
-    <lastmod>2025-04-14T10:31:23+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/tags/</loc>
     <lastmod>2025-04-14T10:31:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -95,13 +130,6 @@
   <url>
     <loc>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</loc>
     <lastmod>2024-02-07T21:04:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/tags/python/</loc>
-    <lastmod>2024-02-07T15:25:02+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

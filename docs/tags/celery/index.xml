@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>celery on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/celery/</link>
+    <description>Recent content in celery on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 15 Apr 2025 13:54:44 +0800</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/tags/celery/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【炸裂】Python后台任务Celery全面解析(二)-执行池(Execution Pool)类型</title>
+      <link>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Tue, 15 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</guid>
+      <description>在 Python 的 Celery 分布式任务队列中，-P 参数用于指定 执行池（Execution Pool）类型，它决定了 Celery Worker 如何并发处理任务。不同执行池对任务的调度方式</description>
+    </item>
+    <item>
+      <title>【炸裂】Python后台任务Celery全面解析</title>
+      <link>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 15 Apr 2025 09:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</guid>
+      <description>Python 的 Celery 框架是一个专注于分布式任务队列和异步任务调度的开源工具，其设计理念基于生产者-消费者模型，通过解耦任务执行与主程序逻辑，显著提升系统的</description>
+    </item>
+  </channel>
+</rss>
