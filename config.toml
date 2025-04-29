@@ -180,7 +180,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   [params.reward]                                         # 文章打赏
     enable = true
-    wechat = "https://raw.githubusercontent.com/ygbingo/hugo-theme-even/main/static/img/reward/wechat.png"           # 微信二维码
+    wechat = "https://ygbingo-1257417561.cos.ap-shanghai.myqcloud.com/imgs/54ffe4b4-24da-4c37-8909-4c5da6ae2313.jpg"           # 微信二维码
     # alipay = "/resources/img/alipay.jpg"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
