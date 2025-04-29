@@ -2,332 +2,346 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Bingo&#39;s Blog</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://ygbingo.github.io/tags/</link>
     <description>Recent content in Tags on Bingo&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 May 2024 11:54:44 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Apr 2025 13:54:44 +0800</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Choco</title>
-      <link>http://localhost:1313/tags/choco/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/choco/</guid>
+      <title>celery</title>
+      <link>https://ygbingo.github.io/tags/celery/</link>
+      <pubDate>Tue, 15 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/celery/</guid>
       <description></description>
     </item>
     <item>
-      <title>Hugo</title>
-      <link>http://localhost:1313/tags/hugo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hugo/</guid>
+      <title>fastapi</title>
+      <link>https://ygbingo.github.io/tags/fastapi/</link>
+      <pubDate>Tue, 15 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/fastapi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>python</title>
+      <link>https://ygbingo.github.io/tags/python/</link>
+      <pubDate>Tue, 15 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>data mining</title>
+      <link>https://ygbingo.github.io/tags/data-mining/</link>
+      <pubDate>Mon, 14 Apr 2025 10:31:23 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/data-mining/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>interview</title>
+      <link>https://ygbingo.github.io/tags/interview/</link>
+      <pubDate>Mon, 14 Apr 2025 10:31:23 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/interview/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>choco</title>
+      <link>https://ygbingo.github.io/tags/choco/</link>
+      <pubDate>Tue, 14 May 2024 11:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/choco/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>hugo</title>
+      <link>https://ygbingo.github.io/tags/hugo/</link>
+      <pubDate>Tue, 14 May 2024 11:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/hugo/</guid>
       <description></description>
     </item>
     <item>
       <title>博客</title>
-      <link>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8D%9A%E5%AE%A2/</guid>
+      <link>https://ygbingo.github.io/tags/%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 14 May 2024 11:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E5%8D%9A%E5%AE%A2/</guid>
       <description></description>
     </item>
     <item>
-      <title>Data Mining</title>
-      <link>http://localhost:1313/tags/data-mining/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/data-mining/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Interview</title>
-      <link>http://localhost:1313/tags/interview/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/interview/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>MongoDB</title>
-      <link>http://localhost:1313/tags/mongodb/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/mongodb/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>http://localhost:1313/tags/python/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/python/</guid>
+      <title>mongoDB</title>
+      <link>https://ygbingo.github.io/tags/mongodb/</link>
+      <pubDate>Wed, 07 Feb 2024 21:39:23 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/mongodb/</guid>
       <description></description>
     </item>
     <item>
       <title>面经</title>
-      <link>http://localhost:1313/tags/%E9%9D%A2%E7%BB%8F/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E9%9D%A2%E7%BB%8F/</guid>
+      <link>https://ygbingo.github.io/tags/%E9%9D%A2%E7%BB%8F/</link>
+      <pubDate>Wed, 07 Feb 2024 15:25:02 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E9%9D%A2%E7%BB%8F/</guid>
       <description></description>
     </item>
     <item>
-      <title>Meta</title>
-      <link>http://localhost:1313/tags/meta/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/meta/</guid>
+      <title>meta</title>
+      <link>https://ygbingo.github.io/tags/meta/</link>
+      <pubDate>Thu, 13 Oct 2022 12:07:47 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/meta/</guid>
       <description></description>
     </item>
     <item>
       <title>VR</title>
-      <link>http://localhost:1313/tags/vr/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/vr/</guid>
+      <link>https://ygbingo.github.io/tags/vr/</link>
+      <pubDate>Thu, 13 Oct 2022 12:07:47 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/vr/</guid>
       <description></description>
     </item>
     <item>
       <title>《算法导论》</title>
-      <link>http://localhost:1313/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</guid>
+      <link>https://ygbingo.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</link>
+      <pubDate>Wed, 12 Oct 2022 22:39:41 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/</guid>
       <description></description>
     </item>
     <item>
       <title>Algorithm</title>
-      <link>http://localhost:1313/tags/algorithm/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/algorithm/</guid>
+      <link>https://ygbingo.github.io/tags/algorithm/</link>
+      <pubDate>Wed, 12 Oct 2022 22:39:41 +0800</pubDate>
+      <guid>https://ygbingo.github.io/tags/algorithm/</guid>
       <description></description>
     </item>
     <item>
       <title>Pandas</title>
-      <link>http://localhost:1313/tags/pandas/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/pandas/</guid>
+      <link>https://ygbingo.github.io/tags/pandas/</link>
+      <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/pandas/</guid>
       <description></description>
     </item>
     <item>
       <title>Dialogue</title>
-      <link>http://localhost:1313/tags/dialogue/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/dialogue/</guid>
+      <link>https://ygbingo.github.io/tags/dialogue/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/dialogue/</guid>
       <description></description>
     </item>
     <item>
       <title>Label Studio</title>
-      <link>http://localhost:1313/tags/label-studio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/label-studio/</guid>
+      <link>https://ygbingo.github.io/tags/label-studio/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/label-studio/</guid>
       <description></description>
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>http://localhost:1313/tags/machine-learning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/machine-learning/</guid>
+      <link>https://ygbingo.github.io/tags/machine-learning/</link>
+      <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/machine-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>ASR</title>
-      <link>http://localhost:1313/tags/asr/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/asr/</guid>
+      <link>https://ygbingo.github.io/tags/asr/</link>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/asr/</guid>
       <description></description>
     </item>
     <item>
       <title>Azure</title>
-      <link>http://localhost:1313/tags/azure/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/azure/</guid>
+      <link>https://ygbingo.github.io/tags/azure/</link>
+      <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/azure/</guid>
       <description></description>
     </item>
     <item>
       <title>HDInsight</title>
-      <link>http://localhost:1313/tags/hdinsight/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hdinsight/</guid>
+      <link>https://ygbingo.github.io/tags/hdinsight/</link>
+      <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/hdinsight/</guid>
       <description></description>
     </item>
     <item>
       <title>Hive</title>
-      <link>http://localhost:1313/tags/hive/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hive/</guid>
+      <link>https://ygbingo.github.io/tags/hive/</link>
+      <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/hive/</guid>
       <description></description>
     </item>
     <item>
-      <title>Grafana</title>
-      <link>http://localhost:1313/tags/grafana/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/grafana/</guid>
+      <title>grafana</title>
+      <link>https://ygbingo.github.io/tags/grafana/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/grafana/</guid>
       <description></description>
     </item>
     <item>
-      <title>K8s</title>
-      <link>http://localhost:1313/tags/k8s/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/k8s/</guid>
+      <title>k8s</title>
+      <link>https://ygbingo.github.io/tags/k8s/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
-      <title>Nginx</title>
-      <link>http://localhost:1313/tags/nginx/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/nginx/</guid>
+      <title>nginx</title>
+      <link>https://ygbingo.github.io/tags/nginx/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/nginx/</guid>
       <description></description>
     </item>
     <item>
-      <title>Prometheus</title>
-      <link>http://localhost:1313/tags/prometheus/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/prometheus/</guid>
+      <title>prometheus</title>
+      <link>https://ygbingo.github.io/tags/prometheus/</link>
+      <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/prometheus/</guid>
       <description></description>
     </item>
     <item>
-      <title>Python基础教学</title>
-      <link>http://localhost:1313/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/</guid>
+      <title>python基础教学</title>
+      <link>https://ygbingo.github.io/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/</link>
+      <pubDate>Sat, 21 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/python%E5%9F%BA%E7%A1%80%E6%95%99%E5%AD%A6/</guid>
       <description></description>
     </item>
     <item>
-      <title>Faketime</title>
-      <link>http://localhost:1313/tags/faketime/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/faketime/</guid>
+      <title>faketime</title>
+      <link>https://ygbingo.github.io/tags/faketime/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/faketime/</guid>
       <description></description>
     </item>
     <item>
       <title>招聘求职</title>
-      <link>http://localhost:1313/tags/%E6%8B%9B%E8%81%98%E6%B1%82%E8%81%8C/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%8B%9B%E8%81%98%E6%B1%82%E8%81%8C/</guid>
+      <link>https://ygbingo.github.io/tags/%E6%8B%9B%E8%81%98%E6%B1%82%E8%81%8C/</link>
+      <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E6%8B%9B%E8%81%98%E6%B1%82%E8%81%8C/</guid>
       <description></description>
     </item>
     <item>
       <title>城市计算</title>
-      <link>http://localhost:1313/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</guid>
+      <link>https://ygbingo.github.io/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</guid>
       <description></description>
     </item>
     <item>
       <title>机器学习</title>
-      <link>http://localhost:1313/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
+      <link>https://ygbingo.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     <item>
       <title>数据挖掘</title>
-      <link>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
+      <link>https://ygbingo.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
+      <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
       <description></description>
     </item>
     <item>
       <title>图像识别</title>
-      <link>http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</guid>
+      <link>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</guid>
       <description></description>
     </item>
     <item>
       <title>Pytorch</title>
-      <link>http://localhost:1313/tags/pytorch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/pytorch/</guid>
+      <link>https://ygbingo.github.io/tags/pytorch/</link>
+      <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/pytorch/</guid>
       <description></description>
     </item>
     <item>
       <title>KNN</title>
-      <link>http://localhost:1313/tags/knn/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/knn/</guid>
+      <link>https://ygbingo.github.io/tags/knn/</link>
+      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/knn/</guid>
       <description></description>
     </item>
     <item>
-      <title>Git</title>
-      <link>http://localhost:1313/tags/git/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/git/</guid>
+      <title>git</title>
+      <link>https://ygbingo.github.io/tags/git/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/git/</guid>
       <description></description>
     </item>
     <item>
       <title>知识图谱</title>
-      <link>http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</guid>
+      <link>https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1/</guid>
       <description></description>
     </item>
     <item>
       <title>Core</title>
-      <link>http://localhost:1313/tags/core/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/core/</guid>
+      <link>https://ygbingo.github.io/tags/core/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/core/</guid>
       <description></description>
     </item>
     <item>
       <title>Java</title>
-      <link>http://localhost:1313/tags/java/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/java/</guid>
+      <link>https://ygbingo.github.io/tags/java/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/java/</guid>
       <description></description>
     </item>
     <item>
       <title>Objdetect</title>
-      <link>http://localhost:1313/tags/objdetect/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/objdetect/</guid>
+      <link>https://ygbingo.github.io/tags/objdetect/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/objdetect/</guid>
       <description></description>
     </item>
     <item>
       <title>OpenCV</title>
-      <link>http://localhost:1313/tags/opencv/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/opencv/</guid>
+      <link>https://ygbingo.github.io/tags/opencv/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/opencv/</guid>
       <description></description>
     </item>
     <item>
       <title>图像处理</title>
-      <link>http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+      <link>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+      <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
       <description></description>
     </item>
     <item>
       <title>Neo4j</title>
-      <link>http://localhost:1313/tags/neo4j/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/neo4j/</guid>
+      <link>https://ygbingo.github.io/tags/neo4j/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/neo4j/</guid>
       <description></description>
     </item>
     <item>
       <title>NLP</title>
-      <link>http://localhost:1313/tags/nlp/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/nlp/</guid>
+      <link>https://ygbingo.github.io/tags/nlp/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/nlp/</guid>
       <description></description>
     </item>
     <item>
       <title>知识表示</title>
-      <link>http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA/</guid>
+      <link>https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA/</link>
+      <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E7%9F%A5%E8%AF%86%E8%A1%A8%E7%A4%BA/</guid>
       <description></description>
     </item>
     <item>
       <title>深度学习</title>
-      <link>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
+      <link>https://ygbingo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</guid>
       <description></description>
     </item>
     <item>
       <title>Hyperledger</title>
-      <link>http://localhost:1313/tags/hyperledger/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/hyperledger/</guid>
+      <link>https://ygbingo.github.io/tags/hyperledger/</link>
+      <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/hyperledger/</guid>
       <description></description>
     </item>
     <item>
       <title>区块链</title>
-      <link>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
+      <link>https://ygbingo.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link>
+      <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://ygbingo.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</guid>
       <description></description>
     </item>
   </channel>

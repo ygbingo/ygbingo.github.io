@@ -2,276 +2,290 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Bingo&#39;s Blog</title>
-    <link>http://localhost:1313/post/</link>
+    <link>https://ygbingo.github.io/post/</link>
     <description>Recent content in Posts on Bingo&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 14 May 2024 11:54:44 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Apr 2025 13:54:44 +0800</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【炸裂】Python后台任务Celery全面解析(二)-执行池(Execution Pool)类型</title>
+      <link>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Tue, 15 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</guid>
+      <description>在 Python 的 Celery 分布式任务队列中，-P 参数用于指定 执行池（Execution Pool）类型，它决定了 Celery Worker 如何并发处理任务。不同执行池对任务的调度方式</description>
+    </item>
+    <item>
+      <title>【炸裂】Python后台任务Celery全面解析</title>
+      <link>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Tue, 15 Apr 2025 09:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90/</guid>
+      <description>Python 的 Celery 框架是一个专注于分布式任务队列和异步任务调度的开源工具，其设计理念基于生产者-消费者模型，通过解耦任务执行与主程序逻辑，显著提升系统的</description>
+    </item>
+    <item>
+      <title>FastAPI后台任务框架对比BackgroundTasks vs Celery vs APScheduler</title>
+      <link>https://ygbingo.github.io/post/2025-04-14-fastapi%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94/</link>
+      <pubDate>Mon, 14 Apr 2025 10:31:23 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-14-fastapi%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1%E6%A1%86%E6%9E%B6%E5%AF%B9%E6%AF%94/</guid>
+      <description>在Python生态中，处理异步任务和定时调度主要有三种方案：FastAPI的后台任务（BackgroundTasks）、Celery分布式任</description>
+    </item>
     <item>
       <title>Windows11安装个人博客框架hugo</title>
-      <link>http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</link>
+      <link>https://ygbingo.github.io/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</link>
       <pubDate>Tue, 14 May 2024 11:54:44 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</guid>
+      <guid>https://ygbingo.github.io/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</guid>
       <description>本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示</description>
     </item>
     <item>
-      <title>FastApi&#43;Orm搭建Python后端服务</title>
-      <link>http://localhost:1313/post/2024-05-14-fastapi&#43;orm%E6%90%AD%E5%BB%BApython%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1/</link>
-      <pubDate>Tue, 14 May 2024 11:52:47 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-05-14-fastapi&#43;orm%E6%90%AD%E5%BB%BApython%E5%90%8E%E7%AB%AF%E6%9C%8D%E5%8A%A1/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>数据挖掘面试题</title>
-      <link>http://localhost:1313/post/2024-03-04-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <link>https://ygbingo.github.io/post/2024-03-04-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
       <pubDate>Mon, 04 Mar 2024 10:31:23 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-03-04-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <guid>https://ygbingo.github.io/post/2024-03-04-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
       <description>什么是数据挖掘(Data Mining) 数据挖掘是指从大量数据中提取或挖掘知识。换句话说，数据挖掘是发现大量复杂数据以发现有用模式的科学、艺术和技术。 数据</description>
     </item>
     <item>
       <title>MongoDB面试题[高级类]</title>
-      <link>http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
+      <link>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 21:39:23 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
       <description>在MongoDB中如何搜索 “find”方法用于在 MongoDB 中执行查询。查询返回集合中的文档子集，从没有文档到整个集合。返回哪些文档由 find 的第一个参数决</description>
     </item>
     <item>
       <title>MongoDB面试题[基础类]</title>
-      <link>http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
+      <link>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 21:04:27 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2024-02-07-mongodb%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
       <description>MongoDB有什么优势(advantages) MongoDB 支持字段、基于范围、字符串模式匹配类型的查询。用于搜索数据库中的数据 MongoDB 支持任意字段的主索引</description>
     </item>
     <item>
       <title>Python面试题[高级类]</title>
-      <link>http://localhost:1313/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
+      <link>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 15:25:02 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E9%AB%98%E7%BA%A7%E7%B1%BB/</guid>
       <description>比较一下进程、线程、协程 Python中的进程（Process），线程（Thread），和协程（Coroutine）是用于处理并发的不同工具，</description>
     </item>
     <item>
       <title>Python面试题[基础版]</title>
-      <link>http://localhost:1313/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
+      <link>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</link>
       <pubDate>Wed, 07 Feb 2024 10:50:25 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2024-02-07-python%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%B1%BB/</guid>
       <description>收录常见的Python面试题 Python的好处 Python 是一种高级、解释型、通用编程语言。作为一种通用语言，它可以通过正确的工具/库来构建几乎任何类</description>
     </item>
     <item>
       <title>Meta市值下降,VR到底差在哪？</title>
-      <link>http://localhost:1313/post/2022-10-13-meta%E5%B8%82%E5%80%BC%E4%B8%8B%E9%99%8Dvr%E5%88%B0%E5%BA%95%E5%B7%AE%E5%9C%A8%E5%93%AA/</link>
+      <link>https://ygbingo.github.io/post/2022-10-13-meta%E5%B8%82%E5%80%BC%E4%B8%8B%E9%99%8Dvr%E5%88%B0%E5%BA%95%E5%B7%AE%E5%9C%A8%E5%93%AA/</link>
       <pubDate>Thu, 13 Oct 2022 12:07:47 +0800</pubDate>
-      <guid>http://localhost:1313/post/2022-10-13-meta%E5%B8%82%E5%80%BC%E4%B8%8B%E9%99%8Dvr%E5%88%B0%E5%BA%95%E5%B7%AE%E5%9C%A8%E5%93%AA/</guid>
+      <guid>https://ygbingo.github.io/post/2022-10-13-meta%E5%B8%82%E5%80%BC%E4%B8%8B%E9%99%8Dvr%E5%88%B0%E5%BA%95%E5%B7%AE%E5%9C%A8%E5%93%AA/</guid>
       <description>Connect 2021 大会，扎克伯格将 Facebook 改名为 Meta，标志性的大拇指标志被撤下，换成了一个代表未来发展方向的无穷符号。 仅 2021 年，Meta 就为元宇宙投入了 100 亿美</description>
     </item>
     <item>
       <title>[算法基础]LectureNote1</title>
-      <link>http://localhost:1313/post/2022-10-12-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80lecturenote1/</link>
+      <link>https://ygbingo.github.io/post/2022-10-12-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80lecturenote1/</link>
       <pubDate>Wed, 12 Oct 2022 22:39:41 +0800</pubDate>
-      <guid>http://localhost:1313/post/2022-10-12-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80lecturenote1/</guid>
+      <guid>https://ygbingo.github.io/post/2022-10-12-%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80lecturenote1/</guid>
       <description>算法的作用 什么是算法？ 计算问题 把输入转换成输出的计算步骤 为什么要研究算法？ 计算机的运行速度不是无限快的 存储器不是免费的 算法解决了什么？ 比较下</description>
     </item>
     <item>
       <title>【python处理数据】使用pandas处理Excel</title>
-      <link>http://localhost:1313/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</link>
+      <link>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</link>
       <pubDate>Thu, 07 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</guid>
+      <guid>https://ygbingo.github.io/post/2022-07-07-python%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E4%BD%BF%E7%94%A8pandas%E5%A4%84%E7%90%86excel/</guid>
       <description>思考一下这个问题： 有一个年纪成绩表.xlsx文件，包含：班级、姓名、语文、数学、英语，这个年级一共有五个班，现在想把五个班的成绩分别存到不同</description>
     </item>
     <item>
       <title>使用label studio标注对话文件</title>
-      <link>http://localhost:1313/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</link>
+      <link>https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</link>
       <pubDate>Thu, 04 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://ygbingo.github.io/post/2021-11-04-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E5%AF%B9%E8%AF%9D%E6%96%87%E4%BB%B6/</guid>
       <description>最近有个小朋友接个任务，已经收集了一些对话，需要对里面的对话内容打标，提取出质量较好的对话。 前提 已有的对话样本 已经搭建好Label Studio 步骤 创建</description>
     </item>
     <item>
       <title>使用label studio标注音频文件</title>
-      <link>http://localhost:1313/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</link>
+      <link>https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</link>
       <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/</guid>
       <description>最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建</description>
     </item>
     <item>
       <title>Azure Blob CSV to HDInsight</title>
-      <link>http://localhost:1313/post/2021-07-28-hdinsight-hive-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%98%A0%E5%B0%84%E5%88%B0azure-blob%E6%96%87%E4%BB%B6/</link>
+      <link>https://ygbingo.github.io/post/2021-07-28-hdinsight-hive-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%98%A0%E5%B0%84%E5%88%B0azure-blob%E6%96%87%E4%BB%B6/</link>
       <pubDate>Wed, 28 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2021-07-28-hdinsight-hive-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%98%A0%E5%B0%84%E5%88%B0azure-blob%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://ygbingo.github.io/post/2021-07-28-hdinsight-hive-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B9%B6%E6%98%A0%E5%B0%84%E5%88%B0azure-blob%E6%96%87%E4%BB%B6/</guid>
       <description>最近需要搭建一套数据仓库，已经有了csv的数据源文件，怎么能直接把它映射到hdfs中呢？ 准备 Azure Blob容器 Azure HDInsight集群 创建blo</description>
     </item>
     <item>
       <title>K8s搭建prometheus&#43;grafana&#43;ingress-controller</title>
-      <link>http://localhost:1313/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</link>
+      <link>https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</link>
       <pubDate>Mon, 18 Jan 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</guid>
+      <guid>https://ygbingo.github.io/post/2021-01-18-k8s%E6%90%AD%E5%BB%BAingress-controller%E5%B9%B6%E8%A2%ABprometheus%E7%9B%91%E6%8E%A7/</guid>
       <description>最近有个小伙伴在搭建k8s监控nginx-ingress-controller时发现监控不到，接下来就从0到1-搭建k8s，并配置prome</description>
     </item>
     <item>
       <title>Python基础之每日练习</title>
-      <link>http://localhost:1313/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/</link>
+      <link>https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/</link>
       <pubDate>Sat, 21 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/</guid>
+      <guid>https://ygbingo.github.io/post/2020-11-21-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%AF%8F%E6%97%A5%E7%BB%83%E4%B9%A0/</guid>
       <description>Python条件语句是通过一条或多条语句的执行结果（True或者False）来决定执行的代码块。 Q&amp;amp;A(2020-11-30) 知识点：excel格式文件读取 openpyxl 合并下面两</description>
     </item>
     <item>
       <title>Python基础之数据类型</title>
-      <link>http://localhost:1313/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://ygbingo.github.io/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Wed, 18 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://ygbingo.github.io/post/2020-11-18-python%E5%9F%BA%E7%A1%80%E4%B9%8B%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
       <description>学习一个编程语言的第一步是什么？当然是类型啦！虽然各门语言的数据类型都差不多，但既然是刚入手，还是应该了解什么是数据类型？都有哪些数据类型？</description>
     </item>
     <item>
       <title>Anaconda&#43;Pycharm开发环境搭建</title>
-      <link>http://localhost:1313/post/2020-11-17-anaconda&#43;pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>https://ygbingo.github.io/post/2020-11-17-anaconda&#43;pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Tue, 17 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-11-17-anaconda&#43;pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://ygbingo.github.io/post/2020-11-17-anaconda&#43;pycharm%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>最近有个小伙伴问我，怎么能快速开始python开发，为了不让他踩坑，推荐了一套《anaconda+pycharm开发大法》 查看python和</description>
     </item>
     <item>
       <title>官方招聘网站收录</title>
-      <link>http://localhost:1313/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</link>
+      <link>https://ygbingo.github.io/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
+      <guid>https://ygbingo.github.io/post/2020-11-09-%E5%AE%98%E6%96%B9%E6%8B%9B%E8%81%98%E7%BD%91%E7%AB%99%E6%94%B6%E5%BD%95%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E4%B8%AD/</guid>
       <description>KEEP HUNGRY 部分校招社招网站可能一致 社会招聘 阿里巴巴: https://job.alibaba.com/zhaopin/index.htm?spm=a2obv.11410903.0.0.7a5d44f6kfYm3z 华为: https://career.huawei.com/reccampportal/portal5/index.html 百度: https://talent.baidu.com/external/baidu/index.html 腾讯: https://careers.tencent.com/home.html 字节跳动: https://job.bytedance.com/society/ 美团: https://zhaopin.meituan.com/ 快手: https://zhaopin.kuaishou.cn/recruit/e/#/official/index/ 京东: http://zhaopin.jd.com/home;jsessionid=04CC1CF6F27DDAB47AD813F81637F051.s1 360: http://hr.360.cn/hr/ 滴滴出行: https://talent.didiglobal.com/ 网易: https://campus.163.com/app/index PP视频</description>
     </item>
     <item>
       <title>通过修改系统时间进行仿真测试</title>
-      <link>http://localhost:1313/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</link>
+      <link>https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</link>
       <pubDate>Mon, 09 Nov 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</guid>
+      <guid>https://ygbingo.github.io/post/2020-11-09-%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E8%BF%9B%E8%A1%8C%E4%BB%BF%E7%9C%9F%E6%B5%8B%E8%AF%95/</guid>
       <description>最近有个小伙伴问我，他有一个python系统要测试，但是这个python系统每次都是获取系统当前时间，然后从数据库中获取实时数据，然而测试数</description>
     </item>
     <item>
       <title>DeepMove论文解读</title>
-      <link>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>KEEP HUNGRY DeepMove 论文项目地址：https://github.com/vonfeng/DeepMove 研究基础 一些定义 轨迹序列(Trajectory Se</description>
     </item>
     <item>
       <title>几种常见的噪声</title>
-      <link>http://localhost:1313/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</link>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</guid>
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</guid>
       <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 常见的噪声 高斯噪声 高斯噪声是指</description>
     </item>
     <item>
       <title>时空数据挖掘</title>
-      <link>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
       <description>自己不能胜任的事情，切莫轻易答应别人，一旦答应了别人，就必须实践自己的诺言。—— 华盛顿 时空挖掘概要 时空数据整体介绍 时空数据 时空数据的处理方法</description>
     </item>
     <item>
       <title>【转】windows环境下安装Pytorch</title>
-      <link>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
+      <link>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
       <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
       <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 WIn10+Anaconda环</description>
     </item>
     <item>
       <title>【十六大经典算法】K-NN最近邻</title>
-      <link>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</link>
+      <link>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</guid>
       <description>“物以类聚，人以群分” &amp;mdash; 《战国策·齐策三》</description>
     </item>
     <item>
       <title>【十六大经典算法】开篇</title>
-      <link>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</link>
+      <link>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</guid>
       <description>我要一步一步往上爬、 在最高点乘着叶片往前飞、 小小的天流过的泪和汗、 总有一天我有属于我的天、 | K-NN最近邻 | 线性回归 | 罗辑回归 | PCA | | 凸优化</description>
     </item>
     <item>
       <title>建立多个git域名关联</title>
-      <link>http://localhost:1313/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</link>
+      <link>https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</guid>
+      <guid>https://ygbingo.github.io/post/2019-09-16-%E5%BB%BA%E7%AB%8B%E5%A4%9A%E4%B8%AAgit%E5%9F%9F%E5%90%8D%E5%85%B3%E8%81%94/</guid>
       <description>要把大象装冰箱，总共分几步 生成密钥文件 1 $ ssh-keygen -t rsa -f filename -C email@email.com 注意：上述代码中filename是密钥文件名(默认是id_rsa)，email@em</description>
     </item>
     <item>
       <title>知识图谱相关论文推荐</title>
-      <link>http://localhost:1313/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</link>
+      <link>https://ygbingo.github.io/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</guid>
+      <guid>https://ygbingo.github.io/post/2019-09-16-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%AE%BA%E6%96%87%E6%8E%A8%E8%8D%90/</guid>
       <description>学海无涯苦作舟，独居深山老林中 知识推理 2010，PRA：Relational retrieval using a combination of path-constrained random walks, Machine Learning. 将图谱中的路径做为特征，构建路径的关系分类模</description>
     </item>
     <item>
       <title>【OpenCV4文档】目录</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
       <description>【OpenCV文档】目录 最近接到一个图像项目，之前都是直接从github上找现成的，这次从头学起发现有很多内容，看了看官方文档，通过该形式记</description>
     </item>
     <item>
       <title>【OpenCV4文档01】Core</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
       <description>矩阵：基本图像容器 兼容性：&amp;gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像</description>
     </item>
     <item>
       <title>【OpenCV4文档09】Objdetect</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
       <description>级联分类器 支持语言：C++，Java，Python 编译条件：&amp;gt; OpenCV 2.0 学习如何从图片或视频中找到目标。 目标 使用 cv::CascadeClassifier 类从视频流中检测物体，将用</description>
     </item>
     <item>
       <title>Java DPI介绍</title>
-      <link>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
       <description>Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel</description>
     </item>
     <item>
       <title>从0到1搭建Neo4j</title>
-      <link>http://localhost:1313/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</link>
+      <link>https://ygbingo.github.io/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-05-%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BAneo4j/</guid>
       <description>搭建Neo4j图形数据库环境 保持快乐，你就会干得好，就更成功、更健康，对别人也就更仁慈。——马克斯威尔·马尔兹 Neo4j是一个高性能的,NO</description>
     </item>
     <item>
       <title>视频检测系统</title>
-      <link>http://localhost:1313/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://ygbingo.github.io/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Fri, 05 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-08-%E6%B5%B7%E5%BA%B7%E5%A8%81%E8%A7%86%E8%A7%86%E9%A2%91%E6%A3%80%E6%B5%8B%E7%B3%BB%E7%BB%9F/</guid>
       <description>海康威视视频流解析 产品型号：DS-2DC2204IW-D3/W 基于Java对视频流的图像解析 基于Java的实体检测 基于Java的颜色识别 基于</description>
     </item>
     <item>
       <title>HyTE论文解读</title>
-      <link>http://localhost:1313/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://ygbingo.github.io/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-03-hyte%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>一个人可以非常清贫、困顿、低微，但是不可以没有梦想。只要梦想一天，只要梦想存在一天，就可以改变自己的处境。 &amp;mdash; 奥普拉·温弗瑞 Trans系列的主</description>
     </item>
     <item>
       <title>动态知识图谱补全整合</title>
-      <link>http://localhost:1313/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</link>
+      <link>https://ygbingo.github.io/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-03-%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E8%A1%A5%E5%85%A8%E6%95%B4%E5%90%88/</guid>
       <description>喷泉的高度不会超越它的源头，一个人的事业也是这样，他的成就决不会超过自己的信念。&amp;mdash; 亚莫拉罕·林肯 动态知识图谱简介 本页面总结了有关</description>
     </item>
     <item>
       <title>TransE论文解读</title>
-      <link>http://localhost:1313/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Tue, 02 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-02-transe%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>Trans系列的主题是基于翻译模型的知识表示学习，主要用来解决知识表示和推理的问题。本文主要介绍TransE和数据集Wordnet、Free</description>
     </item>
     <item>
       <title>从0到1实现自动聊天机器人</title>
-      <link>http://localhost:1313/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
+      <link>https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
+      <guid>https://ygbingo.github.io/post/2019-06-24-%E4%BB%8E0%E5%88%B01%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
       <description>How are you ? I&amp;rsquo;m fine, Thank you, And you? I&amp;rsquo;m fine too. 最基础的基于规则(base-rule)的聊天机器人 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 import random # 打招呼</description>
     </item>
     <item>
       <title>Hyperleger简介</title>
-      <link>http://localhost:1313/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</link>
+      <link>https://ygbingo.github.io/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</link>
       <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</guid>
+      <guid>https://ygbingo.github.io/post/2019-06-22-hyperledger%E7%AE%80%E4%BB%8B/</guid>
       <description>Hyperledger是一项开源协作，旨在推动跨行业区块链技术的发展。 这是一项全球合作，包括银行，金融，物联网，制造，供应链和技术领域的领导</description>
     </item>
   </channel>

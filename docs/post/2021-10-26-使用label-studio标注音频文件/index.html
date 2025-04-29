@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>使用label studio标注音频文件 - Bingo&#39;s Blog</title>
@@ -23,10 +23,10 @@
 
 
 
-<meta name="generator" content="Hugo 0.125.7 with theme even" />
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
 
 
-<link rel="canonical" href="http://localhost:1313/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/" />
+<link rel="canonical" href="https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,26 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:url" content="http://localhost:1313/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/">
-  <meta property="og:site_name" content="Bingo&#39;s Blog">
-  <meta property="og:title" content="使用label studio标注音频文件">
-  <meta property="og:description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建">
-  <meta property="og:locale" content="zh-cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="post">
-    <meta property="article:published_time" content="2021-10-26T00:00:00+00:00">
-    <meta property="article:modified_time" content="2021-10-26T00:00:00+00:00">
-    <meta property="article:tag" content="Machine Learning">
-    <meta property="article:tag" content="Label Studio">
-    <meta property="article:tag" content="ASR">
+<meta property="og:title" content="使用label studio标注音频文件" />
+<meta property="og:description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2021-10-26-%E4%BD%BF%E7%94%A8label-studio%E6%A0%87%E6%B3%A8%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-26T00:00:00+00:00" />
 
-  <meta itemprop="name" content="使用label studio标注音频文件">
-  <meta itemprop="description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建">
-  <meta itemprop="datePublished" content="2021-10-26T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2021-10-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1060">
-  <meta itemprop="keywords" content="Machine Learning,Label Studio,ASR"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="使用label studio标注音频文件">
-<meta name="twitter:description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建">
+<meta itemprop="name" content="使用label studio标注音频文件">
+<meta itemprop="description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建"><meta itemprop="datePublished" content="2021-10-26T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-10-26T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1060">
+<meta itemprop="keywords" content="Machine Learning,Label Studio,ASR," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="使用label studio标注音频文件"/>
+<meta name="twitter:description" content="最近有个小朋友接个任务，帮助把音频转写成文字，并进行标注。 项目地址: speech-labeled 前提 公共的可访问audio文件地址 腾讯云账号并开通音频转写权限 已经搭建"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -685,7 +678,7 @@
       <div class="social-links">
       <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
       <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
-  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
 </div>
 
 <div class="copyright">
@@ -695,7 +688,7 @@
   <span class="division">|</span>
   <span class="theme-info">
     主题 - 
-    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+    <a class="theme-link" href="https://github.com/ygbingo/hugo-theme-seven">Seven</a>
   </span>
 
   
@@ -703,7 +696,7 @@
   <span class="copyright-year">
     &copy; 
     2019 - 
-    2024<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
   </span>
 </div>
 

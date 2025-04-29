@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Choco on Bingo&#39;s Blog</title>
-    <link>http://localhost:1313/tags/choco/</link>
-    <description>Recent content in Choco on Bingo&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <title>choco on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/choco/</link>
+    <description>Recent content in choco on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 14 May 2024 11:54:44 +0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/choco/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ygbingo.github.io/tags/choco/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Windows11安装个人博客框架hugo</title>
-      <link>http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</link>
+      <link>https://ygbingo.github.io/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</link>
       <pubDate>Tue, 14 May 2024 11:54:44 +0800</pubDate>
-      <guid>http://localhost:1313/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</guid>
+      <guid>https://ygbingo.github.io/post/2024-05-14-windows11%E5%AE%89%E8%A3%85%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6hugo/</guid>
       <description>本篇博客采用choco的方式安装hugo Installing Install choco 使用管理员方式打开Powershell 执行Get-ExecutionPolicy, 如果出现提示</description>
     </item>
   </channel>

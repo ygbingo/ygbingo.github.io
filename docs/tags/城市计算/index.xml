@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>城市计算 on Bingo&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</link>
+    <link>https://ygbingo.github.io/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/</link>
     <description>Recent content in 城市计算 on Bingo&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 24 Sep 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ygbingo.github.io/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DeepMove论文解读</title>
-      <link>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>KEEP HUNGRY DeepMove 论文项目地址：https://github.com/vonfeng/DeepMove 研究基础 一些定义 轨迹序列(Trajectory Se</description>
     </item>
     <item>
       <title>时空数据挖掘</title>
-      <link>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
       <description>自己不能胜任的事情，切莫轻易答应别人，一旦答应了别人，就必须实践自己的诺言。—— 华盛顿 时空挖掘概要 时空数据整体介绍 时空数据 时空数据的处理方法</description>
     </item>
   </channel>

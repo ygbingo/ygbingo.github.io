@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>机器学习 on Bingo&#39;s Blog</title>
-    <link>http://localhost:1313/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <link>https://ygbingo.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
     <description>Recent content in 机器学习 on Bingo&#39;s Blog</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 24 Sep 2020 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ygbingo.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DeepMove论文解读</title>
-      <link>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
+      <link>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</link>
       <pubDate>Thu, 24 Sep 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2020-09-24-deepmove%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/</guid>
       <description>KEEP HUNGRY DeepMove 论文项目地址：https://github.com/vonfeng/DeepMove 研究基础 一些定义 轨迹序列(Trajectory Se</description>
     </item>
     <item>
       <title>几种常见的噪声</title>
-      <link>http://localhost:1313/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</link>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</guid>
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%9A%84%E5%99%AA%E5%A3%B0/</guid>
       <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 常见的噪声 高斯噪声 高斯噪声是指</description>
     </item>
     <item>
       <title>时空数据挖掘</title>
-      <link>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
+      <link>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</link>
       <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
+      <guid>https://ygbingo.github.io/post/2020-07-13-%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</guid>
       <description>自己不能胜任的事情，切莫轻易答应别人，一旦答应了别人，就必须实践自己的诺言。—— 华盛顿 时空挖掘概要 时空数据整体介绍 时空数据 时空数据的处理方法</description>
     </item>
     <item>
       <title>【转】windows环境下安装Pytorch</title>
-      <link>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
+      <link>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</link>
       <pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-24-%E8%BD%ACwindows%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85pytorch/</guid>
       <description>今天很残酷，明天更残酷，后天更美好，但是绝大部分人是死在明天晚上，只有那些真正的英雄才能见到后天的太阳。 - 马云 WIn10+Anaconda环</description>
     </item>
     <item>
       <title>【十六大经典算法】K-NN最近邻</title>
-      <link>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</link>
+      <link>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95-knn%E6%9C%80%E8%BF%91%E9%82%BB/</guid>
       <description>“物以类聚，人以群分” &amp;mdash; 《战国策·齐策三》</description>
     </item>
     <item>
       <title>【十六大经典算法】开篇</title>
-      <link>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</link>
+      <link>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://ygbingo.github.io/post/2019-10-09-%E5%8D%81%E5%85%AD%E5%A4%A7%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/</guid>
       <description>我要一步一步往上爬、 在最高点乘着叶片往前飞、 小小的天流过的泪和汗、 总有一天我有属于我的天、 | K-NN最近邻 | 线性回归 | 罗辑回归 | PCA | | 凸优化</description>
     </item>
     <item>
       <title>【OpenCV4文档】目录</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A3%E7%9B%AE%E5%BD%95/</guid>
       <description>【OpenCV文档】目录 最近接到一个图像项目，之前都是直接从github上找现成的，这次从头学起发现有很多内容，看了看官方文档，通过该形式记</description>
     </item>
     <item>
       <title>【OpenCV4文档01】Core</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A301core/</guid>
       <description>矩阵：基本图像容器 兼容性：&amp;gt; OpenCV 2.0 您将学习如何将图像存储在内存中以及如何将其内容打印到控制台。 我们有多种方法可以从现实世界中获取数字图像</description>
     </item>
     <item>
       <title>【OpenCV4文档09】Objdetect</title>
-      <link>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
+      <link>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</link>
       <pubDate>Wed, 10 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-10-opencv4%E6%96%87%E6%A1%A309objdetect/</guid>
       <description>级联分类器 支持语言：C++，Java，Python 编译条件：&amp;gt; OpenCV 2.0 学习如何从图片或视频中找到目标。 目标 使用 cv::CascadeClassifier 类从视频流中检测物体，将用</description>
     </item>
     <item>
       <title>Java DPI介绍</title>
-      <link>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
+      <link>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</link>
       <pubDate>Tue, 09 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
+      <guid>https://ygbingo.github.io/post/2019-07-09-java-dpi%E4%BB%8B%E7%BB%8D/</guid>
       <description>Java BufferedImageClass Java BufferedImage类是Image类的子类。 它用于处理和操作图像数据。 BufferedImage由图像数据的ColorModel</description>
     </item>
   </channel>
