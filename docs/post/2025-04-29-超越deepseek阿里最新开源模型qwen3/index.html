@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>超越DeepSeek！阿里最新开源模型Qwen3 - Bingo&#39;s Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YG.Bingo" /><meta name="description" content="近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“" /><meta name="keywords" content="Bingo, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.122.0 with theme even" />
+
+
+<link rel="canonical" href="https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="超越DeepSeek！阿里最新开源模型Qwen3" />
+<meta property="og:description" content="近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2025-04-20T13:54:44+08:00" />
+<meta property="article:modified_time" content="2025-04-20T13:54:44+08:00" />
+
+<meta itemprop="name" content="超越DeepSeek！阿里最新开源模型Qwen3">
+<meta itemprop="description" content="近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“"><meta itemprop="datePublished" content="2025-04-20T13:54:44+08:00" />
+<meta itemprop="dateModified" content="2025-04-20T13:54:44+08:00" />
+<meta itemprop="wordCount" content="2005">
+<meta itemprop="keywords" content="llm,Qwen3,deepseek,大模型," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="超越DeepSeek！阿里最新开源模型Qwen3"/>
+<meta name="twitter:description" content="近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Bingo</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">主页</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">文章</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Bingo</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">主页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">文章</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">关于</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">超越DeepSeek！阿里最新开源模型Qwen3</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2025-04-20 </span>
+        
+          <span class="more-meta"> 约 2005 字 </span>
+          <span class="more-meta"> 预计阅读 5 分钟 </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一qwen3有哪些核心亮点"><strong>一、Qwen3有哪些核心亮点？</strong></a></li>
+        <li><a href="#二如何快速上手qwen3"><strong>二、如何快速上手Qwen3？</strong></a>
+          <ul>
+            <li><a href="#1-开源平台与下载方式"><strong>1. 开源平台与下载方式</strong></a></li>
+            <li><a href="#2-部署与调用方法"><strong>2. 部署与调用方法</strong></a></li>
+            <li><a href="#3-实战技巧"><strong>3. 实战技巧</strong></a></li>
+          </ul>
+        </li>
+        <li><a href="#三qwen3适合哪些应用场景"><strong>三、Qwen3适合哪些应用场景？</strong></a></li>
+        <li><a href="#四本地使用qwen3"><strong>四、本地使用Qwen3</strong></a></li>
+        <li><a href="#五结语qwen3开启ai新纪元"><strong>五、结语：Qwen3开启AI新纪元</strong></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <hr>
+<blockquote>
+<p>近日，阿里巴巴重磅开源了新一代大语言模型——<strong>Qwen3</strong>！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“快慢脑”设计，支持灵活切换“深度思考”与“快速响应”模式，堪称AI领域的“瑞士军刀”。更重要的是，<strong>Qwen3已通过Apache 2.0协议免费开源</strong>，全球开发者和企业均可免费商用！</p>
+</blockquote>
+<hr>
+<h2 id="一qwen3有哪些核心亮点"><strong>一、Qwen3有哪些核心亮点？</strong></h2>
+<p>1️⃣ <strong>“快慢脑”混合推理模式，效率与质量兼得</strong></p>
+<ul>
+<li><strong>思考模式</strong>：针对复杂问题（如数学推理、代码生成、逻辑分析），模型会逐步推导并验证答案，确保结果准确性，但耗时稍长。</li>
+<li><strong>非思考模式</strong>：对简单任务（如日常对话、快速问答）直接输出答案，响应速度极快，几乎无延迟。</li>
+<li><em>用户可通过指令（如 <code>/think</code> 或 <code>/no_think</code>）自由切换两种模式，甚至在同一次对话中动态调整！</em></li>
+</ul>
+<p>2️⃣ <strong>性能登顶，成本却大幅降低</strong></p>
+<ul>
+<li><strong>旗舰版Qwen3-235B-A22B</strong>：总参数2350亿，激活仅需220亿，推理能力碾压Grok-3、Gemini 2.5-Pro，在AIME数学竞赛中斩获81.5分（开源模型最高纪录）。</li>
+<li><strong>小型MoE模型Qwen3-30B-A3B</strong>：仅用300亿总参数、30亿激活参数，却超越Qwen2.5-72B-Instruct的性能，部署成本仅为竞品的1/3！</li>
+<li><strong>显存占用更低</strong>：满血版仅需4张NVIDIA H20显卡即可部署，性价比极高。</li>
+</ul>
+<p>3️⃣ <strong>多语言+多模态，覆盖全球需求</strong></p>
+<ul>
+<li><strong>119种语言支持</strong>：从中文、英文到小语种（如越南语、泰米尔语），满足全球化业务需求。</li>
+<li><strong>集成MCP协议</strong>：无缝对接外部工具（如数据库、API、插件），轻松构建智能体（Agent），完成复杂任务链（如数据分析、自动化编程）。</li>
+</ul>
+<p>4️⃣ <strong>代码与数学能力爆表</strong></p>
+<ul>
+<li><strong>LiveCodeBench测试得分70+</strong>，代码生成能力超越Grok-3；</li>
+<li><strong>数学推理能力</strong>：在AIME25、MATH等基准测试中表现优异，堪比人类奥赛选手。</li>
+</ul>
+<p><img src="https://qianwen-res.oss-accelerate.aliyuncs.com/assets/blog/qwen3/post-training.png" alt="训练流程"></p>
+<hr>
+<h2 id="二如何快速上手qwen3"><strong>二、如何快速上手Qwen3？</strong></h2>
+<h3 id="1-开源平台与下载方式"><strong>1. 开源平台与下载方式</strong></h3>
+<p>Qwen3已在以下平台开放下载，全部采用<strong>Apache 2.0协议</strong>，可免费商用</p>
+<ul>
+<li><strong>魔搭社区</strong>（<a href="https://modelscope.cn/">ModelScope</a>）</li>
+<li><strong>Hugging Face</strong>（<a href="https://huggingface.co/collections/Qwen/qwen3">Qwen3 Collection</a>）</li>
+<li><strong>GitHub</strong>（<a href="https://github.com/QwenLM/Qwen3">Qwen3 GitHub</a>）</li>
+</ul>
+<h3 id="2-部署与调用方法"><strong>2. 部署与调用方法</strong></h3>
+<ul>
+<li><strong>云端调用</strong>：通过阿里云百炼平台（<a href="https://help.aliyun.com/blade">PAI-BLADE</a>）直接调用Qwen3 API，无需本地部署。</li>
+<li><strong>本地部署</strong>：
+<ul>
+<li>推荐使用 <strong>SGLang</strong> 或 <strong>vLLM</strong> 框架加速推理；</li>
+<li>小型模型（如Qwen3-4B）可用消费级GPU（如RTX 4090）运行；</li>
+<li>开发者工具支持 <strong>Ollama、LMStudio、MLX、llama.cpp</strong> 等轻量化方案。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-实战技巧"><strong>3. 实战技巧</strong></h3>
+<ul>
+<li><strong>切换推理模式</strong>：
+<ul>
+<li>在输入中添加 <code>/think</code> 触发深度思考模式（适合复杂任务）；</li>
+<li>添加 <code>/no_think</code> 快速获取答案（适合日常对话）。</li>
+</ul>
+</li>
+<li><strong>调用工具（Function Calling）</strong>：
+<ul>
+<li>使用 <strong>Qwen-Agent</strong> 框架，通过预定义模板调用外部API（如天气查询、数据库检索），实现自动化工作流。</li>
+</ul>
+</li>
+<li><strong>多语言交互</strong>：
+<ul>
+<li>直接输入目标语言（如日语、西班牙语），模型自动适配翻译与生成能力。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="三qwen3适合哪些应用场景"><strong>三、Qwen3适合哪些应用场景？</strong></h2>
+<table>
+<thead>
+<tr>
+<th><strong>场景</strong></th>
+<th><strong>Qwen3解决方案</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>智能客服</strong></td>
+<td>多语言支持 + 快速响应，处理高频咨询；结合MCP协议调用订单系统，解决复杂问题。</td>
+</tr>
+<tr>
+<td><strong>代码辅助</strong></td>
+<td>生成高质量代码片段，实时调试建议，支持Python、Java、C++等主流语言。</td>
+</tr>
+<tr>
+<td><strong>教育领域</strong></td>
+<td>数学题自动解析、个性化学习路径推荐，甚至模拟老师讲解知识点。</td>
+</tr>
+<tr>
+<td><strong>内容创作</strong></td>
+<td>创意写作、文案生成、多语言翻译，大幅提升生产效率。</td>
+</tr>
+<tr>
+<td><strong>企业智能化</strong></td>
+<td>集成内部数据库与API，打造专属智能助手（如财务分析Bot、供应链优化Agent）。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="四本地使用qwen3"><strong>四、本地使用Qwen3</strong></h2>
+<p>接下来我们实际操作一下, 在本地体验一个简单的对话：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置大陆镜像</span>
+</span></span><span class="line"><span class="cl"><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HF_ENDPOINT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;https://hf-mirror.com&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用一个最小的模型</span>
+</span></span><span class="line"><span class="cl"><span class="n">model_name</span> <span class="o">=</span> <span class="s2">&#34;Qwen/Qwen3-0.6B&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># load the tokenizer and the model</span>
+</span></span><span class="line"><span class="cl"><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">model_name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">torch_dtype</span><span class="o">=</span><span class="s2">&#34;auto&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">device_map</span><span class="o">=</span><span class="s2">&#34;auto&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># prepare the model input</span>
+</span></span><span class="line"><span class="cl"><span class="n">prompt</span> <span class="o">=</span> <span class="s2">&#34;Give me a short introduction to large language model.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">messages</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enable_thinking</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># Switches between thinking and non-thinking modes. Default is True.</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">model_inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">([</span><span class="n">text</span><span class="p">],</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&#34;pt&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># conduct text completion</span>
+</span></span><span class="line"><span class="cl"><span class="n">generated_ids</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">**</span><span class="n">model_inputs</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">32768</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">output_ids</span> <span class="o">=</span> <span class="n">generated_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">model_inputs</span><span class="o">.</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># parsing thinking content</span>
+</span></span><span class="line"><span class="cl"><span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># rindex finding 151668 (&lt;/think&gt;)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">index</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">output_ids</span><span class="p">)</span> <span class="o">-</span> <span class="n">output_ids</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">151668</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">thinking_content</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output_ids</span><span class="p">[:</span><span class="n">index</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">content</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output_ids</span><span class="p">[</span><span class="n">index</span><span class="p">:],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;thinking content:&#34;</span><span class="p">,</span> <span class="n">thinking_content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;content:&#34;</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>尝试多轮对话, 并在过程中切换推理模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">QwenChatbot</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s2">&#34;Qwen/Qwen3-0.6B&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">generate_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_input</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">+</span> <span class="p">[{</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">user_input</span><span class="p">}]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">messages</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">inputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&#34;pt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">32768</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">input_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]):]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">response_ids</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Update history</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;user&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">user_input</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&#34;role&#34;</span><span class="p">:</span> <span class="s2">&#34;assistant&#34;</span><span class="p">,</span> <span class="s2">&#34;content&#34;</span><span class="p">:</span> <span class="n">response</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">response</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Example Usage</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chatbot</span> <span class="o">=</span> <span class="n">QwenChatbot</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># First input (without /think or /no_think tags, thinking mode is enabled by default)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user_input_1</span> <span class="o">=</span> <span class="s2">&#34;How many r&#39;s in strawberries?&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;User: </span><span class="si">{</span><span class="n">user_input_1</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response_1</span> <span class="o">=</span> <span class="n">chatbot</span><span class="o">.</span><span class="n">generate_response</span><span class="p">(</span><span class="n">user_input_1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Bot: </span><span class="si">{</span><span class="n">response_1</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;----------------------&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Second input with /no_think</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user_input_2</span> <span class="o">=</span> <span class="s2">&#34;Then, how many r&#39;s in blueberries? /no_think&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;User: </span><span class="si">{</span><span class="n">user_input_2</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response_2</span> <span class="o">=</span> <span class="n">chatbot</span><span class="o">.</span><span class="n">generate_response</span><span class="p">(</span><span class="n">user_input_2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Bot: </span><span class="si">{</span><span class="n">response_2</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;----------------------&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Third input with /think</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user_input_3</span> <span class="o">=</span> <span class="s2">&#34;Really? /think&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;User: </span><span class="si">{</span><span class="n">user_input_3</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">response_3</span> <span class="o">=</span> <span class="n">chatbot</span><span class="o">.</span><span class="n">generate_response</span><span class="p">(</span><span class="n">user_input_3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Bot: </span><span class="si">{</span><span class="n">response_3</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="五结语qwen3开启ai新纪元"><strong>五、结语：Qwen3开启AI新纪元</strong></h2>
+<p>Qwen3的发布标志着大模型进入“<strong>灵活化、低成本、全球化</strong>”的新阶段。无论是初创团队还是企业开发者，都能借助这一开源利器快速构建AI应用。</p>
+<p><strong>现在就行动吧！</strong></p>
+<ul>
+<li>访问 <a href="https://chat.qwen.ai/">Qwen官网</a> 体验在线Demo；</li>
+<li>下载模型代码，探索更多可能性！</li>
+</ul>
+<blockquote>
+<p><strong>关注我们，第一时间获取Qwen3实战教程与行业案例！</strong></p>
+</blockquote>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">YG.Bingo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2025-04-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞助我一杯咖啡吧！</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="https://ygbingo-1257417561.cos.ap-shanghai.myqcloud.com/imgs/54ffe4b4-24da-4c37-8909-4c5da6ae2313.jpg">
+        <span>微信打赏</span>
+      </label>
+    
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/llm/">llm</a>
+          <a href="/tags/qwen3/">Qwen3</a>
+          <a href="/tags/deepseek/">deepseek</a>
+          <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/">
+            <span class="next-text nav-default">【炸裂】Python后台任务Celery全面解析(二)-执行池(Execution Pool)类型</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="gitalk-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var gitalk = new Gitalk({
+        id: '2025-04-20 13:54:44 \u002b0800 CST',
+        title: '超越DeepSeek！阿里最新开源模型Qwen3',
+        clientID: '3e4b82575206b75760c1',
+        clientSecret: 'd3aa444dedf47396f143760cd879686e3d573191',
+        repo: 'ygbingo.github.io',
+        owner: 'ygbingo',
+        admin: ['ygbingo'],
+        body: decodeURI(location.href)
+      });
+      gitalk.render('gitalk-container');
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/gitalk/gitalk">comments powered by gitalk.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="yanhuibin315@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/ygbingo" class="iconfont icon-github" title="github"></a>
+  <a href="https://ygbingo.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ygbingo/hugo-theme-seven">Seven</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2019 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        tags: 'ams',
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

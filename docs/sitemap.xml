@@ -2,14 +2,63 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</loc>
-    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
+    <loc>https://ygbingo.github.io/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://ygbingo.github.io/</loc>
+    <loc>https://ygbingo.github.io/tags/deepseek/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/llm/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/qwen3/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2025-04-20T13:54:44+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</loc>
     <lastmod>2025-04-15T13:54:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -30,21 +79,7 @@
   </url>
   
   <url>
-    <loc>https://ygbingo.github.io/post/</loc>
-    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://ygbingo.github.io/tags/python/</loc>
-    <lastmod>2025-04-15T13:54:44+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://ygbingo.github.io/tags/</loc>
     <lastmod>2025-04-15T13:54:44+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

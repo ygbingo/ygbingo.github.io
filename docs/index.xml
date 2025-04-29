@@ -6,8 +6,15 @@
     <description>Recent content on Bingo&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 15 Apr 2025 13:54:44 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 20 Apr 2025 13:54:44 +0800</lastBuildDate>
     <atom:link href="https://ygbingo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>超越DeepSeek！阿里最新开源模型Qwen3</title>
+      <link>https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/</link>
+      <pubDate>Sun, 20 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/</guid>
+      <description>近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“</description>
+    </item>
     <item>
       <title>【炸裂】Python后台任务Celery全面解析(二)-执行池(Execution Pool)类型</title>
       <link>https://ygbingo.github.io/post/2025-04-15-%E7%82%B8%E8%A3%82python%E5%90%8E%E5%8F%B0%E4%BB%BB%E5%8A%A1celery%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%E4%BA%8C-%E6%89%A7%E8%A1%8C%E6%B1%A0execution-pool%E7%B1%BB%E5%9E%8B/</link>
