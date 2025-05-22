@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>deepseek on Bingo&#39;s Blog</title>
+    <link>https://ygbingo.github.io/tags/deepseek/</link>
+    <description>Recent content in deepseek on Bingo&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Apr 2025 13:54:44 +0800</lastBuildDate>
+    <atom:link href="https://ygbingo.github.io/tags/deepseek/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>超越DeepSeek！阿里最新开源模型Qwen3</title>
+      <link>https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/</link>
+      <pubDate>Sun, 20 Apr 2025 13:54:44 +0800</pubDate>
+      <guid>https://ygbingo.github.io/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/</guid>
+      <description>近日，阿里巴巴重磅开源了新一代大语言模型——Qwen3！这款模型不仅性能全面超越Llama 4、DeepSeek-R1等顶尖模型，还首次引入“</description>
+    </item>
+  </channel>
+</rss>
