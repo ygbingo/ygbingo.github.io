@@ -1,0 +1,190 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>揭秘单例模式：从原理到Python实现 - Bingo's Blog</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="YG.Bingo"><meta name=description content="在软件开发中，设计模式是解决常见问题的通用模板。单例模式（Singleton Pattern） 是最常用的设计模式之一，它确保一个类只有一个实例"><meta name=keywords content="Bingo,blog"><meta name=generator content="Hugo 0.122.0 with theme even"><link rel=canonical href=https://ygbingo.github.io/post/2025-06-06-python%E8%BF%9B%E9%98%B6%E5%AE%9E%E7%8E%B0%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="揭秘单例模式：从原理到Python实现"><meta property="og:description" content="在软件开发中，设计模式是解决常见问题的通用模板。单例模式（Singleton Pattern） 是最常用的设计模式之一，它确保一个类只有一个实例"><meta property="og:type" content="article"><meta property="og:url" content="https://ygbingo.github.io/post/2025-06-06-python%E8%BF%9B%E9%98%B6%E5%AE%9E%E7%8E%B0%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95/"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-06-06T13:54:44+08:00"><meta property="article:modified_time" content="2025-06-06T13:54:44+08:00"><meta itemprop=name content="揭秘单例模式：从原理到Python实现"><meta itemprop=description content="在软件开发中，设计模式是解决常见问题的通用模板。单例模式（Singleton Pattern） 是最常用的设计模式之一，它确保一个类只有一个实例"><meta itemprop=datePublished content="2025-06-06T13:54:44+08:00"><meta itemprop=dateModified content="2025-06-06T13:54:44+08:00"><meta itemprop=wordCount content="1317"><meta itemprop=keywords content="python,设计模式,"><meta name=twitter:card content="summary"><meta name=twitter:title content="揭秘单例模式：从原理到Python实现"><meta name=twitter:description content="在软件开发中，设计模式是解决常见问题的通用模板。单例模式（Singleton Pattern） 是最常用的设计模式之一，它确保一个类只有一个实例"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Bingo</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>主页</li></a><a href=/post/><li class=mobile-menu-item>文章</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Bingo</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>主页</a></li><li class=menu-item><a class=menu-item-link href=/post/>文章</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>揭秘单例模式：从原理到Python实现</h1><div class=post-meta><span class=post-time>2025-06-06 </span><span class=more-meta>约 1317 字 </span><span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#一什么是单例模式>一、什么是单例模式？</a><ul><li><a href=#-单例模式的特点>🎯 单例模式的特点：</a></li></ul></li><li><a href=#二为什么需要单例模式>二、为什么需要单例模式？</a><ul><li><a href=#-资源共享>✅ 资源共享</a></li><li><a href=#-全局配置管理>✅ 全局配置管理</a></li><li><a href=#-控制并发访问>✅ 控制并发访问</a></li></ul></li><li><a href=#三python-中的单例实现方式>三、Python 中的单例实现方式</a><ul><li><a href=#方法一使用模块级变量最简单>方法一：使用模块级变量（最简单）</a></li><li><a href=#方法二使用装饰器实现单例>方法二：使用装饰器实现单例</a></li><li><a href=#方法三使用-__new__-方法控制实例创建>方法三：使用 <code>__new__</code> 方法控制实例创建</a></li><li><a href=#方法四使用元类metaclass实现>方法四：使用元类（Metaclass）实现</a></li></ul></li><li><a href=#四注意事项与线程安全>四、注意事项与线程安全</a></li><li><a href=#五总结>五、总结</a></li><li><a href=#-结语>✅ 结语</a></li></ul></li></ul></nav></div></div><div class=post-content><blockquote><p>在软件开发中，设计模式是解决常见问题的通用模板。单例模式（Singleton Pattern） 是最常用的设计模式之一，它确保一个类只有一个实例，并提供一个全局访问点。今天我们就来聊聊什么是单例模式、为什么需要它，以及如何使用 Python 实现不同的单例方式。</p></blockquote><hr><h2 id=一什么是单例模式>一、什么是单例模式？</h2><p><strong>单例模式</strong>是一种创建型设计模式，其核心思想是：</p><blockquote><p><strong>在整个程序运行期间，某个类只能被实例化一次。</strong></p></blockquote><p>换句话说，无论你尝试创建多少次这个类的对象，最终得到的都是同一个实例。</p><h3 id=-单例模式的特点>🎯 单例模式的特点：</h3><ol><li><strong>私有构造函数</strong>：防止外部随意创建新实例。</li><li><strong>静态方法或属性</strong>：用于获取唯一实例。</li><li><strong>内部保存唯一实例</strong>：通常是类的私有静态变量。</li></ol><hr><h2 id=二为什么需要单例模式>二、为什么需要单例模式？</h2><p>单例模式在很多场景中都非常有用，以下是几个典型的使用理由：</p><h3 id=-资源共享>✅ 资源共享</h3><p>例如数据库连接池、日志记录器等资源密集型对象，我们不希望重复创建，而是希望所有调用都使用同一个实例。</p><h3 id=-全局配置管理>✅ 全局配置管理</h3><p>比如应用程序的配置信息，只需要加载一次，之后任何地方都可以访问这个唯一的配置对象。</p><h3 id=-控制并发访问>✅ 控制并发访问</h3><p>在多线程环境中，确保某个资源只被初始化一次，避免竞态条件。</p><hr><h2 id=三python-中的单例实现方式>三、Python 中的单例实现方式</h2><p>Python 并不像 Java 那样强制封装构造函数，但我们可以借助语言特性来模拟单例行为。</p><h3 id=方法一使用模块级变量最简单>方法一：使用模块级变量（最简单）</h3><p>Python 的模块天然就是单例的，因为模块只会被导入一次。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># singleton.py</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Singleton</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>value</span> <span class=o>=</span> <span class=s2>&#34;I am singleton&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>instance</span> <span class=o>=</span> <span class=n>Singleton</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><p>使用时：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>singleton</span> <span class=kn>import</span> <span class=n>instance</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>a</span> <span class=o>=</span> <span class=n>instance</span>
+</span></span><span class=line><span class=cl><span class=n>b</span> <span class=o>=</span> <span class=n>instance</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>a</span> <span class=ow>is</span> <span class=n>b</span><span class=p>)</span>  <span class=c1># True</span>
+</span></span></code></pre></td></tr></table></div></div><p>📌 <strong>优点</strong>：简洁高效<br>📌 <strong>缺点</strong>：不够面向对象，无法延迟初始化</p><hr><h3 id=方法二使用装饰器实现单例>方法二：使用装饰器实现单例</h3><p>通过装饰器控制类的实例化过程。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>singleton</span><span class=p>(</span><span class=bp>cls</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>instances</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>get_instance</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=bp>cls</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>instances</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span> <span class=o>=</span> <span class=bp>cls</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>get_instance</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nd>@singleton</span>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Database</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>connection</span> <span class=o>=</span> <span class=s2>&#34;Connected to DB&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>db1</span> <span class=o>=</span> <span class=n>Database</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>db2</span> <span class=o>=</span> <span class=n>Database</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>db1</span> <span class=ow>is</span> <span class=n>db2</span><span class=p>)</span>  <span class=c1># True</span>
+</span></span></code></pre></td></tr></table></div></div><p>📌 <strong>优点</strong>：灵活可复用<br>📌 <strong>缺点</strong>：对继承支持较差</p><hr><h3 id=方法三使用-__new__-方法控制实例创建>方法三：使用 <code>__new__</code> 方法控制实例创建</h3><p>这是更传统的 OOP 实现方式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>AppConfig</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>_instance</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__new__</span><span class=p>(</span><span class=bp>cls</span><span class=p>,</span> <span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span> <span class=o>=</span> <span class=nb>super</span><span class=p>()</span><span class=o>.</span><span class=fm>__new__</span><span class=p>(</span><span class=bp>cls</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=ow>not</span> <span class=nb>hasattr</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=s1>&#39;inited&#39;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>config</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&#34;theme&#34;</span><span class=p>:</span> <span class=s2>&#34;dark&#34;</span><span class=p>,</span> <span class=s2>&#34;lang&#34;</span><span class=p>:</span> <span class=s2>&#34;zh&#34;</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=bp>self</span><span class=o>.</span><span class=n>inited</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>config1</span> <span class=o>=</span> <span class=n>AppConfig</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>config2</span> <span class=o>=</span> <span class=n>AppConfig</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>config1</span> <span class=ow>is</span> <span class=n>config2</span><span class=p>)</span>  <span class=c1># True</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>config1</span><span class=o>.</span><span class=n>config</span> <span class=o>==</span> <span class=n>config2</span><span class=o>.</span><span class=n>config</span><span class=p>)</span>  <span class=c1># True</span>
+</span></span></code></pre></td></tr></table></div></div><p>📌 <strong>优点</strong>：标准且可控<br>📌 <strong>缺点</strong>：需注意多重继承和多线程安全问题</p><hr><h3 id=方法四使用元类metaclass实现>方法四：使用元类（Metaclass）实现</h3><p>适用于需要统一管理多个类为单例的情况。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>SingletonMeta</span><span class=p>(</span><span class=nb>type</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>_instances</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__call__</span><span class=p>(</span><span class=bp>cls</span><span class=p>,</span> <span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=bp>cls</span> <span class=ow>not</span> <span class=ow>in</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instances</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=bp>cls</span><span class=o>.</span><span class=n>_instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span> <span class=o>=</span> <span class=nb>super</span><span class=p>()</span><span class=o>.</span><span class=fm>__call__</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Cache</span><span class=p>(</span><span class=n>metaclass</span><span class=o>=</span><span class=n>SingletonMeta</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>data</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>cache1</span> <span class=o>=</span> <span class=n>Cache</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>cache2</span> <span class=o>=</span> <span class=n>Cache</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>cache1</span> <span class=ow>is</span> <span class=n>cache2</span><span class=p>)</span>  <span class=c1># True</span>
+</span></span></code></pre></td></tr></table></div></div><p>📌 <strong>优点</strong>：高度抽象，适合框架设计<br>📌 <strong>缺点</strong>：理解门槛较高</p><hr><h2 id=四注意事项与线程安全>四、注意事项与线程安全</h2><p>上面的大多数实现都不是线程安全的。如果在多线程环境下使用，需要加锁处理。</p><p>例如改进 <code>__new__</code> 方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>threading</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ThreadSafeSingleton</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>_instance</span> <span class=o>=</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>    <span class=n>_lock</span> <span class=o>=</span> <span class=n>threading</span><span class=o>.</span><span class=n>Lock</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__new__</span><span class=p>(</span><span class=bp>cls</span><span class=p>,</span> <span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_lock</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span> <span class=ow>is</span> <span class=kc>None</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span> <span class=o>=</span> <span class=nb>super</span><span class=p>()</span><span class=o>.</span><span class=fm>__new__</span><span class=p>(</span><span class=bp>cls</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=bp>cls</span><span class=o>.</span><span class=n>_instance</span>
+</span></span></code></pre></td></tr></table></div></div><p>或者改进装饰器版本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>threading</span> <span class=kn>import</span> <span class=n>Lock</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>thread_safe_singleton</span><span class=p>(</span><span class=bp>cls</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>instances</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=n>lock</span> <span class=o>=</span> <span class=n>Lock</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>wrapper</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>with</span> <span class=n>lock</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=bp>cls</span> <span class=ow>not</span> <span class=ow>in</span> <span class=n>instances</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span> <span class=o>=</span> <span class=bp>cls</span><span class=p>(</span><span class=o>*</span><span class=n>args</span><span class=p>,</span> <span class=o>**</span><span class=n>kwargs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>instances</span><span class=p>[</span><span class=bp>cls</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>wrapper</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=五总结>五、总结</h2><table><thead><tr><th>实现方式</th><th>是否推荐</th><th>适用场景</th></tr></thead><tbody><tr><td>模块级变量</td><td>✅</td><td>简单应用、快速原型</td></tr><tr><td>装饰器</td><td>✅✅</td><td>可插拔、非侵入式</td></tr><tr><td><code>__new__</code> 方法</td><td>✅✅✅</td><td>标准OOP项目</td></tr><tr><td>元类</td><td>✅✅</td><td>框架/库开发</td></tr></tbody></table><hr><h2 id=-结语>✅ 结语</h2><p>单例模式虽然看似简单，但在实际工程中却非常重要。它不仅帮助我们节省资源，还能保证状态一致性。</p><p>掌握不同实现方式，有助于你在不同项目结构中灵活运用这一经典设计模式。</p><blockquote><p>如果你觉得这篇文章对你有帮助，欢迎点赞、收藏并分享给更多开发者朋友！🌟</p></blockquote><hr><p>📌 <strong>关注我，持续更新 Python 进阶知识 & 设计模式实战解析</strong></p></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>YG.Bingo</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2025-06-06</span></p></div><div class=post-reward><input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞助我一杯咖啡吧！</label><div class=qr-code><label class=qr-code-image for=reward><img class=image src=https://ygbingo-1257417561.cos.ap-shanghai.myqcloud.com/imgs/54ffe4b4-24da-4c37-8909-4c5da6ae2313.jpg>
+<span>微信打赏</span></label></div></div><footer class=post-footer><div class=post-tags><a href=/tags/python/>python</a>
+<a href=/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/>设计模式</a></div><nav class=post-nav><a class=prev href=/post/2025-06-11-python%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%9C%80%E5%85%A8%E6%8C%87%E5%8D%97/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">-Python进程与线程最全指南</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a><a class=next href=/post/2025-05-26-python%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%80%E4%BD%B3%E6%8C%87%E5%8D%97-%E4%BC%9A%E8%AF%9D%E7%AF%87/><span class="next-text nav-default">sqlalchemy最佳指南-会话篇</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script><script type=text/javascript>var gitalk=new Gitalk({id:"2025-06-06 13:54:44 +0800 CST",title:"揭秘单例模式：从原理到Python实现",clientID:"3e4b82575206b75760c1",clientSecret:"d3aa444dedf47396f143760cd879686e3d573191",repo:"ygbingo.github.io",owner:"ygbingo",admin:["ygbingo"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script><noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=yanhuibin315@163.com class="iconfont icon-email" title=email></a><a href=https://github.com/ygbingo class="iconfont icon-github" title=github></a><a href=https://ygbingo.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span><span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/ygbingo/hugo-theme-seven>Seven</a>
+</span><span class=copyright-year>&copy;
+2019 -
+2026<span class=heart><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],tags:"ams"}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>

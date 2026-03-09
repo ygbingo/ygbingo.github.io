@@ -1,0 +1,595 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1"><title>Cline+Deepseek+MCP实现天气查询 - Bingo's Blog</title>
+<meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=Cache-Control content="no-transform"><meta http-equiv=Cache-Control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="YG.Bingo"><meta name=description content="听说CoT模型架构过时了？现在流行MCP了？来亲自试试，看看MCP到底是个什么东西 什么是MCP服务 轻量级程序，通过标准的 Model Context Protocol 提供特定能力。"><meta name=keywords content="Bingo,blog"><meta name=generator content="Hugo 0.122.0 with theme even"><link rel=canonical href=https://ygbingo.github.io/post/2025-05-01-cline+deepseek+mcp%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E6%9F%A5%E8%AF%A2/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><meta property="og:title" content="Cline+Deepseek+MCP实现天气查询"><meta property="og:description" content="听说CoT模型架构过时了？现在流行MCP了？来亲自试试，看看MCP到底是个什么东西 什么是MCP服务 轻量级程序，通过标准的 Model Context Protocol 提供特定能力。"><meta property="og:type" content="article"><meta property="og:url" content="https://ygbingo.github.io/post/2025-05-01-cline+deepseek+mcp%E5%AE%9E%E7%8E%B0%E5%A4%A9%E6%B0%94%E6%9F%A5%E8%AF%A2/"><meta property="article:section" content="post"><meta property="article:published_time" content="2025-05-01T13:54:44+08:00"><meta property="article:modified_time" content="2025-05-01T13:54:44+08:00"><meta itemprop=name content="Cline+Deepseek+MCP实现天气查询"><meta itemprop=description content="听说CoT模型架构过时了？现在流行MCP了？来亲自试试，看看MCP到底是个什么东西 什么是MCP服务 轻量级程序，通过标准的 Model Context Protocol 提供特定能力。"><meta itemprop=datePublished content="2025-05-01T13:54:44+08:00"><meta itemprop=dateModified content="2025-05-01T13:54:44+08:00"><meta itemprop=wordCount content="1765"><meta itemprop=keywords content="llm,MCP,deepseek,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Cline+Deepseek+MCP实现天气查询"><meta name=twitter:description content="听说CoT模型架构过时了？现在流行MCP了？来亲自试试，看看MCP到底是个什么东西 什么是MCP服务 轻量级程序，通过标准的 Model Context Protocol 提供特定能力。"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script><script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>Bingo</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>主页</li></a><a href=/post/><li class=mobile-menu-item>文章</li></a><a href=/tags/><li class=mobile-menu-item>标签</li></a><a href=/about/><li class=mobile-menu-item>关于</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>Bingo</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>主页</a></li><li class=menu-item><a class=menu-item-link href=/post/>文章</a></li><li class=menu-item><a class=menu-item-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-item-link href=/about/>关于</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Cline+Deepseek+MCP实现天气查询</h1><div class=post-meta><span class=post-time>2025-05-01 </span><span class=more-meta>约 1765 字 </span><span class=more-meta>预计阅读 4 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>文章目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#什么是mcp服务>什么是MCP服务</a></li><li><a href=#开发一个查天气的mcp服务>开发一个查天气的MCP服务</a><ul><li><a href=#1-准备条件>1. 准备条件</a></li><li><a href=#2-开发第一个mcp-server>2. 开发第一个mcp server</a></li><li><a href=#3-构建mcp服务器>3. 构建MCP服务器</a></li><li><a href=#4-测试>4. 测试</a></li><li><a href=#5-在vscode的cline插件中添加mcp服务>5. 在vscode的Cline插件中添加MCP服务</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><blockquote><p>听说CoT模型架构过时了？现在流行MCP了？来亲自试试，看看MCP到底是个什么东西</p></blockquote><h2 id=什么是mcp服务>什么是MCP服务</h2><p>轻量级程序，通过标准的 Model Context Protocol 提供特定能力。比如下面我们要实现的查天气能力，相当于给大模型提供一个额外的技能！</p><p>MCP 服务器可以提供三种主要类型的能力：</p><ul><li>Resources: 可以被 clients 读取的类文件数据（如 API 响应或文件内容）</li><li>Tools: 可以被 LLM 调用的函数（需要用户批准）</li><li>Prompts: 预先编写的模板，帮助用户完成特定任务</li></ul><h2 id=开发一个查天气的mcp服务>开发一个查天气的MCP服务</h2><p>我们将构建一个服务器，该服务器会公开两个工具：get-alerts（获取警报）和 get-forecast（获取天气预报）。然后我们会将该服务器连接到一个 MCP 主机。由于我在大陆，所以我是用Cline作为MCP的客户端。</p><h3 id=1-准备条件>1. 准备条件</h3><ul><li>VS code</li><li>Cline (因为需要一个支持MCP的大模型客户端)</li><li>Deepseek API Key (建议，deepseek真的很便宜，也可以用别的大模型，Cline支持很多)</li></ul><h3 id=2-开发第一个mcp-server>2. 开发第一个mcp server</h3><ul><li>Node: 使用node环境</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># node需要大于16版本</span>
+</span></span><span class=line><span class=cl>node --version
+</span></span><span class=line><span class=cl>npm --version
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 为我们的项目创建一个新 directory</span>
+</span></span><span class=line><span class=cl>md weather
+</span></span><span class=line><span class=cl><span class=nb>cd</span> weather
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 初始化一个新的 npm 项目</span>
+</span></span><span class=line><span class=cl>npm init -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 安装 dependencies</span>
+</span></span><span class=line><span class=cl>npm install @modelcontextprotocol/sdk zod
+</span></span><span class=line><span class=cl>npm install -D @types/node typescript
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建我们的 files</span>
+</span></span><span class=line><span class=cl>md src
+</span></span><span class=line><span class=cl>new-item src<span class=se>\i</span>ndex.ts
+</span></span></code></pre></td></tr></table></div></div><p>更新你的 package.json 以添加 type: “module” 和一个 build script</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;module&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;bin&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;weather&#34;</span><span class=p>:</span> <span class=s2>&#34;./build/index.js&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;scripts&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;build&#34;</span><span class=p>:</span> <span class=s2>&#34;tsc &amp;&amp; chmod 755 build/index.js&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;files&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;build&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>],</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>在你的项目的根目录下创建一个 tsconfig.json</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;target&#34;</span><span class=p>:</span> <span class=s2>&#34;ES2022&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;module&#34;</span><span class=p>:</span> <span class=s2>&#34;Node16&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;moduleResolution&#34;</span><span class=p>:</span> <span class=s2>&#34;Node16&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;outDir&#34;</span><span class=p>:</span> <span class=s2>&#34;./build&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;rootDir&#34;</span><span class=p>:</span> <span class=s2>&#34;./src&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;strict&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;esModuleInterop&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;skipLibCheck&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;forceConsistentCasingInFileNames&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;include&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;src/**/*&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;exclude&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;node_modules&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=3-构建mcp服务器>3. 构建MCP服务器</h3><p>编辑src\index.ts</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-typescript data-lang=typescript><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>McpServer</span> <span class=p>}</span> <span class=kr>from</span> <span class=s2>&#34;@modelcontextprotocol/sdk/server/mcp.js&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>StdioServerTransport</span> <span class=p>}</span> <span class=kr>from</span> <span class=s2>&#34;@modelcontextprotocol/sdk/server/stdio.js&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>z</span> <span class=p>}</span> <span class=kr>from</span> <span class=s2>&#34;zod&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>NWS_API_BASE</span> <span class=o>=</span> <span class=s2>&#34;https://api.weather.gov&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>USER_AGENT</span> <span class=o>=</span> <span class=s2>&#34;weather-app/1.0&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 创建 server instance
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>server</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>McpServer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;weather&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>version</span><span class=o>:</span> <span class=s2>&#34;1.0.0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>capabilities</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>resources</span><span class=o>:</span> <span class=p>{},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>tools</span><span class=o>:</span> <span class=p>{},</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Helper function 用于发送 NWS API 请求
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>async</span> <span class=kd>function</span> <span class=nx>makeNWSRequest</span><span class=p>&lt;</span><span class=nt>T</span><span class=p>&gt;(</span><span class=nx>url</span>: <span class=kt>string</span><span class=p>)</span><span class=o>:</span> <span class=nx>Promise</span><span class=p>&lt;</span><span class=nt>T</span> <span class=err>|</span> <span class=na>null</span><span class=p>&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>headers</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;User-Agent&#34;</span><span class=o>:</span> <span class=nx>USER_AGENT</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>Accept</span><span class=o>:</span> <span class=s2>&#34;application/geo+json&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>try</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=nx>url</span><span class=p>,</span> <span class=p>{</span> <span class=nx>headers</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>response</span><span class=p>.</span><span class=nx>ok</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=sb>`HTTP error! status: </span><span class=si>${</span><span class=nx>response</span><span class=p>.</span><span class=nx>status</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>(</span><span class=k>await</span> <span class=nx>response</span><span class=p>.</span><span class=nx>json</span><span class=p>())</span> <span class=kr>as</span> <span class=nx>T</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=s2>&#34;Error making NWS request:&#34;</span><span class=p>,</span> <span class=nx>error</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=kc>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>AlertFeature</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>properties</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>event?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>areaDesc?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>severity?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>status?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>headline?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 格式化警报数据
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=nx>formatAlert</span><span class=p>(</span><span class=nx>feature</span>: <span class=kt>AlertFeature</span><span class=p>)</span><span class=o>:</span> <span class=kt>string</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>props</span> <span class=o>=</span> <span class=nx>feature</span><span class=p>.</span><span class=nx>properties</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=sb>`Event: </span><span class=si>${</span><span class=nx>props</span><span class=p>.</span><span class=nx>event</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=sb>`Area: </span><span class=si>${</span><span class=nx>props</span><span class=p>.</span><span class=nx>areaDesc</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=sb>`Severity: </span><span class=si>${</span><span class=nx>props</span><span class=p>.</span><span class=nx>severity</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=sb>`Status: </span><span class=si>${</span><span class=nx>props</span><span class=p>.</span><span class=nx>status</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=sb>`Headline: </span><span class=si>${</span><span class=nx>props</span><span class=p>.</span><span class=nx>headline</span> <span class=o>||</span> <span class=s2>&#34;No headline&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;---&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>].</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;\n&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ForecastPeriod</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>temperature?</span>: <span class=kt>number</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>temperatureUnit?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>windSpeed?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>windDirection?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shortForecast?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>AlertsResponse</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>features</span>: <span class=kt>AlertFeature</span><span class=p>[];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>PointsResponse</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>properties</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>forecast?</span>: <span class=kt>string</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>interface</span> <span class=nx>ForecastResponse</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>properties</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>periods</span>: <span class=kt>ForecastPeriod</span><span class=p>[];</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 注册天气 tools
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>server</span><span class=p>.</span><span class=nx>tool</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;get-alerts&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;获取某个州的天气警报&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>state</span>: <span class=kt>z.string</span><span class=p>().</span><span class=nx>length</span><span class=p>(</span><span class=mi>2</span><span class=p>).</span><span class=nx>describe</span><span class=p>(</span><span class=s2>&#34;两个字母的州代码（例如 CA、NY）&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=p>({</span> <span class=nx>state</span> <span class=p>})</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>stateCode</span> <span class=o>=</span> <span class=nx>state</span><span class=p>.</span><span class=nx>toUpperCase</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>alertsUrl</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>NWS_API_BASE</span><span class=si>}</span><span class=sb>/alerts?area=</span><span class=si>${</span><span class=nx>stateCode</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>alertsData</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>makeNWSRequest</span><span class=p>&lt;</span><span class=nt>AlertsResponse</span><span class=p>&gt;(</span><span class=nx>alertsUrl</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>alertsData</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=s2>&#34;未能检索警报数据&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>features</span> <span class=o>=</span> <span class=nx>alertsData</span><span class=p>.</span><span class=nx>features</span> <span class=o>||</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>features</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=sb>`No active alerts for </span><span class=si>${</span><span class=nx>stateCode</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>formattedAlerts</span> <span class=o>=</span> <span class=nx>features</span><span class=p>.</span><span class=nx>map</span><span class=p>(</span><span class=nx>formatAlert</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>alertsText</span> <span class=o>=</span> <span class=sb>`Active alerts for </span><span class=si>${</span><span class=nx>stateCode</span><span class=si>}</span><span class=sb>:</span><span class=err>\</span><span class=sb>n</span><span class=err>\</span><span class=sb>n</span><span class=si>${</span><span class=nx>formattedAlerts</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;\n&#34;</span><span class=p>)</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nx>text</span>: <span class=kt>alertsText</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>server</span><span class=p>.</span><span class=nx>tool</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;get-forecast&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;获取某个位置的天气预报&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>latitude</span>: <span class=kt>z.number</span><span class=p>().</span><span class=nx>min</span><span class=p>(</span><span class=o>-</span><span class=mi>90</span><span class=p>).</span><span class=nx>max</span><span class=p>(</span><span class=mi>90</span><span class=p>).</span><span class=nx>describe</span><span class=p>(</span><span class=s2>&#34;位置的纬度&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>longitude</span>: <span class=kt>z.number</span><span class=p>().</span><span class=nx>min</span><span class=p>(</span><span class=o>-</span><span class=mi>180</span><span class=p>).</span><span class=nx>max</span><span class=p>(</span><span class=mi>180</span><span class=p>).</span><span class=nx>describe</span><span class=p>(</span><span class=s2>&#34;位置的经度&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=kr>async</span> <span class=p>({</span> <span class=nx>latitude</span><span class=p>,</span> <span class=nx>longitude</span> <span class=p>})</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 获取网格点数据
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>pointsUrl</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>NWS_API_BASE</span><span class=si>}</span><span class=sb>/points/</span><span class=si>${</span><span class=nx>latitude</span><span class=p>.</span><span class=nx>toFixed</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span><span class=si>}</span><span class=sb>,</span><span class=si>${</span><span class=nx>longitude</span><span class=p>.</span><span class=nx>toFixed</span><span class=p>(</span><span class=mi>4</span><span class=p>)</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>pointsData</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>makeNWSRequest</span><span class=p>&lt;</span><span class=nt>PointsResponse</span><span class=p>&gt;(</span><span class=nx>pointsUrl</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>pointsData</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=sb>`Failed to retrieve grid point data for coordinates: </span><span class=si>${</span><span class=nx>latitude</span><span class=si>}</span><span class=sb>, </span><span class=si>${</span><span class=nx>longitude</span><span class=si>}</span><span class=sb>. This location may not be supported by the NWS API (only US locations are supported).`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>forecastUrl</span> <span class=o>=</span> <span class=nx>pointsData</span><span class=p>.</span><span class=nx>properties</span><span class=o>?</span><span class=p>.</span><span class=nx>forecast</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>forecastUrl</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=s2>&#34;Failed to get forecast URL from grid point data&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 获取预报数据
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>forecastData</span> <span class=o>=</span> <span class=k>await</span> <span class=nx>makeNWSRequest</span><span class=p>&lt;</span><span class=nt>ForecastResponse</span><span class=p>&gt;(</span><span class=nx>forecastUrl</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>forecastData</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=s2>&#34;Failed to retrieve forecast data&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>periods</span> <span class=o>=</span> <span class=nx>forecastData</span><span class=p>.</span><span class=nx>properties</span><span class=o>?</span><span class=p>.</span><span class=nx>periods</span> <span class=o>||</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>periods</span><span class=p>.</span><span class=nx>length</span> <span class=o>===</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>          <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>text</span><span class=o>:</span> <span class=s2>&#34;No forecast periods available&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=p>],</span>
+</span></span><span class=line><span class=cl>      <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 格式化预报 periods
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>formattedForecast</span> <span class=o>=</span> <span class=nx>periods</span><span class=p>.</span><span class=nx>map</span><span class=p>((</span><span class=nx>period</span>: <span class=kt>ForecastPeriod</span><span class=p>)</span> <span class=o>=&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=sb>`</span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>name</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>:`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=sb>`Temperature: </span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>temperature</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb>°</span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>temperatureUnit</span> <span class=o>||</span> <span class=s2>&#34;F&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=sb>`Wind: </span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>windSpeed</span> <span class=o>||</span> <span class=s2>&#34;Unknown&#34;</span><span class=si>}</span><span class=sb> </span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>windDirection</span> <span class=o>||</span> <span class=s2>&#34;&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=sb>`</span><span class=si>${</span><span class=nx>period</span><span class=p>.</span><span class=nx>shortForecast</span> <span class=o>||</span> <span class=s2>&#34;No forecast available&#34;</span><span class=si>}</span><span class=sb>`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;---&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=p>].</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;\n&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>forecastText</span> <span class=o>=</span> <span class=sb>`Forecast for </span><span class=si>${</span><span class=nx>latitude</span><span class=si>}</span><span class=sb>, </span><span class=si>${</span><span class=nx>longitude</span><span class=si>}</span><span class=sb>:</span><span class=err>\</span><span class=sb>n</span><span class=err>\</span><span class=sb>n</span><span class=si>${</span><span class=nx>formattedForecast</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=s2>&#34;\n&#34;</span><span class=p>)</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>content</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=kr>type</span><span class=o>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nx>text</span>: <span class=kt>forecastText</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>main() {</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>transport</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>StdioServerTransport</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=k>await</span> <span class=nx>server</span><span class=p>.</span><span class=nx>connect</span><span class=p>(</span><span class=nx>transport</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=s2>&#34;Weather MCP Server running on stdio&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>main</span><span class=p>().</span><span class=k>catch</span><span class=p>((</span><span class=nx>error</span><span class=p>)</span> <span class=o>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=s2>&#34;Fatal error in main():&#34;</span><span class=p>,</span> <span class=nx>error</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>process</span><span class=p>.</span><span class=nx>exit</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>说明: 这里会调用一个天气查询服务</p><h3 id=4-测试>4. 测试</h3><p>先确保下面这个命令可以在本地运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>cd</span> weather
+</span></span><span class=line><span class=cl>npm run build
+</span></span></code></pre></td></tr></table></div></div><h3 id=5-在vscode的cline插件中添加mcp服务>5. 在vscode的Cline插件中添加MCP服务</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;mcpServers&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;weather&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;command&#34;</span><span class=p>:</span> <span class=s2>&#34;node&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=nt>&#34;args&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>              <span class=s2>&#34;&lt;YOUR_PATH&gt;\\weather\\build\\index.js&#34;</span>
+</span></span><span class=line><span class=cl>          <span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>YG.Bingo</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2025-05-01</span></p></div><div class=post-reward><input type=checkbox name=reward id=reward hidden>
+<label class=reward-button for=reward>赞助我一杯咖啡吧！</label><div class=qr-code><label class=qr-code-image for=reward><img class=image src=https://ygbingo-1257417561.cos.ap-shanghai.myqcloud.com/imgs/54ffe4b4-24da-4c37-8909-4c5da6ae2313.jpg>
+<span>微信打赏</span></label></div></div><footer class=post-footer><div class=post-tags><a href=/tags/llm/>llm</a>
+<a href=/tags/mcp/>MCP</a>
+<a href=/tags/deepseek/>deepseek</a></div><nav class=post-nav><a class=prev href=/post/2025-05-22-%E6%9C%80%E5%85%A8%E7%9A%84ai%E5%B7%A5%E5%85%B7%E9%83%BD%E5%9C%A8%E8%BF%99%E4%BA%862025-05-22%E6%9B%B4%E6%96%B0/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">最全的AI工具都在这了(2025-05-22更新)</span>
+<span class="prev-text nav-mobile">上一篇</span>
+</a><a class=next href=/post/2025-04-29-%E8%B6%85%E8%B6%8Adeepseek%E9%98%BF%E9%87%8C%E6%9C%80%E6%96%B0%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8Bqwen3/><span class="next-text nav-default">超越DeepSeek！阿里最新开源模型Qwen3</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script><script type=text/javascript>var gitalk=new Gitalk({id:"2025-05-01 13:54:44 +0800 CST",title:"Cline+Deepseek+MCP实现天气查询",clientID:"3e4b82575206b75760c1",clientSecret:"d3aa444dedf47396f143760cd879686e3d573191",repo:"ygbingo.github.io",owner:"ygbingo",admin:["ygbingo"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script><noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=yanhuibin315@163.com class="iconfont icon-email" title=email></a><a href=https://github.com/ygbingo class="iconfont icon-github" title=github></a><a href=https://ygbingo.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
+</span><span class=division>|</span>
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/ygbingo/hugo-theme-seven>Seven</a>
+</span><span class=copyright-year>&copy;
+2019 -
+2026<span class=heart><i class="iconfont icon-heart"></i></span><span>YG.Bingo</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script><script type=text/javascript>window.MathJax={tex:{inlineMath:[["$","$"],["\\(","\\)"]],tags:"ams"}}</script><script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script></body></html>
