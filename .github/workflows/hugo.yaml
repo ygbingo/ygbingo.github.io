@@ -43,10 +43,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
-      - name: Initialize submodules
-        run: git submodule update --init --recursive
+      - name: Clone theme
+        run: |
+          rm -rf themes/seven
+          git clone https://github.com/ygbingo/hugo-theme-seven.git themes/seven
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
